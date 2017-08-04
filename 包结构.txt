@@ -1,0 +1,16 @@
+poms
+    poms.center
+        poms.center.controller
+        poms.center.service
+        poms.center.dao
+        poms.center.resources
+        poms.center.entity
+    poms.publish
+
+    poms.deliver
+
+    poms.finance
+
+    poms.supporter
+
+    
