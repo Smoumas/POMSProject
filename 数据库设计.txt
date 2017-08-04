@@ -64,10 +64,11 @@ customer（customerID int，customerName TEXT，customerPhone TEXT，customerType in
 
 
 
-订单表：订单ID、报刊ID、客户ID、订单类型、【订单派送地址，每单数量】、订单数量、订单时间、派送时间、收款类型、支付类型、发票状态、缴费情况（是否欠款，部分欠款，完全欠款）
+订单表：订单ID、报刊ID、客户ID、订单类型、订单地址、订单数量、订单时间、派送时间、收款类型、支付类型、发票状态、缴费情况（是否欠款，部分欠款，完全欠款）,投递员ID
 
-Order（orderID int，newspaperID int，customerID int，orderType int，orderInfo TEXT，orderNum int，
-    orderDate date，deliverDate date，receiptType int，paymentType int，invoiceState int，paymentState int）
+Order（orderID int，newspaperID int，customerID int，orderType int，orderAddress TEXT，orderNum int，
+    orderDate date，deliverDate date，receiptType int，paymentType int，invoiceState int，paymentState int,deliverID int）
+
 
 
 集订分送，投递段，投递员
@@ -80,6 +81,9 @@ OrderChange（recordID int，orderID int，orderType int，oldValue TEXT，newValue T
 
 意见表：记录ID、意见类型、内容、回执
 comment（recordID int，commentType int，content TEXT，receipt TEXT）
+
+订单投递表（记录ID、订单ID，投递员ID、是否送达）
+orderDeliver（recordID int、orderID int、deliverID，isDelivered int）
 
 
 
