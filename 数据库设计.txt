@@ -1,7 +1,7 @@
 中心站
 
-分站表（ID，分站类型，分站地址）
-station（stationID int，stationType int，stationAddress TEXT）
+分站表（ID，分站类型，分站地址,上层分站ID，下层分站ID）（未有上层或下层 ID 为 -1）
+station（stationID int，stationType int，stationAddress TEXT，upperID int，lowerID int）
 
 
 部门表：编号、名称、所属分站（主键：自增ID）Department（departmentID int，departmentName TEXT，substationID int）
