@@ -54,8 +54,8 @@ company（companyName TEXT，BusinessScope TEXT，phone TEXT）
 Employee（employeeID int，sex int，age int，stationID，departmentID，dutyID，phone TEXT）
 
 
-操作员表：操作员姓名、操作员ID、操作员权限
-operator（operatorID int，operatorName TEXT，level int）
+操作员表：操作员姓名、操作员ID、操作员权限，所属分站
+operator（operatorID int，operatorName TEXT，level int，stationID int）
 
 
 客户表：客户ID，客户名称，联系方式，客户类型
@@ -71,9 +71,6 @@ Order（orderID int，newspaperID int，customerID int，stationID int、orderType in
 
 发票表（发票ID，订单ID,分站ID）
 invoice(invoiceID int,orderID int,stationID int)
-
-
-集订分送，投递段，投递员
 
 
 订单操作表：操作记录ID、订单ID、操作类型、原值、新值
