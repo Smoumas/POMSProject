@@ -1,14 +1,18 @@
 中心站
 
-分站表（ID，分站类型，分站地址,上层分站ID，下层分站ID）（未有上层或下层 ID 为 -1）
-station（stationID int，stationType int，stationAddress TEXT，upperID int，lowerID int）
+分站表（ID，分站地址,上层分站ID）（未有上层  ID 为 -1）
+station（stationID int，stationAddress TEXT，upperID int）
 
 
 部门表：编号、名称、所属分站（主键：自增ID）Department（departmentID int，departmentName TEXT，substationID int）
+
+
 职务表：职务ID、职务名称（主键：自增ID）  Duty（dutyType int，dutyName TEXT）
+
 部门职务表：部门ID，职务ID            DepartmentDuty（departmentID int，dutyType int） 外键
 
 报社表：报社编号、报社名称、报社联系方式     NewsOffice（noID int，noName TEXT，noPhone TEXT）
+
 
 
 报刊表：报刊ID、报刊名称、所属报社、是否允许退订、是否允许转址、是否允许延期、刊期
@@ -16,21 +20,21 @@ station（stationID int，stationType int，stationAddress TEXT，upperID int，lower
 Newspaper （newspaperID int，newspaperName TEXT，noID int，ableUnsubscribe int，ableRedirect int，ableDelay int，frequency int）
 
 报刊报价表：报刊ID、日价、月价、季价、半年价、年价、折扣基础倍率
-NewspaperPrice（newspapID int，dayPrice float,monthPrice float,seasonPrice float,halfYearPrice float,yearPrice float,baseDiscount TEXT）
+NewspaperPrice（newspapID int，dayPrice float,monthPrice float,seasonPrice float,halfYearPrice float,yearPrice float,baseDiscount float）
 
 
 
-赠卡表：赠卡ID，对应报刊ID，起始日期，结束日期
-GiftCard(giftCardID int,newspaperID int,startDate Date,endDate Date)
+赠卡表：赠卡ID，对应报刊ID，起始日期，结束日期，是否使用
+GiftCard(giftCardID int,newspaperID int,startDate Date,endDate Date,isUsed int)
 
 
-代金券表：代金券ID、金额
-Coupon(couponID int,price float)
+代金券表：代金券ID、金额，是否使用
+Coupon(couponID int,price float、isUsed int)
 
 
-通知表：发送站ID，发送部门ID，接收站ID，接收部门ID，是否已阅读，内容，时间
+通知表：通知ID、发送站ID，发送部门ID，接收站ID，接收部门ID，是否已阅读，内容，时间
 
-advice(sendStationID int,sendDeptID int,receiveStationID int,receiveDeptID,isReaded int,content TEXT,sendDate TEXT)
+advice(adviceID、sendStationID int,sendDeptID int,receiveStationID int,receiveDeptID,isReaded int,content TEXT,sendDate TEXT)
 
 
 
@@ -38,17 +42,12 @@ advice(sendStationID int,sendDeptID int,receiveStationID int,receiveDeptID,isRea
 TransferCom(companyID int,companyName TEXT,phone TEXT,address TEXT)
 
 
-
-地区表：省、区、市、街道
-Location(provice TEXT,area TEXT,city TEXT,street TEXT)
-
-
-用户变更表：记录ID，订单ID，变更类型，原因（客户ID 可选）
+用户变更表：记录ID，订单ID，变更类型，原因
 userModify(recordID int，orderID int，type int，reason TEXT）
 
 
 公司表：公司名称、业务范围、联系方式
-compangy（companyName TEXT，BusinessScope TEXT，phone TEXT）
+company（companyName TEXT，BusinessScope TEXT，phone TEXT）
 
 
 员工表：员工ID，性别，年龄。所属站点，部门ID，职务ID，联系方式
@@ -64,11 +63,14 @@ customer（customerID int，customerName TEXT，customerPhone TEXT，customerType in
 
 
 
-订单表：订单ID、报刊ID、客户ID、订单类型、订单地址、订单数量、订单时间、派送时间、收款类型、支付类型、发票状态、缴费情况（是否欠款，部分欠款，完全欠款）,投递员ID
+订单表：订单ID、报刊ID、客户ID、所属分站ID、订单类型、订单地址、订单数量、征订员ID、订单时间、派送时间、收款类型、支付类型、缴费情况（是否欠款，部分欠款，完全欠款）、投递段、投递员ID、是否送达、是否打印
 
-Order（orderID int，newspaperID int，customerID int，orderType int，orderAddress TEXT，orderNum int，
-    orderDate date，deliverDate date，receiptType int，paymentType int，invoiceState int，paymentState int,deliverID int）
+Order（orderID int，newspaperID int，customerID int，stationID int、orderType int，orderAddress TEXT，orderNum int，salerID int
+    orderDate date，deliverDate date，receiptType int，paymentType int，paymentState int，deliverAreaID int，deliverID int，isDelivered int，isPrinted int）
 
+
+发票表（发票ID，订单ID,分站ID）
+invoice(invoiceID int,orderID int,stationID int)
 
 
 集订分送，投递段，投递员
@@ -82,26 +84,29 @@ OrderChange（recordID int，orderID int，orderType int，oldValue TEXT，newValue T
 意见表：记录ID、意见类型、内容、回执
 comment（recordID int，commentType int，content TEXT，receipt TEXT）
 
-订单投递表（记录ID、订单ID，投递员ID、是否送达）
-orderDeliver（recordID int、orderID int、deliverID，isDelivered int）
 
-
+投递段（投递段ID，投递段值,所属分站点ID）
+deliverArea(deliverAreaID int,deliverAreaValue TEXT,stationID int)
 
 投递管理表：投递员ID、投递段ID
 
 
-印刷点维护：印刷点ID，印刷点名称，印刷点地址
+印刷点维护：印刷点ID，印刷点名称，印刷点地址，分站ID
 
-printer（printerID int，printerName TEXT，printerAddress TEXT）
+printer（printerID int，printerName TEXT，printerAddress TEXT，stationID int）
 
 
-送报点维护：送报点ID，送报点名称，送报点地址，送报点类型（是否是特殊送报点）
-
-Deliver（deliverID int，deliverName TEXT，deliverAddress TEXT，deliverType int）
+送报点维护：送报点ID，送报点名称，送报点地址，分站ID
+Deliver（deliverID int，deliverName TEXT，deliverAddress TEXT，stationID int）
 
 
 印刷送报关系表：印刷点ID，送报点ID，送报时间，路线，份数（每捆报纸有几份）
 
 printDeliver（printerID int，deliverID int，deliverTime TEXT，deliverWay TEXT，deliverNum int）
 
+报社结算表（recordID，报社编号、开始时间、结束时间、结算金额）
+noAccount（recordID int，beginDate date，endDate date，account double）
+
+分站结算表（recordID，分站ID，开始时间、结束时间、结算金额）
+stationAccount（recordID int，stationID int、beginDate date，endDate date，account double）
 
