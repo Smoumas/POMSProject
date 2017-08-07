@@ -13,6 +13,7 @@ public class Order {
 	private int salerID;
 	private Date orderDate;
 	private Date deliverDate;
+	private int orderDays;		//订购天数
 	private int receiptType;	//收款类型
 	private int paymentType;	//支付类型
 	private int paymenteState;	//缴费情况
@@ -20,6 +21,13 @@ public class Order {
 	private int deliverID;	
 	private boolean isDelivered;
 	private boolean isPrinted;
+	
+	public int getOrderDays() {
+		return orderDays;
+	}
+	public void setOrderDays(int orderDays) {
+		this.orderDays = orderDays;
+	}
 	public int getOrderID() {
 		return orderID;
 	}

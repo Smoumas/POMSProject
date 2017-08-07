@@ -18,7 +18,7 @@ import poms.center.entity.Order;
 import poms.supporter.service.IQueryService;
 
 @Controller
-@RequestMapping("/query")
+@RequestMapping("/support/query")
 @SessionAttributes("stationID")
 public class QueryController {
 	

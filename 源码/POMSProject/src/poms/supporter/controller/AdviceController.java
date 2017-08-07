@@ -17,7 +17,7 @@ import poms.center.entity.Advice;
 import poms.supporter.service.IAdviceService;
 
 @Controller
-@RequestMapping("/advice")
+@RequestMapping("/support/advice")
 @SessionAttributes("stationID")
 public class AdviceController {
 	

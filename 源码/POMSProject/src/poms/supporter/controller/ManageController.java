@@ -17,7 +17,7 @@ import poms.center.entity.Customer;
 import poms.supporter.service.IManageService;
 
 @Controller
-@RequestMapping("/manage")
+@RequestMapping("/support/manage")
 @SessionAttributes("stationID")
 public class ManageController {
 	
@@ -72,6 +72,17 @@ public class ManageController {
 		return modelMap;
 	}
 	
+	@RequestMapping(value="/changePassword")
+	@ResponseBody
+	public Map<String,Object> changePassword(@RequestParam("newPassword")String newPassword,ModelMap map){
+//		int operatorID = ((Operator)map.get("operator")).getOperatorID();
+		int operatorID = 1;
+		int result = manageService.changePassword(operatorID, newPassword);
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
 	@RequestMapping(value="/investigationByType")
 	@ResponseBody
 	public Map<String,Object> selectInvestigationByType(@RequestParam("commentType") int commentType,ModelMap map){
@@ -81,5 +92,16 @@ public class ManageController {
 		modelMap.put("size", commentList.size());
 		modelMap.put("data", commentList);
 		return modelMap;
+	}
+	
+	@RequestMapping(value="customerList")
+	@ResponseBody
+	public Map<String,Object> customerList(ModelMap map){
+		int stationID = Integer.parseInt(map.get("stationID").toString());
+		List<Customer> customerList = manageService.selectCustomerList(stationID);
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("size", customerList.size());
+		resultMap.put("data", customerList);
+		return resultMap;
 	}
 }

@@ -46,5 +46,17 @@ public class ManageServiceImpl implements IManageService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Customer> selectCustomerList(int stationID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int changePassword(int operatorID, String newPassword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

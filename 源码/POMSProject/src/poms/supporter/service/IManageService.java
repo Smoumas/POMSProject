@@ -10,6 +10,8 @@ public interface IManageService {
 	public int deleteCustomer(int customerID);
 	public int insertNewCustomer(Customer customer);
 	public int setCustomerInvestigation(Comment comment);
+	public List<Customer> selectCustomerList(int stationID);
 	public List<Comment> selectAllInvestigation(int stationID);
 	public List<Comment> selectInvestigationByType(int stationID,int commentType);
+	public int changePassword(int operatorID,String newPassword);
 }

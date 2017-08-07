@@ -1,5 +1,7 @@
 package poms.center.entity;
 
+import java.util.Date;
+
 public class Advice {
 	private int adviceID;
 	private int sendStationID;
@@ -8,7 +10,7 @@ public class Advice {
 	private int receiveDeptID;
 	private boolean isReaded;
 	private String content;
-	private String sendDate;
+	private Date sendDate;
 	public int getAdviceID() {
 		return adviceID;
 	}
@@ -51,10 +53,10 @@ public class Advice {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getSendDate() {
+	public Date getSendDate() {
 		return sendDate;
 	}
-	public void setSendDate(String sendDate) {
+	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
 	
