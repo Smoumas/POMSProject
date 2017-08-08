@@ -1,0 +1,30 @@
+body{
+}
+.title{
+    line-height: 3rem;
+    height: 3rem;
+    border-bottom: 1px solid #ccc;
+}
+.titleColor{
+    color:blue;
+}
+.operation{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.belowTable{
+    margin-bottom: 30px;
+}
+.mySelect{
+    width: 200px;
+}
+.myForm{
+    margin: auto auto;
+    text-align: center;
+}
+.mySubmit{
+    margin-top: 10px;
+    width: 120px;
+}
+
+

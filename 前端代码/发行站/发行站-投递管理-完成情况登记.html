@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完成情况登记</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <link href="general.css" rel="stylesheet">
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<!--订单地址是否正确前面并没有判断，并且数据库也没有这个字段-->
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2 class="titleColor">投递管理>完成情况登记</h2>
+            </div>
+            <!--是否全部登记完成部分    这里可能需要模态框来完成？-->
+            <div class="operation" style="padding: 10px;">
+                <div class="add" style="float: left">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" >
+                        <span class="glyphicon glyphicon-plus"></span>是否全部投递完成
+                    </button>
+                </div>
+            </div>
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                是否全部投递完成
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--表格部分-->
+                            <div>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>是否全部投递完成</th>
+                                        <th>确定</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="radio1" id="radio1" value="no" checked> 没有投递完成
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="radio1" id="radio2" value="yes"> 全部投递完成
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">
+                                                确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+            <!--表格部分-->
+            <div>
+                <!--地址错误订单送回中心站进行纠正-->
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>投递单</th>
+                        <th>错误地址</th>
+                        <th>送回中心站</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>投递单1</td>
+                        <td>北京市天安门广场</td>
+                        <td><button type="button" class="btn btn-info">
+                            送回
+                        </button></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--分页模块-->
+                <div style="text-align: center">
+                    <ul class="pagination pagination-lg ">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
