@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-		<form:form method="POST" action="/POMSProject/advice/sendAdvice">
+		<form:form method="POST" action="/POMSProject/support/advice/sendAdvice">
 		<table>
 			<tr>
 				<td><form:label path="receiveDeptID">接收部门ID</form:label></td>

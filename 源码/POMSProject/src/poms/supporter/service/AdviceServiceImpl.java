@@ -15,7 +15,7 @@ public class AdviceServiceImpl implements IAdviceService{
 		// TODO Auto-generated method stub
 		Advice advice = new Advice();
 		advice.setAdviceID(1);
-		advice.setContent("test");
+		advice.setContent("中文测试");
 		List<Advice> adviceList = new ArrayList<Advice>();
 		adviceList.add(advice);
 		return adviceList;

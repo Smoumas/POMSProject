@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Comment;
 import poms.center.entity.Customer;
+import poms.center.entity.Operator;
 import poms.supporter.service.IManageService;
 
 @Controller
 @RequestMapping("/support/manage")
-@SessionAttributes("stationID")
+@SessionAttributes({"stationID","operator"})
 public class ManageController {
 	
 	@Autowired
@@ -28,9 +29,9 @@ public class ManageController {
 	@ResponseBody
 	public Map<String,Object> updateCustomer(Customer customer){
 		int result = manageService.updateCustomer(customer);
-		Map<String,Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("result", result);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/deleteCustomer")
@@ -38,27 +39,27 @@ public class ManageController {
 	public Map<String,Object> deleteCustomer(@RequestParam("customerID") int customerID){
 		int result = manageService.deleteCustomer(customerID);
 //		System.out.println("customerID:"+customerID);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("result", result);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("result", result);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/insertNewCustomer",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> insertNewCustomer(Customer customer){
 		int result = manageService.insertNewCustomer(customer);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("result", result);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("result", result);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/setInvestigation",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> setCustomerInvestigation(Comment comment){
 		int result = manageService.setCustomerInvestigation(comment);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("result", result);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("result", result);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/allInvestigation")
@@ -66,17 +67,16 @@ public class ManageController {
 	public Map<String,Object> selectAllInvestigation(ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Comment> commentList = manageService.selectAllInvestigation(stationID);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("size", commentList.size());
-		modelMap.put("data", commentList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("size", commentList.size());
+		resultMap.put("data", commentList);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/changePassword")
 	@ResponseBody
 	public Map<String,Object> changePassword(@RequestParam("newPassword")String newPassword,ModelMap map){
-//		int operatorID = ((Operator)map.get("operator")).getOperatorID();
-		int operatorID = 1;
+		int operatorID = ((Operator)map.get("operator")).getOperatorID();
 		int result = manageService.changePassword(operatorID, newPassword);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("result", result);
@@ -88,10 +88,10 @@ public class ManageController {
 	public Map<String,Object> selectInvestigationByType(@RequestParam("commentType") int commentType,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Comment> commentList = manageService.selectInvestigationByType(stationID, commentType);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("size", commentList.size());
-		modelMap.put("data", commentList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("size", commentList.size());
+		resultMap.put("data", commentList);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="customerList")

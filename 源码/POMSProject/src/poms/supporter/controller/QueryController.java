@@ -31,10 +31,10 @@ public class QueryController {
 //		int stationID = Integer.parseInt(map.get("stationID").toString());
 		int stationID = 1;
 		List<Order> orderList = queryService.selectExpiredOrder(stationID);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("size", orderList.size());
-		modelMap.put("data", orderList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("size", orderList.size());
+		resultMap.put("data", orderList);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/operateLog",method=RequestMethod.GET)
@@ -42,9 +42,9 @@ public class QueryController {
 	public Map<String,Object> selectOperateLog(@RequestParam("beginDate") String beginDate,@RequestParam("endDate") String endDate,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Log> logList = queryService.selectOperateLog(stationID, beginDate, endDate);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("size", logList.size());
-		modelMap.put("data", logList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("size", logList.size());
+		resultMap.put("data", logList);
+		return resultMap;
 	}
 }

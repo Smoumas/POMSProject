@@ -36,10 +36,10 @@ public class AdviceController {
 	@ResponseBody
 	public Map<String,Object> getUnreadedAdvice(ModelMap map){
 		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(Integer.parseInt(map.get("stationID").toString())); 
-		Map<String,Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("size", unreadedAdviceList.size());
-		modelMap.put("data", unreadedAdviceList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", unreadedAdviceList.size());
+		resultMap.put("data", unreadedAdviceList);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/sendAdvice",method=RequestMethod.POST)
@@ -47,18 +47,18 @@ public class AdviceController {
 	public Map<String,Object> sendService(Advice advice,ModelMap map){
 //		System.out.println(map.get("stationID"));
 		int result=adviceService.sendAdvice(advice);
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("result", result);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("result", result);
+		return resultMap;
 	}
 	
 	@RequestMapping(value="/readedAdvice",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> getReadedAdvice(ModelMap map){
 		List<Advice> readedAdviceList = adviceService.getReadedAdvice(Integer.parseInt(map.get("stationID").toString())); 
-		Map<String,Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("size", readedAdviceList.size());
-		modelMap.put("data", readedAdviceList);
-		return modelMap;
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", readedAdviceList.size());
+		resultMap.put("data", readedAdviceList);
+		return resultMap;
 	}
 }
