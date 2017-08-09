@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订户订购查询</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /*添加表单的css*/
+        .add-form .form-group {
+            overflow: hidden;
+        }
+
+        .add-form .form-group .form-control {
+            float: left;
+            width: 30%;
+            margin-right: 10px;
+        }
+
+        .add-form .form-group .textarea {
+            width: 60%;
+        }
+
+        .add-form .form-group .btn {
+            width: 30%;
+            margin-top:20px;
+            height: 40px;
+        }
+        /*操作表单的css*/
+        /*添加按钮*/
+        .operation .operation-btn{
+            float: left;
+        }
+        /*搜索组按钮*/
+        .operation .search .form-control{
+            float: right;
+            width: 200px;
+        }
+
+        .table>tbody>tr>td{
+            vertical-align:middle;
+        }
+        /*操作表单css结束*/
+
+        /*分页居中*/
+        .pagination-div{
+            text-align: center;
+        }
+
+        .start-datetime-input:after{
+            content: "至";
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>查询>订户订购查询</h2>
+            </div>
+            <!--添加，删除，等操作部分-->
+            <div class="operation">
+                <h3>订购查询</h3>
+                <div class="search input-group">
+                    <input type="date" class="form-control end-datetime-input">
+                    <input type="date" class="form-control start-datetime-input">
+                    <span class="input-group-btn"><button class="btn btn-default" type="button">
+							查询
+						</button></span>
+                </div>
+            </div>
+            <!--表格部分-->
+            <div>
+                <h3>查询结果</h3>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>报刊名称</th>
+                        <th>订购份数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>日报</td>
+                        <td>100</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--分页模块-->
+                <div class="pagination-div">
+                    <ul class="pagination pagination-lg ">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
