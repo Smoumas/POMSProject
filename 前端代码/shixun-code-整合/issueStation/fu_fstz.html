@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送通知</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link href="general.css" rel="stylesheet">-->
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div id="mark-id">
+                fzyw-fstz
+            </div>
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>辅助业务>发送通知</h2>
+            </div>
+
+            <!--表格如下-->
+            <div>
+                <form method="POST" action="" role="form">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">接受通知站</span>
+                        <input type="text" name="receiveStationID" class="form-control" placeholder="接受通知站" >
+                    </div> <br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">接受部门</span>
+                        <input type="text" name="receiveDeptID" class="form-control" placeholder="发送部门" >
+                    </div> <br>
+                    <div class="form-group">
+                        <label class="col-sm-2">消息内容</label>
+                        <textarea rows="5"name="content" class="form-control textarea" placeholder="输入发送消息内容"></textarea>
+                    </div>
+                    <div class="form-group" style="margin-top: 60px">
+                        <input type="submit"  class="btn btn-info btn-lg btn-block" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
