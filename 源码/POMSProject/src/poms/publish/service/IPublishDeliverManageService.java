@@ -1,13 +1,15 @@
 package poms.publish.service;
 
+import java.util.List;
+
 import poms.center.entity.DeliverArea;
 import poms.center.entity.Order;
 
 public interface IPublishDeliverManageService {
 	
-	public DeliverArea getDeliverArea(int orderID);
-	public Order getOrderByID(int orderID);
+	public List<DeliverArea> getDeliverArea(int stationID,int orderID);
+	public List<Order> getOrderByID(int stationID,int orderID);
 	public int getOrderCount(int stationID);
-	public int finishDeliver(int orderID);
-	public int correctAddress(int orderID,String correctAddress);
+	public int finishDeliver(int stationID,int orderID);
+	public int correctAddress(int stationID,int orderID,String correctAddress);
 }

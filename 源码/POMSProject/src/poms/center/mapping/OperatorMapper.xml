@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IOperatorDao" >
+  <select id="selectOperatorList" resultType="poms.center.entity.Operator">
+    select operatorID,password,level,employeeID 
+    from operator natural join
+    where stationID=#{stationID}
+  </select>
+  
+  <insert id="insertOperator" parameterType="poms.center.entity.Operator">
+	insert into operator
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="password != null">
+			password,
+		</if>
+		<if test="level != null">
+			level,
+		</if>
+		<if test="employeeID != null">
+			employeeID,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="password != null">
+			#{password},
+		</if>
+		<if test="level != null">
+			#{level},
+		</if>
+		<if test="employeeID != null">
+			#{employeeID},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteOperator">
+  	delete from operator
+  	where operatorID = #{operatorID}
+  </delete>
+  
+  <update id="updateOperator" parameterType="poms.center.entity.Operator">
+  	update operator
+  	<set>
+		<if test="password != null">
+			password=#{password},
+		</if>
+		<if test="level != null">
+			level=#{level},
+		</if>
+		<if test="employeeID != null">
+			employeeID=#{employeeID},
+		</if>
+  	</set>
+  	where operatorID = #{operatorID}
+  </update>
+  
+  
+  <select id="selectOperatorByID" resultType="poms.center.entity.Operator">
+  	select operator.operatorID,operator.password,operator.level,operator.employeeID 
+  	from operator natural join employee
+  	where operatorID=#{operatorID}
+  </select>
+</mapper>

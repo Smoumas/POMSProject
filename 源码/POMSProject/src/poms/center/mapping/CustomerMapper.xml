@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.ICustomerDao">
+
+	<select id="selectDeliverAreaCustomer" resultType="poms.center.entity.DeliverAreaCustomer">
+		SELECT o.deliverAreaID,count(distinct(customerID)) as count
+		FROM `order` o,deliverArea da 
+		WHERE o.deliverAreaID = da.deliverAreaID AND o.stationID = #{stationID} 
+		group by o.deliverAreaID
+	</select>
+	
+
+	<select id="selectAllCustomer" resultType="poms.center.entity.Customer">
+		select *
+		from customer
+		where stationID = #{stationID}
+	</select>
+
+	<delete id="deleteCustomerByID">
+		delete from customer
+		where customerID = #{customerID}
+	</delete>
+
+	<insert id="insertCustomer" parameterType="poms.center.entity.Customer">
+		insert into customer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="customerName != null">
+				customerName,
+			</if>
+			<if test="customerPhone != null">
+				customerPhone,
+			</if>
+			<if test="customerType != null">
+				customerType,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="customerName != null">
+				#{customerName},
+			</if>
+			<if test="customerPhone != null">
+				#{customerPhone},
+			</if>
+			<if test="customerType != null">
+				#{customerType},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateCustomer" parameterType="poms.center.entity.Customer">
+		update customer
+		<set>
+			<if test="customerName != null">
+				customerName = #{customerName},
+			</if>
+			<if test="customerPhone != null">
+				customerPhone = #{customerPhone},
+			</if>
+			<if test="customerType != null">
+				customerType = #{customerType},
+			</if>
+		</set>
+		where customerID = #{customerID}
+	</update>
+</mapper>

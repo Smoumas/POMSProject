@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IDeliverPointDao">
+
+	<select id="selectDeliverPointByID" resultType="poms.center.entity.DeliverPoint"
+		parameterType="java.lang.Integer">
+		select *
+		from deliverPoint
+		where deliverPointID = #{deliverPointID}
+	</select>
+
+	<select id="selectAllDeliverPoint" resultType="poms.center.entity.DeliverPoint"
+		parameterType="java.lang.Integer">
+		select *
+		from deliverPoint
+		where stationID = #{stationID}
+	</select>
+
+	<delete id="deleteDeliverPointByID" parameterType="java.lang.Integer">
+		delete from deliverPoint
+		where deliverPointID = #{deliverPointID}
+	</delete>
+
+	<insert id="insertDeliverPoint" parameterType="poms.center.entity.DeliverPoint">
+		insert into deliverPoint
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="deliverPointName != null">
+				deliverPointName,
+			</if>
+			<if test="deliverPointAddress != null">
+				deliverPointAddress,
+			</if>
+			<if test="stationID != null">
+				stationID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="deliverPointName != null">
+				#{deliverPointName},
+			</if>
+			<if test="deliverPointAddress != null">
+				#{deliverPointAddress},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateDeliverPoint" parameterType="poms.center.entity.DeliverPoint">
+		update deliverPoint
+		<set>
+			<if test="deliverPointName != null">
+				deliverPointName = #{deliverPointName},
+			</if>
+			<if test="deliverPointAddress != null">
+				deliverPointAddress = #{deliverPointAddress},
+			</if>
+			<if test="stationID != null">
+				stationID = #{stationID},
+			</if>
+		</set>
+		where deliverPointID = #{deliverPointID}
+	</update>
+</mapper>

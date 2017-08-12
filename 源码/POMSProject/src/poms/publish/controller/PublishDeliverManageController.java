@@ -1,6 +1,7 @@
 package poms.publish.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +25,23 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/getDeliverArea",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getDeliverArea(@RequestParam("orderID") int orderID){
-		DeliverArea deliverArea = publishDeliverManageService.getDeliverArea(orderID);
+	public Map<String,Object> getDeliverArea(@RequestParam("orderID") int orderID,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		List<DeliverArea> deliverAreaList = publishDeliverManageService.getDeliverArea(stationID,orderID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("data", deliverArea);
+		resultMap.put("size", deliverAreaList.size());
+		resultMap.put("data", deliverAreaList);
 		return resultMap;
 	}
 	
 	@RequestMapping(value="/getOrderByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getOrderByID(@RequestParam("orderID") int orderID){
-		Order order = publishDeliverManageService.getOrderByID(orderID);
+	public Map<String,Object> getOrderByID(@RequestParam("orderID") int orderID,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		List<Order> orderList = publishDeliverManageService.getOrderByID(stationID,orderID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("data", order);
+		resultMap.put("size", orderList.size());
+		resultMap.put("data", orderList);
 		return resultMap;
 	}
 	
@@ -52,8 +57,9 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/finishDeliver",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> finishDeliver(@RequestParam("orderID") int orderID){
-		int result = publishDeliverManageService.finishDeliver(orderID);
+	public Map<String,Object> finishDeliver(@RequestParam("orderID") int orderID,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int result = publishDeliverManageService.finishDeliver(stationID,orderID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
@@ -61,8 +67,9 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/correctAddress",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> correctAddress(@RequestParam("orderID") int orderID,@RequestParam("correctAddress") String correctAddress){
-		int result = publishDeliverManageService.correctAddress(orderID, correctAddress);
+	public Map<String,Object> correctAddress(@RequestParam("orderID") int orderID,@RequestParam("correctAddress") String correctAddress,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int result = publishDeliverManageService.correctAddress(stationID,orderID, correctAddress);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;

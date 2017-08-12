@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IUserModifyDao" >
+  <select id="selectGiftCardList" resultType="poms.center.entity.UserModify">
+    select * 
+    from userModify
+  </select>
+  
+  <insert id="insertUserModify" parameterType="poms.center.entity.UserModify">
+	insert into userModify
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="orderID != null">
+			orderID,
+		</if>
+		<if test="type != null">
+			type,
+		</if>
+		<if test="reason != null">
+			reason,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="orderID != null">
+			#{orderID},
+		</if>
+		<if test="type != null">
+			#{type},
+		</if>
+		<if test="reason != null">
+			#{reason},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteUserModify">
+  	delete from userModify 
+  	where userModifyID = #{userModifyID}
+  </delete>
+  
+  <update id="updateUserModify" parameterType="poms.center.entity.UserModify">
+  	update userModify
+  	<set>
+		  <if test="orderID != null">
+		  		orderID = #{orderID},
+		  </if>
+		  <if test="type != null">
+		  		type = #{type},
+		  </if>		
+		  <if test="reason != null">
+		  		reason = #{reason},
+		  </if>
+  	</set>
+  	where recordID = #{recordID}
+  </update>
+  
+  
+  <select id="selectUserModifyListByType" resultType="poms.center.entity.UserModify">
+  	select * 
+  	from userModify
+  	where type=#{type} 
+  </select>
+</mapper>

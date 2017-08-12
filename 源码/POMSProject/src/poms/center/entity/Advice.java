@@ -2,13 +2,15 @@ package poms.center.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Advice {
 	private int adviceID;
 	private int sendStationID;
 	private int sendDeptID;
 	private int receiveStationID;
 	private int receiveDeptID;
-	private boolean isReaded;
+	private int isReaded;
 	private String content;
 	private Date sendDate;
 	public int getAdviceID() {
@@ -41,10 +43,11 @@ public class Advice {
 	public void setReceiveDeptID(int receiveDeptID) {
 		this.receiveDeptID = receiveDeptID;
 	}
-	public boolean isReaded() {
+	
+	public int getIsReaded() {
 		return isReaded;
 	}
-	public void setReaded(boolean isReaded) {
+	public void setIsReaded(int isReaded) {
 		this.isReaded = isReaded;
 	}
 	public String getContent() {
@@ -53,6 +56,8 @@ public class Advice {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getSendDate() {
 		return sendDate;
 	}

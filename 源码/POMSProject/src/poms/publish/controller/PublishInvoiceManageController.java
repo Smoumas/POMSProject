@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,9 @@ public class PublishInvoiceManageController {
 	
 	@RequestMapping(value="/invoiceManage",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> invoiceManage(@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state){
-		int result = publishInvoiceManageService.invoiceManage(invoiceID, state);
+	public Map<String,Object> invoiceManage(@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int result = publishInvoiceManageService.invoiceManage(stationID,invoiceID, state);
 		Map<String,Object> resultMap  = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;

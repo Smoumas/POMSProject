@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IGiftCardDao" >
+  <select id="selectGiftCardList" resultType="poms.center.entity.GiftCard">
+    select * 
+    from giftCard
+  </select>
+  
+  <insert id="insertGiftCard" parameterType="poms.center.entity.GiftCard">
+	insert into giftCard
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="newspaperID != null">
+			newspaperID,
+		</if>
+		<if test="startDate != null">
+			startDate,
+		</if>
+		<if test="endDate != null">
+			endDate,
+		</if>
+			isUsed,
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="newspaperID != null">
+			#{newspaperID},
+		</if>
+		<if test="startDate != null">
+			#{startDate},
+		</if>
+		<if test="endDate != null">
+			#{endDate},
+		</if>
+		0,
+	</trim> 
+  </insert>
+  
+  <delete id="deleteGiftCard">
+  	delete from giftCard 
+  	where giftCardID = #{giftCardID}
+  </delete>
+  
+  <update id="updateGiftCard" parameterType="poms.center.entity.GiftCard">
+  	update giftCard
+  	<set>
+		  <if test="newspaperID != null">
+		  		newspaperID = #{newspaperID},
+		  </if>
+		  <if test="startDate != null">
+		  		startDate = #{startDate},
+		  </if>		
+		  <if test="endDate != null">
+		  		endDate = #{endDate},
+		  </if>
+		  <if test="isUsed != null">
+		  		isUsed = #{isUsed},
+		  </if>
+  	</set>
+  	where giftCardID = #{giftCardID}
+  </update>
+  
+  
+  <select id="selectGiftCardByID" resultType="poms.center.entity.GiftCard">
+  	select * 
+  	from giftCard
+  	where giftCardID=#{giftCardID} 
+  </select>
+</mapper>

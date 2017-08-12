@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.INewspaperDao" >
+  <select id="selectNewspaperList" resultType="poms.center.entity.Newspaper">
+    select * 
+    from newspaper
+  </select>
+  
+  <insert id="insertNewspaper" parameterType="poms.center.entity.Newspaper">
+	insert into newspaper
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="newspaperName != null">
+			newspaperName,
+		</if>
+		<if test="noID != null ">
+			noID,
+		</if>
+		<if test="ableUnsubscribe != null">
+			ableUnsubscribe,
+		</if>
+		<if test="ableRedirect != null">
+			ableRedirect,
+		</if>
+		<if test="ableDelay != null">
+			ableDelay,
+		</if>
+		<if test="frequency != null">
+			frequency,
+		</if>
+		<if test="issueRate != null">
+			issueRate,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="newspaperName != null">
+			#{newspaperName},
+		</if>
+		<if test="noID != null">
+			#{noID},
+		</if>
+		<if test="ableUnsubscribe != null">
+			#{ableUnsubscribe},
+		</if>
+		<if test="ableRedirect != null">
+			#{ableRedirect},
+		</if>
+		<if test="ableDelay != null">
+			#{ableDelay},
+		</if>
+		<if test="frequency != null">
+			#{frequency},
+		</if>
+		<if test="issueRate != null">
+			#{issueRate},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteNewspaper">
+  	delete from newspaper 
+  	where newspaperID = #{newspaperID}
+  </delete>
+  
+  <update id="updateNewspaper" parameterType="poms.center.entity.Newspaper">
+  	update newspaper
+  	<set>
+		  <if test="newspaperName != null">
+		  		newspaperName = #{newspaperName},
+		  </if>		
+		  <if test="noID != null">
+		  		noID = #{noID},
+		  </if>
+		  <if test="ableUnsubscribe != null">
+		  		ableUnsubscribe = #{ableUnsubscribe},
+		  </if>
+		  <if test="ableRedirect != null">
+		  		ableRedirect = #{ableRedirect},
+		  </if>
+		  <if test="ableDelay != null">
+		  		ableDelay = #{ableDelay},
+		  </if>
+		  <if test="frequency != null">
+		  		frequency = #{frequency},
+		  </if>
+		  <if test="issueRate != null">
+		  		issueRate = #{issueRate},
+		  </if>
+  	</set>
+  	where newspaperID = #{newspaperID}
+  </update>
+  
+  
+  <select id="selectNewspaperByID"  resultType="poms.center.entity.Newspaper">
+  	select * 
+  	from newspaper
+  	where newspaperID=#{newspapaerID} 
+  </select>
+  
+  <select id="selectNewspaperByNO"  resultType="poms.center.entity.Newspaper">
+  	select * 
+  	from newspaper
+  	where noID=#{noID} 
+  </select>
+  
+  <select id="selectNewspaperByName"  resultType="poms.center.entity.Newspaper">
+  	select * 
+  	from newspaper
+  	where newspaperName like %#{newspaperName}% 
+  </select>
+  
+  
+</mapper>

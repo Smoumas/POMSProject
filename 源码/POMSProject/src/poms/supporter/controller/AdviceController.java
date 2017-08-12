@@ -35,7 +35,9 @@ public class AdviceController {
 	@RequestMapping(value="/unreadedAdvice",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> getUnreadedAdvice(ModelMap map){
-		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(Integer.parseInt(map.get("stationID").toString())); 
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(stationID,departmentID); 
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", unreadedAdviceList.size());
 		resultMap.put("data", unreadedAdviceList);
@@ -55,7 +57,9 @@ public class AdviceController {
 	@RequestMapping(value="/readedAdvice",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> getReadedAdvice(ModelMap map){
-		List<Advice> readedAdviceList = adviceService.getReadedAdvice(Integer.parseInt(map.get("stationID").toString())); 
+		int stationID=(Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> readedAdviceList = adviceService.getReadedAdvice(stationID,departmentID); 
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", readedAdviceList.size());
 		resultMap.put("data", readedAdviceList);

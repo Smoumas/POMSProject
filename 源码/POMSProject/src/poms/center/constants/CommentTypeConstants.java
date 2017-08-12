@@ -1,7 +1,7 @@
 package poms.center.constants;
 
 public class CommentTypeConstants {
-	public static int COMPLAINT = 1;
-	public static int PRAISE = 2;
-	public static int SUGGESTION = 3;
+	public static int COMPLAINT = 1;		//批评
+	public static int PRAISE = 2;			//表扬
+	public static int SUGGESTION = 3;		//建议
 }

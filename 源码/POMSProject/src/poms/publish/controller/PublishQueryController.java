@@ -22,6 +22,7 @@ import poms.center.entity.Invoice;
 import poms.center.entity.Log;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
+import poms.center.entity.PromptOrder;
 import poms.publish.service.IPublishQueryService;
 
 @Controller
@@ -85,9 +86,10 @@ public class PublishQueryController {
 	@RequestMapping(value="/getNewspaperPriceByID",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> getNewspaperPriceByID(@RequestParam("newspaperID") int newspaperID){
-		NewspaperPrice newspaperPrice = publishQueryService.getNewspaperPriceByID(newspaperID);
+		List<NewspaperPrice> newspaperPriceList = publishQueryService.getNewspaperPriceByID(newspaperID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("data", newspaperPrice);
+		resultMap.put("size", newspaperPriceList.size());
+		resultMap.put("data", newspaperPriceList);
 		return resultMap;
 	}
 	
@@ -117,7 +119,7 @@ public class PublishQueryController {
 	@ResponseBody
 	public Map<String,Object> promptList(ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
-		List<Order> promptList = publishQueryService.getPromptList(stationID);
+		List<PromptOrder> promptList = publishQueryService.getPromptList(stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", promptList.size());
 		resultMap.put("data", promptList);

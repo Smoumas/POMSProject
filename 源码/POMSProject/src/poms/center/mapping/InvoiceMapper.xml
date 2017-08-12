@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IInvoiceDao" >
+  <select id="selectInoviceList" resultType="poms.center.entity.Invoice">
+    select * 
+    from invoice
+    where stationID=#{stationID}
+  </select>
+  
+  <insert id="insertInvoice" parameterType="poms.center.entity.Invoice">
+	insert into coupon
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="orderID != null">
+			orderID,
+		</if>
+		<if test="stationID != null">
+			stationID,
+		</if>
+		<if test="state != null">
+			state,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="orderID != null">
+			#{orderID},
+		</if>
+		<if test="stationID != null">
+			#{stationID},
+		</if>
+		<if test="state != null">
+			#{state},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteCoupon">
+  	delete from coupon 
+  	where couponID = #{couponID}
+  </delete>
+  
+  <update id="updateInovice" parameterType="poms.center.entity.Invoice">
+  	update invoice
+  	<set>
+		  <if test="orderID != null">
+			orderID=#{orderID},
+		</if>
+		<if test="stationID != null">
+			stationID=#{stationID},
+		</if>
+		<if test="state != null">
+			state=#{state},
+		</if>
+  	</set>
+  	where invoiceID = #{invoiceID}
+  </update>
+  
+  <select id="selectInoviceByID"  resultType="poms.center.entity.Invoice">
+  	select * 
+  	from invoice
+  	where invoiceID=#{invoiceID} 
+  </select>
+  
+</mapper>

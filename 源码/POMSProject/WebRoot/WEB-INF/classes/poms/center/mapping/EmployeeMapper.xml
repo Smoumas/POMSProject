@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IEmployeeDao">
+
+	<select id="selectEmployeeByID" resultType="poms.center.entity.Employee">
+		select *
+		from employee
+		where employeeID = #{employeeID}
+	</select>
+	
+	<select id="selectEmployeeByName" resultType="poms.center.entity.Employee">
+		select *
+		from employee
+		where employeeName like %#{employeeName}% and stationID = #{stationID}
+	</select>
+
+	<select id="selectDeliverPerformance" resultType="poms.center.entity.Performance">
+		select `order`.deliverID as employeeID,employee.employeeName,count(orderID) as performance
+		from `order`,employee
+		where `order`.deliverID = employee.employeeID and `order`.stationID = #{stationID}
+		group by `order`.deliverID
+	</select>
+	
+	<select id="selectSalerPerformance" resultType="poms.center.entity.Performance">
+		select `order`.salerID as employeeID,employee.employeeName,sum(orderNum) as performance
+		from `order`,employee
+		where `order`.salerID = employee.employeeID and `order`.stationID = #{stationID}
+		group by `order`.salerID
+	</select>
+
+	<select id="selectEmployeeList" resultType="poms.center.entity.Employee">
+		select *
+		from employee
+		where stationID = #{stationID}
+	</select>
+
+	<delete id="deleteEmployee">
+		delete from employee
+		where employeeID = #{employeeID}
+	</delete>
+
+	<insert id="insertEmployee" parameterType="poms.center.entity.Employee">
+		insert into employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="employeeName != null">
+				employeeName,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="age != null">
+				age,
+			</if>
+			<if test="stationID != null">
+				stationID,
+			</if>
+			<if test="departmentID != null">
+				departmentID,
+			</if>
+			<if test="dutyID != null">
+				dutyID,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="employeeName != null">
+				#{employeeName},
+			</if>
+			<if test="sex != null">
+				#{sex},
+			</if>
+			<if test="age != null">
+				#{age},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
+			</if>
+			<if test="departmentID != null ">
+				#{departmentID},
+			</if>
+			<if test="dutyID != null">
+				#{dutyID},
+			</if>
+			<if test="phone != null">
+				#{phone},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateEmployee" parameterType="poms.center.entity.Employee">
+		update employee
+		<set>
+			<if test="employeeName != null">
+				employeeName = #{employeeName},
+			</if>
+			<if test="sex != null">
+				sex = #{sex},
+			</if>
+			<if test="age != null">
+				age = #{age},
+			</if>
+			<if test="stationID != null">
+				stationID = #{stationID},
+			</if>
+			<if test="departmentID != null ">
+				departmentID = #{departmentID},
+			</if>
+			<if test="dutyID != null">
+				dutyID = #{dutyID},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+		</set>
+		where employeeID = #{employeeID}
+	</update>
+</mapper>

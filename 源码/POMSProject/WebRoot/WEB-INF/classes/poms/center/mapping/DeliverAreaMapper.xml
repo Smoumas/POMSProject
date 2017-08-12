@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IDeliverAreaDao" >
+ 
+  <select id="selectDeliverAreaList" resultType="poms.center.entity.DeliverArea">
+    select * 
+    from deliverArea
+    where stationID=#{stationID}
+  </select>
+  
+  <insert id="insertDeliverArea" parameterType="poms.center.entity.DeliverArea">
+	insert into deliverArea
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="deliverAreaValue != null">
+			deliverAreaValue,
+		</if>
+		<if test="stationID != null">
+			stationID,
+		</if>
+		<if test="deliverPointID != null">
+			deliverPointID,
+		</if> 
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="deliverAreaValue != null">
+			#{deliverAreaValue},
+		</if>
+		<if test="stationID != null">
+			#{stationID},
+		</if>
+		<if test="deliverPointID != null">
+			#{deliverPointID},
+		</if> 		
+	</trim> 
+  </insert>
+  
+  <update id="updateDeliverArea" parameterType="poms.center.entity.DeliverArea">
+  	update deliverArea
+  	<set>
+  		<if test="deliverAreaValue != null">
+  			deliverAreaValue=#{deliverAreaValue},
+  		</if>
+  		<if test="stationID != null">
+  			stationID=#{stationID},
+  		</if>
+  		<if test="deliverPointID != null">
+  			deliverPointID=#{deliverPointID},
+  		</if>
+  	</set>
+  	where deliverAreaID=#{deliverAreaID}
+  </update>
+  
+  
+  
+  <delete id="deleteDeliverArea">
+  	delete from deliverArea 
+  	where deliverAreaID = #{deliverAreaID}
+  </delete>
+  
+  <select id="selectDeliverAreaByID" resultType="poms.center.entity.DeliverArea">
+  	select *
+  	from deliverArea
+  	where deliverAreaID=#{deliverAreaID} and stationID=#{stationID}
+  </select>
+  
+  <select id="selectDeliverAreaByName" resultType="poms.center.entity.DeliverArea">
+  	select *
+  	from deliverArea
+  	where deliverAreaValue like %#{deliverAreaValue}% and stationID=#{stationID} 
+  </select>
+  
+  
+</mapper>

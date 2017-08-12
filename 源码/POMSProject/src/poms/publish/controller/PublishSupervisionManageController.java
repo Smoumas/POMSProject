@@ -46,8 +46,9 @@ public class PublishSupervisionManageController {
 	
 	@RequestMapping(value="/insertReceipt",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> insertReceipt(@RequestParam("recordID") int recordID, @RequestParam("receipt") String receipt){
-		int result = publishSupervisionManageService.insertReceipt(recordID, receipt);
+	public Map<String,Object> insertReceipt(@RequestParam("recordID") int recordID, @RequestParam("receipt") String receipt,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int result = publishSupervisionManageService.insertReceipt(stationID,recordID, receipt);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;

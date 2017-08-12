@@ -2,6 +2,8 @@ package poms.center.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class GiftCard {
 	//赠卡表对应属性
 	private int giftCardID;//赠卡ID
@@ -23,12 +25,15 @@ public class GiftCard {
 	public void setNewspaperID(int newspaperID) {
 		this.newspaperID = newspaperID;
 	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getStartDate() {
 		return startDate;
 	}
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getEndDate() {
 		return endDate;
 	}

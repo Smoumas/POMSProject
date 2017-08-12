@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IOrderChangeDao" >
+  
+  <insert id="insertOrderChange" parameterType="poms.center.entity.OrderChange">
+	insert into orderChange
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="changeType != null">
+			changeType,
+		</if>
+		<if test="oldValue != null">
+			oldValue,
+		</if>
+		<if test="newValue != null">
+			newValue,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="changeType != null">
+			#{changeType},
+		</if>
+		<if test="oldValue != null">
+			#{oldValue},
+		</if>
+		<if test="newValue != null">
+			#{newValue},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteOrderChange">
+  	delete from orderChange 
+  	where orderID = #{orderID}
+  </delete>
+  
+  <update id="updateOrderChange" parameterType="poms.center.entity.OrderChange">
+  	update orderChange
+  	<set>
+		  <if test="changeType != null">
+			changeType=#{changeType},
+		</if>
+		<if test="oldValue != null">
+			oldValue=#{oldValue},
+		</if>
+		<if test="newValue != null">
+			newValue=#{newValue},
+		</if>
+  	</set>
+  	where orderID = #{orderID}
+  </update>
+  
+  
+  <select id="selectOrderChangeByID"  resultType="poms.center.entity.OrderChange">
+  	select * 
+  	from orderChange
+  	where orderID=#{orderID} 
+  </select>
+</mapper>

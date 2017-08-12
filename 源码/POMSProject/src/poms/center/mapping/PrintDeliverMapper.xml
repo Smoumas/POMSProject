@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IPrintDeliverDao">
+
+	<select id="selectPrintDeliverByID" resultType="poms.center.entity.PrintDeliver"
+		parameterType="java.lang.Integer">
+		select *
+		from printDeliver
+		where printerID = #{printerID}
+	</select>
+
+
+	<select id="selectAllPrintDeliver" resultType="poms.center.entity.PrintDeliver">
+		select printerID,deliverPointID,deliverTime,deliverWay,deliverNum
+		from printDeliver natural join printer
+		where stationID = #{stationID}
+	</select>
+
+	<delete id="deletePrintDeliverByID" parameterType="java.lang.Integer">
+		delete from printDeliver
+		where printerID = #{printerID} and deliverPointID = #{deliverPointID}
+	</delete>
+
+	<insert id="insertPrintDeliver" parameterType="poms.center.entity.PrintDeliver">
+		insert into printDeliver
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="printerID != null">
+				printerID,
+			</if>
+			<if test="deliverPointID != null">
+				deliverPointID,
+			</if>
+			<if test="deliverTime != null">
+				deliverTime,
+			</if>
+			<if test="deliverWay != null">
+				deliverWay,
+			</if>
+			<if test="deliverNum != null">
+				deliverNum,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="printerID != null">
+				#{printerID},
+			</if>
+			<if test="deliverPointID != null">
+				#{deliverPointID},
+			</if>
+			<if test="deliverTime != null">
+				#{deliverTime},
+			</if>
+			<if test="deliverWay != null">
+				#{deliverWay},
+			</if>
+			<if test="deliverNum != null">
+				#{deliverNum},
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updatePrintDeliver" parameterType="poms.center.entity.Employee">
+		update printDeliver
+		<set>
+			<if test="printerID != null">
+				printerID = #{printerID},
+			</if>
+			<if test="deliverPointID != null">
+				deliverPointID = #{deliverPointID},
+			</if>
+			<if test="deliverTime != null">
+				deliverTime = #{deliverTime},
+			</if>
+			<if test="deliverWay != null">
+				deliverWay = #{deliverWay},
+			</if>
+			<if test="deliverNum != null">
+				deliverNum = #{deliverNum},
+			</if>
+		</set>
+		where printerID = #{printerID} and deliverPointID = #{deliverPointID}
+	</update>
+</mapper>

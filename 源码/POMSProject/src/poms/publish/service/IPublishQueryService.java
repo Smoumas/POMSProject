@@ -8,6 +8,7 @@ import poms.center.entity.Invoice;
 import poms.center.entity.Log;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
+import poms.center.entity.PromptOrder;
 
 public interface IPublishQueryService {
 
@@ -19,7 +20,7 @@ public interface IPublishQueryService {
 
 	public List<Order> selectDeliverOrder(int stationID); 					// 查看本分站的投递单请款情况
 
-	public NewspaperPrice getNewspaperPriceByID(int newspaperID);
+	public List<NewspaperPrice> getNewspaperPriceByID(int newspaperID);
 
 	public List<Customer> getStationCustomer(int stationID);
 
@@ -31,6 +32,6 @@ public interface IPublishQueryService {
 	
 	public List<Order> getExpiredList(int stationID);						//到期情况查询
 	
-	public List<Order> getPromptList(int stationID);							//催款情况查询
+	public List<PromptOrder> getPromptList(int stationID);							//催款情况查询
 
 }

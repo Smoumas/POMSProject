@@ -1,0 +1,138 @@
+package poms.center.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import poms.center.entity.Newspaper;
+import poms.center.entity.NewspaperPrice;
+import poms.center.service.ICenterNewspaperService;
+
+@Controller
+@RequestMapping("/center/newspaper")
+public class CenterNewspaperController {
+
+	@Autowired
+	private ICenterNewspaperService centerNewspaperService;
+	
+	@RequestMapping(value="/insertNewspaper",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> insertNewspaper(Newspaper newspaper){
+		int result = centerNewspaperService.insertNewspaper(newspaper);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/updateNewspaper",method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> updateNewspaper(Newspaper newspaper){
+		int result = centerNewspaperService.updateNewspaper(newspaper);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/deleteNewspaper",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> deleteNewspaper(@RequestParam("newspaperID") int newspaperID){
+		int result = centerNewspaperService.deleteNewspaper(newspaperID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperList(){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperList();
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperList.size());
+		resultMap.put("data", newspaperList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperByID",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperByID(@RequestParam("newspaperID") int newspaperID){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByID(newspaperID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperList.size());
+		resultMap.put("data", newspaperList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperListByName",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperListByName(@RequestParam("newspaperName")String newspaperName){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperListByName(newspaperName);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperList.size());
+		resultMap.put("data", newspaperList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperListByNO",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperListByNO(@RequestParam("noID") int noID){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByNO(noID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperList.size());
+		resultMap.put("data", newspaperList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/insertNewspaperPrice",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> insertNewspaperPrice(NewspaperPrice newspaperPrice){
+		int result = centerNewspaperService.insertNewspaperPrice(newspaperPrice);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/updateNewspaperPrice",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> updateNewspaperPrice(NewspaperPrice newspaperPrice){
+		int result = centerNewspaperService.updateNewspaperPrice(newspaperPrice);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/deleteNewspaperPrice",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> deleteNewspaperPrice(@RequestParam("newspaperID") int newspaperID){
+		int result = centerNewspaperService.deleteNewspaperPrice(newspaperID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperPriceList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperPriceList(){
+		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceList();
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperPriceList.size());
+		resultMap.put("data", newspaperPriceList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/newspaperPriceByID",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperPriceByID(@RequestParam("newspaperID") int newspaperID){
+		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceByID(newspaperID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperPriceList.size());
+		resultMap.put("data",newspaperPriceList);
+		return resultMap;
+	}
+}

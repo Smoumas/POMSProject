@@ -27,7 +27,8 @@ public class PublishAssistController {
 	@ResponseBody
 	public Map<String,Object> unreadedAdviceList(ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Advice> adviceList = publishAssistService.getUnreadedAdvice(stationID);
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> adviceList = publishAssistService.getUnreadedAdvice(stationID,departmentID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", adviceList.size());
 		resultMap.put("data", adviceList);
@@ -48,14 +49,15 @@ public class PublishAssistController {
 	@ResponseBody
 	public Map<String,Object> readedAdviceList(ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Advice> adviceList = publishAssistService.getReadedAdvice(stationID);
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> adviceList = publishAssistService.getReadedAdvice(stationID,departmentID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", adviceList.size());
 		resultMap.put("data", adviceList);
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/sendAdvice",method=RequestMethod.GET)
+	@RequestMapping(value="/changePassword",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> changePassword(@RequestParam("newPassowrd")String newPassword,ModelMap map){
 		int operatorID = ((Operator)map.get("operator")).getOperatorID();
