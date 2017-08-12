@@ -1,0 +1,69 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--页面标题提示部分-->
+    <div id="mark-id">
+        bksz-bkjbdj
+    </div>
+
+    <title>报刊基本定价</title>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>报刊设置>报刊基本定价</h2>
+            </div>
+            <!--添加，删除，等操作部分-->
+            <div class="operation">
+                <div class="search input-group">
+                    <input type="text" class="form-control " placeholder="请输入报刊名称" name="newspaperName">
+                    <span class="input-group-btn"><button class="btn btn-info" type="button" id="search-newspaperName-for-newspaperPrice-btn">
+							查询
+						</button></span>
+                </div>
+            </div>
+            <!--表格部分-->
+            <div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>报刊编号</th>
+                        <th>名称</th>
+                        <th name="dayPrice">日价</th>
+                        <th name="monthPrice">月价</th>
+                        <th name="seasonPrice">季价</th>
+                        <th name="halfYearPrice">半年价</th>
+                        <th name="yearPrice">年价</th>
+                        <th name="baseDiscount">折扣基础倍率</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>日报</td>
+                        <td>/</td>
+                        <td>/</td>
+                        <td>3</td>
+                        <td>/</td>
+                        <td>/</td>
+                        <td>5%</td>
+                        <td>
+                            <button type="button" class="btn btn-info">
+                                <span class="glyphicon glyphicon-edit"></span>编辑
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
