@@ -10,6 +10,15 @@
 
     <display-name>Spring MVC Form Handling</display-name>
 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-mybatis.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

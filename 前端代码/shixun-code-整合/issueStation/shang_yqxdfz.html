@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>延期续订附赠</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link href="general.css" rel="stylesheet">-->
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+
+            <!--页面标题提示部分-->
+            <div id="mark-id">
+                spdg-yqxdfz
+            </div>
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>商品订购>延续续订附赠</h2>
+            </div>
+
+            <!--标题导航部分-->
+            <div class="col-md-12 column">
+                <div class="tabbable" id="tabs-981633">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab">延期</a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab">续订</a>
+                        </li>
+                        <li>
+                            <a href="#tab3" data-toggle="tab">附赠</a>
+                        </li>
+                    </ul>
+
+                    <!--标题导航对应下的模块内容-->
+                    <div class="tab-content">
+                        <!--延期模块下的内容部分-->
+                        <div class="tab-pane active" id="tab1">
+                            <div>
+                                <!--延期模块下的表格部分-->
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th name="customerName">客户</th>
+                                        <th name="orderID">订单</th>
+                                        <th name="newspaperName">报刊</th>
+                                        <th name="orderDate">原来日期</th><!--oldValue字段？-->
+                                        <th name="newValue">日期顺延</th>
+                                        <th>确定</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>李刚</td>
+                                        <td>东方日报</td>
+                                        <td>2017-3-1</td>
+                                        <td><input type="datetime-local" name="oldValue"></td>
+                                        <td><input type="datetime-local" name="newValue"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-info">
+                                                确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!--续订模块下的内容部分-->
+                        <div class="tab-pane" id="tab2">
+                            <div>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th name="customerName">客户</th>
+                                        <th name="orderID">订单</th>
+                                        <th name="newspaperName">报刊</th>
+                                        <th name="orderDate">原定期时间</th>
+                                        <th name="newValue">延续到时间</th>
+                                        <th>确定</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>李刚</td>
+                                        <td>1</td>
+                                        <td>东方日报</td>
+                                        <td>2017-3-1</td>
+                                        <td><input type="datetime-local" name="newValue"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-info">
+                                                确定
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--附赠模块下的内容部分-->
+                        <div class="tab-pane" id="tab3">
+                            <div>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th name="customerName">客户</th>
+                                        <th name="newspaperName">报刊</th>
+                                        <th name="startDate">起始时间</th>
+                                        <th name="endDate">截止时间</th>
+                                        <th>附赠</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>李刚</td>
+                                        <td>东方日报</td>
+                                        <td><input type="datetime-local" placeholder="起始时间"></td>
+                                        <td><input type="datetime-local" placeholder="截止时间"></td>
+                                        <td>
+                                            <button type="button" class="btn btn-info">
+                                                附赠
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

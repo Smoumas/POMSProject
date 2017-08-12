@@ -55,7 +55,7 @@ public class PublishEmployeeManageController {
 	@ResponseBody
 	public Map<String,Object> employeeList(ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Employee> employeeList = publishEmployeeManageService.selectEmployee(stationID);
+		List<Employee> employeeList = publishEmployeeManageService.selectEmployeeList(stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", employeeList.size());
 		resultMap.put("data", employeeList);
@@ -64,7 +64,7 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/setEmployeeDuty",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> setEmployeeDuty(@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType){
+	public Map<String,Object> setEmployeeDuty(@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType,ModelMap map){
 		int result = publishEmployeeManageService.setEmployeeDuty(employeeID, dutyType);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);

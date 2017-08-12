@@ -3,6 +3,7 @@ package poms.publish.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import poms.center.entity.Customer;
@@ -10,10 +11,23 @@ import poms.center.entity.Invoice;
 import poms.center.entity.Log;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
+import poms.center.entity.PromptOrder;
+import poms.center.service.ICenterCustomerService;
+import poms.center.service.ICenterNewspaperService;
+import poms.center.service.ICenterOrderService;
 
 @Service("publishQueryService")
 public class PublishQueryServiceImpl implements IPublishQueryService{
 
+	@Autowired
+	private ICenterNewspaperService centerNewspaperService;
+	
+	@Autowired
+	private ICenterCustomerService centerCustomerService;
+	
+	@Autowired
+	private ICenterOrderService centerOrderService;
+	
 	@Override
 	public List<Invoice> selectInvoiceByDate(Date beginDate, Date endDate, int stationID) {
 		// TODO Auto-generated method stub
@@ -35,26 +49,19 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	@Override
 	public List<Order> selectDeliverOrder(int stationID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerOrderService.selectAllOrder(stationID);
 	}
 
 	@Override
-	public NewspaperPrice getNewspaperPriceByID(int newspaperID) {
+	public List<NewspaperPrice> getNewspaperPriceByID(int newspaperID) {
 		// TODO Auto-generated method stub
-		NewspaperPrice newspaperPrice = new NewspaperPrice();
-		newspaperPrice.setDayPrice(1);
-		newspaperPrice.setMouthPrice(2);
-		newspaperPrice.setSeasonPrice(3);
-		newspaperPrice.setHalfYearPrice(4);
-		newspaperPrice.setYearPrice(5);
-		newspaperPrice.setBaseDiscount(0.6f);
-		return newspaperPrice;
+		return centerNewspaperService.selectNewspaperPriceByID(newspaperID);
 	}
 
 	@Override
 	public List<Customer> getStationCustomer(int stationID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerCustomerService.selectCustomerList(stationID);
 	}
 
 	@Override
@@ -66,13 +73,13 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	@Override
 	public List<Order> getPaymentList(int stationID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerOrderService.selectAllOrder(stationID);
 	}
 
 	@Override
 	public List<Order> getOrderList(int stationID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerOrderService.selectAllOrder(stationID);
 	}
 
 	@Override
@@ -82,9 +89,9 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	}
 
 	@Override
-	public List<Order> getPromptList(int stationID) {
+	public List<PromptOrder> getPromptList(int stationID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerOrderService.selectPromptOrderList(stationID);
 	}
 	
 }

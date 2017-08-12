@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IAdviceDao" >
+  <select id="selectAdviceList" resultType="poms.center.entity.Advice">
+    select * 
+    from advice
+    where receiveStationID = #{receiveStationID} and isReaded = #{isReaded} and receiveDeptID = #{receiveDeptID}
+  </select>
+  
+  <insert id="insertAdvice" parameterType="poms.center.entity.Advice">
+	insert into advice
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="sendStationID != null">
+			sendStationID,
+		</if>
+		<if test="sendDeptID != null">
+			sendDeptID,
+		</if>
+		<if test="receiveStationID != null">
+			receiveStationID,
+		</if>
+		<if test="receiveDeptID != null">
+			receiveDeptID,
+		</if>
+			isReaded,
+		<if test="content != null">
+			content,
+		</if>
+		<if test="sendDate != null">
+			sendDate,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="sendStationID != null">
+			#{sendStationID},
+		</if>
+		<if test="sendDeptID != null">
+			#{sendDeptID},
+			
+		</if>
+		<if test="receiveStationID != null">
+			#{receiveStationID},
+		</if>
+		<if test="receiveDeptID != null">
+			#{receiveDeptID},
+		</if>
+			0,
+		<if test="content != null">
+			#{content},
+		</if>
+		<if test="sendDate != null">
+			#{sendDate},
+		</if>
+	</trim> 
+  </insert>
+</mapper>

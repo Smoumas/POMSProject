@@ -1,24 +1,25 @@
 package poms.supporter.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.entity.Advice;
+import poms.center.service.ICenterAssistService;
 
 @Service("adviceService")
 public class AdviceServiceImpl implements IAdviceService{
 
+	@Autowired
+	private ICenterAssistService centerAssistService;
+	
+	
 	@Override
-	public List<Advice> getUnreadedAdvice(int stationID) {
+	public List<Advice> getUnreadedAdvice(int stationID,int departmentID) {
 		// TODO Auto-generated method stub
-		Advice advice = new Advice();
-		advice.setAdviceID(1);
-		advice.setContent("中文测试");
-		List<Advice> adviceList = new ArrayList<Advice>();
-		adviceList.add(advice);
-		return adviceList;
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED);
 	}
 
 	@Override
@@ -28,9 +29,9 @@ public class AdviceServiceImpl implements IAdviceService{
 	}
 
 	@Override
-	public List<Advice> getReadedAdvice(int stationID) {
+	public List<Advice> getReadedAdvice(int stationID,int departmentID) {
 		// TODO Auto-generated method stub
-		return null;
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED);
 	}
 
 }

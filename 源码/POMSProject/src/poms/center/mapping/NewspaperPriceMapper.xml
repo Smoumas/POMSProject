@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.INewspaperPriceDao" >
+  <select id="selectNewspaperPriceList" resultType="poms.center.entity.NewspaperPrice">
+    select * 
+    from newspaperPrice
+  </select>
+  
+  <insert id="insertNewspaperPrice" parameterType="poms.center.entity.NewspaperPrice">
+	insert into newspaperPrice
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="newspaperID != null">
+			newspaperID,
+		</if>
+		<if test="dayPrice != null">
+			dayPrice,
+		</if>
+		<if test="monthPrice != null">
+			monthPrice,
+		</if>
+		<if test="seasonPrice != null">
+			seasonPrice,
+		</if>
+		<if test="halfYearPrice != null">
+			halfYearPrice,
+		</if>
+		<if test="yearPrice != null">
+			yearPrice,
+		</if>
+		<if test="baseDiscount != null">
+			baseDiscount,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="newspaperID != null">
+			#{newspaperID},
+		</if>
+		<if test="dayPrice != null">
+			#{dayPrice},
+		</if>
+		<if test="monthPrice != null">
+			#{monthPrice},
+		</if>
+		<if test="seasonPrice != null">
+			#{seasonPrice},
+		</if>
+		<if test="halfYearPrice != null">
+			#{halfYearPrice},
+		</if>
+		<if test="yearPrice != null">
+			#{yearPrice},
+		</if>
+		<if test="baseDiscount != null">
+			#{baseDiscount},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteNewspaperPrice">
+  	delete from newspaperPrice
+  	where newspaperID = #{newspaperID}
+  </delete>
+  
+  <update id="updateNewspaperPrice" parameterType="poms.center.entity.NewspaperPrice">
+  	update newspaperPrice
+  	<set>
+		  <if test="dayPrice != null">
+			dayPrice=#{dayPrice},
+		</if>
+		<if test="monthPrice != null">
+			monthPrice=#{monthPrice},
+		</if>
+		<if test="seasonPrice != null">
+			seasonPrice=#{seasonPrice},
+		</if>
+		<if test="halfYearPrice != null">
+			halfYearPrice=#{halfYearPrice},
+		</if>
+		<if test="yearPrice != null">
+			yearPrice=#{yearPrice},
+		</if>
+		<if test="baseDiscount != null">
+			baseDiscount=#{baseDiscount},
+		</if>
+  	</set>
+  	where newspaperID = #{newspaperID}
+  </update>
+  
+  
+  <select id="selectNewspaperPriceByID" resultType="poms.center.entity.NewspaperPrice">
+  	select * 
+  	from newspaperPrice
+  	where newspaperID=#{newspaperID} 
+  </select>
+</mapper>

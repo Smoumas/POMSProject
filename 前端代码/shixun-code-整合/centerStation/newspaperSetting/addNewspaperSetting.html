@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--页面标题提示部分-->
+    <div id="mark-id">
+        bksz-bkdmsz
+    </div>
+
+    <title>报刊代码设置</title>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>报刊设置>报刊代码设置</h2>
+            </div>
+            <!--添加的表单-->
+            <div class="add-form modify-password-form">
+                <form method="POST" action="" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2">报刊名称</label>
+                        <input name="newspaperName" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">所属报社</label>
+                        <select name="noID" class="form-control">
+                            <option>1报社</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许退订</label>
+                        <select name="ableUnsubscribe" class="form-control">
+                            <option value="">是</option>
+                            <option value="">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许转址</label>
+                        <select name="ableRedirect" class="form-control">
+                            <option value="">是</option>
+                            <option value="">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许延期</label>
+                        <select name="ableDelay" class="form-control">
+                            <option value="">是</option>
+                            <option value="">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">刊期</label>
+                        <select name="frequency" class="form-control">
+                            <option value="">日刊</option>
+                            <option value="">月刊</option>
+                            <option value="">季刊</option>
+                            <option value="">半年刊</option>
+                            <option value="">年刊</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">发行费率</label>
+                        <input name="issueRate" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="send-new-password-btn btn btn-info col-sm-offset-1" value="提交">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

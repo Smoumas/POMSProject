@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新订</title>
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link href="general.css" rel="stylesheet">-->
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+            <!--页面标题提示部分-->
+            <div id="mark-id">
+                spdg-xd
+            </div>
+
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>商品订购>新订</h2>
+            </div>
+
+            <!--添加的表单-->
+            <div class="add-form modify-password-form">
+                <form method="POST" action="" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2">客户名称</label>
+                        <input  name="customerName" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">报刊名称</label>
+                        <input   name="newspaperName" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">所属报社</label>
+                        <select  name="noID" class="form-control">
+                            <option>1报社</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许退订</label>
+                        <select  name="ableUnsubscribe" class="form-control">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许转址</label>
+                        <select  name="ableRedirect" class="form-control">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">是否允许延期</label>
+                        <select  name="ableDelay" class="form-control">
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">刊期</label>
+                        <select  name="frequency" class="form-control">
+                            <option value="日刊">日刊</option>
+                            <option value="月刊">月刊</option>
+                            <option value="季刊">季刊</option>
+                            <option value="半年刊">半年刊</option>
+                            <option value="年刊">年刊</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">订单类型</label>
+                        <select   name="orderType" class="form-control">
+                            <option value="普通订阅">普通订阅</option>
+                            <option value="跨站订阅">跨站订阅</option>
+                            <option value="集订分送">集订分送</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">订单数量</label>
+                        <input  name="orderNum" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">订单地址</label>
+                        <input  name="orderAddress" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">发行费率</label>
+                        <input  name="issueRate" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">收款方式</label>
+                        <select   name="receiptType" class="form-control">
+                            <option value="普通收费">普通收费</option>
+                            <option value="先订报后收费">先订报后收费</option>
+                            <option value="电话订报上门收费">电话订报上门收费</option>
+                            <option value="异地收费">异地收费</option>
+                            <option value="集体收费">集体收费</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">支付类型</label>
+                        <select   name="paymentType" class="form-control">
+                            <option value="现金">现金</option>
+                            <option value="支票">支票</option>
+                            <option value="现金+支票">现金+支票</option>
+                            <option value="赠卡">赠卡</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="send-new-password-btn btn btn-info col-sm-offset-1" value="提交">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

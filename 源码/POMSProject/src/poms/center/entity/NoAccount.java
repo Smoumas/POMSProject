@@ -2,6 +2,8 @@ package poms.center.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class NoAccount {
 	//报社结算表,维护与报社结算信息
 	private int recordID;//记录ID
@@ -23,12 +25,15 @@ public class NoAccount {
 	public void setNoID(int noID) {
 		this.noID = noID;
 	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getBeginDate() {
 		return beginDate;
 	}
 	public void setBeginDate(Date beginDate) {
 		this.beginDate = beginDate;
 	}
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getEndDate() {
 		return endDate;
 	}

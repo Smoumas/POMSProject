@@ -2,6 +2,8 @@ package poms.center.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StationAccount {
 	//分站结算表对应属性,维护分站的业绩信息
 	private int recordID;//记录ID
@@ -23,12 +25,15 @@ public class StationAccount {
 	public void setStationID(int stationID) {
 		this.stationID = stationID;
 	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getBeginDate() {
 		return beginDate;
 	}
 	public void setBeginDate(Date beginDate) {
 		this.beginDate = beginDate;
 	}
+	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getEndDate() {
 		return endDate;
 	}

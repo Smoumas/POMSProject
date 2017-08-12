@@ -1,0 +1,194 @@
+body{
+    font: 2rem/1.6 "Microsoft YaHei UI";
+}
+
+/*设置最小宽度*/
+#wrap{
+    min-width: 640px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+/*设置顶部导航栏的固定位置和样式*/
+#header .navbar{
+    background-color:#0e90d2;
+    height: 50px;
+    color: white;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 999;
+    margin:0;
+}
+
+#header .navbar .navbar-nav>li>a{
+    color: white;
+}
+
+/*设置header左边icon*/
+#header .navbar .navbar-left{
+    float: left;
+}
+
+#header .navbar .navbar-left a{
+    font-size: 3rem;
+    line-height: 50px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/*设置header右边导航*/
+#header .navbar .navbar-right{
+    float: right;
+    line-height: 50px;
+    font-size: 2rem;
+}
+
+#header .navbar .navbar-right li{
+    float: left;
+    margin-right: 30px;
+}
+
+/*设置边导航栏的固定位置*/
+#main .main-left{
+    position: fixed;
+    top:0;
+    margin-top: 50px;
+    left:0;
+    bottom: 0;
+    width: 20%;
+    overflow-y: scroll;
+    background-color: rgba(204,204,204,0.5);
+    z-index: 999;
+}
+
+/*设置边栏的下边界*/
+#main .main-left li{
+    border-bottom:1px solid #ccc;
+    background-color: white;
+    margin: 0;
+}
+
+#main .main-left>.first-list .sub-list>.nav>li:last-child{
+    border-bottom: none;
+}
+/*设置边栏里的字体*/
+#main .main-left>.first-list>li>h1{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 2;
+    padding: 10px 0 10px 20px;
+}
+
+#main .main-left>.first-list>li>a>span{
+    font-size:1.8rem;
+    float: right;
+}
+
+#main .main-left>.first-list>li>a,
+#main .main-left>.first-list>.sub-list>.nav>li>a{
+    color: #5c5c5c;
+    font-size:2.3rem ;
+    line-height: 2;
+    overflow: hidden;
+}
+
+#main .main-left>.first-list>li:not(:first-child){
+    padding-left: 20px;
+}
+
+#main .main-left>.first-list>.sub-list>.nav>li{
+    margin-left: 40px;
+}
+
+/*设置子元素隐藏*/
+#main .main-left>.first-list>.sub-list{
+    display: none;
+}
+
+#main{
+    margin-top:50px;
+    padding-top: 1px; /*为了防止内部的div的margin因为padding为0 而转移到父元素上*/
+    overflow: hidden;
+}
+/*设置main-right位置*/
+#main .main-right{
+    position: relative;
+    left: 20%;
+}
+
+  /*设置功能模块title部分布局*/
+.title{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom:20px;
+}
+.title>h2{
+    font-size: 2.2rem;
+    color: blue;
+    font-weight: bold;
+}
+
+/*使页面紧贴导航栏*/
+.container {
+    width:80%;
+    margin:0;
+}
+
+/*子页面css*/
+.operation{
+    padding: 10px;
+}
+
+/*操作表单的css*/
+/*添加按钮*/
+.operation .operation-btn{
+    float: left;
+}
+/*搜索组按钮*/
+.operation .search .form-control{
+    float: right;
+    width: 200px;
+}
+
+.table>tbody>tr>td{
+    vertical-align:middle;
+}
+/*操作表单css结束*/
+
+/*添加表单的css*/
+.add-form .form-group {
+    overflow: hidden;
+}
+
+.add-form .form-group .form-control {
+    float: left;
+    width: 30%;
+    margin-right: 10px;
+}
+
+.add-form .form-group .textarea {
+    width: 60%;
+}
+
+.add-form .form-group .btn {
+    width: 30%;
+    margin-top:20px;
+    height: 40px;
+}
+/*添加表单css结束*/
+
+/*用于在两个日期之间添加“至”字*/
+.start-datetime-input:after{
+    content: "至";
+}
+
+/*分页居中*/
+.pagination-div{
+    text-align: center;
+ }

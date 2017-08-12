@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收取通知</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .operation{
+            margin-top:10px;
+            padding: 10px;
+        }
+
+        /*搜索组按钮*/
+        .operation .search .form-control{
+            float: right;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>辅助业务>收取通知</h2>
+            </div>
+            <!--添加，删除，等操作部分-->
+            <div class="operation">
+                <div class="search input-group">
+                    <input type="text" class="form-control "
+                           placeholder="请输入关键字">
+                    <select class="form-control">
+                        <option>所有通知</option>
+                        <option>未阅读通知</option>
+                        <option>已阅读通知</option>
+                    </select>
+                    <span class="input-group-btn"><button class="btn btn-default" type="button">
+							查询
+						</button></span>
+                </div>
+            </div>
+
+            <!--表格部分-->
+            <div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>发送消息的分站</th>
+                        <th>部门名称</th>
+                        <th>发送人</th>
+                        <th>发送人的职务</th>
+                        <th>时间</th>
+                        <th>消息内容</th>
+                        <th>是否已阅读</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>分站</td>
+                        <td>部门</td>
+                        <td>发送人</td>
+                        <td>职务</td>
+                        <td>2222-2-2</td>
+                        <td>内容</td>
+                        <td>是</td>
+                        <td><button class="look-news-btn btn btn-info">查看具体</button></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <!--分页模块-->
+                <div style="text-align: center">
+                    <ul class="pagination pagination-lg ">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

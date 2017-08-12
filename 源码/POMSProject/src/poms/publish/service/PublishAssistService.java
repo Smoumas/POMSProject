@@ -5,38 +5,46 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.entity.Advice;
-import poms.supporter.service.IAdviceService;
+import poms.center.entity.Operator;
+import poms.center.service.ICenterAssistService;
+import poms.center.service.ICenterPersonManageService;
 
 @Service("publishAssistService")
 public class PublishAssistService implements IPublishAssistService{
 
 	@Autowired
-	private IAdviceService adviceService;
+	private ICenterAssistService centerAssistService;
+	
+	@Autowired
+	private ICenterPersonManageService centerPersonManageService;
 	
 	@Override
-	public List<Advice> getUnreadedAdvice(int stationID) {
+	public List<Advice> getUnreadedAdvice(int stationID,int departmentID) {
 		// TODO Auto-generated method stub
-		return adviceService.getUnreadedAdvice(stationID);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED);
 	}
 
 	@Override
 	public int sendAdvice(Advice advice) {
 		// TODO Auto-generated method stub
-		int result = adviceService.sendAdvice(advice);
+		int result = centerAssistService.insertAdvice(advice);
 		return result;
 	}
 
 	@Override
-	public List<Advice> getReadedAdvice(int stationID) {
+	public List<Advice> getReadedAdvice(int stationID,int departmentID) {
 		// TODO Auto-generated method stub
-		return adviceService.getReadedAdvice(stationID);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED);
 	}
 
 	@Override
 	public int changePassword(int operatorID, String newPassword) {
 		// TODO Auto-generated method stub
-		return 0;
+		Operator operator = centerPersonManageService.selectOperatorByID(operatorID).get(0);
+		operator.setPassword(newPassword);
+		return centerPersonManageService.updateOperator(operator);
 	}
 
 }

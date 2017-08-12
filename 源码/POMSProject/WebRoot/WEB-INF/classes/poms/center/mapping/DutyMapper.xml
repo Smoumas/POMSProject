@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IDutyDao" >
+  <select id="selectDepartmentList" resultType="poms.center.entity.Duty">
+    select * 
+    from duty
+  </select>
+  
+  <insert id="insertDuty" parameterType="poms.center.entity.Duty">
+	insert into duty
+	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="dutyName != null">
+			dutyName,
+		</if>
+		<if test="wage != null">
+			wage,
+		</if>
+	</trim>
+	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="dutyName != null">
+			#{dutyName},
+		</if>
+		<if test="wage">
+			#{wage},
+		</if>
+	</trim> 
+  </insert>
+  
+  <delete id="deleteDuty">
+  	delete from duty 
+  	where dutyType = #{dutyType}
+  </delete>
+  
+  <update id="updateDuty" parameterType="poms.center.entity.Duty">
+  	update department
+  	<set>
+		  <if test="dutyName != null">
+		  		dutyName = #{dutyName},
+		  </if>		
+		  <if test="wage != null">
+		  		wage = #{wageID},
+		  </if>
+  	</set>
+  	where dutyType = #{dutyType}
+  </update>
+  
+  
+  <select id="selectDutyByType" resultType="poms.center.entity.Duty">
+  	select * 
+  	from duty
+  	where dutyType=#{dutyType}
+  </select>
+  
+  <select id="selectDutyListByName" resultType="poms.center.entity.Duty">
+	select *
+	from duty
+	where dutyName like #{dutyName}  	
+  </select>
+</mapper>

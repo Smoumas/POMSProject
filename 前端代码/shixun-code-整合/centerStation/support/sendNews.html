@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div id="mark-id">
+       fzyw-fstz
+    </div>
+
+    <title>发送通知</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>辅助业务>发送通知</h2>
+            </div>
+            <!--添加的表单-->
+            <div class="add-form send-news-form">
+                <form method="POST" action="" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2">目标分站</label>
+                        <select name="receiveStationID" class="form-control">
+                            <option value="1">分站1</option>
+                            <option value="2">分站1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">目标部门</label>
+                        <select name="receiveDeptID" class="form-control">
+                            <option value="1">部门1</option>
+                            <option value="2">部门2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">消息内容</label>
+                        <textarea name="content" rows="5" class="form-control textarea"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="send-news-btn btn btn-info col-sm-offset-3 col-sm-6" value="发送">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

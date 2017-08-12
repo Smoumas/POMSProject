@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.ICommentDao">
+
+	<select id="selectAllComment" resultType="poms.center.entity.Comment"
+		parameterType="java.lang.Integer">
+		select *
+		from comment
+		where stationID = #{stationID}
+	</select>
+
+	<select id="selectCommentByType" resultType="poms.center.entity.Comment">
+		select *
+		from comment
+		where commentType=#{commentType} and stationID=#{stationID}
+	</select>
+	
+	<select id="selectCommentByID" resultType="poms.center.entity.Comment">
+		select *
+		from comment
+		where recordID=#{recordID} and stationID=#{stationID}
+	</select>
+
+	<select id="selectCommentByTypeAndCustomerID" resultType="poms.center.entity.Comment">
+		select *
+		from comment
+		where commentType=#{commentType} and stationID=#{stationID} and customerID=#{customerID}
+	</select>
+	
+
+	<insert id="insertComment" parameterType="poms.center.entity.Comment">
+		insert into comment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="customerID != null">
+				customerID,
+			</if>
+			<if test="commentType != null">
+				commentType,
+			</if>
+			<if test="stationID != null">
+				stationID,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="receipt != null">
+				receipt,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="customerID != null">
+				#{customerID},
+			</if>
+			<if test="commentType != null">
+				#{commentType},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+			<if test="receipt != null">
+				#{receipt},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateComment" parameterType="poms.center.entity.Comment">
+  	update comment
+  	<set>
+		  <if test="customerID != null">
+				#{customerID},
+			</if>
+			<if test="commentType != null">
+				#{commentType},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+			<if test="receipt != null">
+				#{receipt},
+			</if>
+  	</set>
+  	where recordID = #{recordID}
+  </update>
+  
+  
+	
+</mapper>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作日志查詢</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .operation{
+            margin-top:10px;
+            padding: 10px;
+        }
+
+        /*搜索组按钮*/
+        .operation .search .form-control{
+            float: right;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <!--页面标题提示部分-->
+            <div class="title">
+                <h2>查询>操作日志查询</h2>
+            </div>
+            <!--添加，删除，等操作部分-->
+            <div class="operation">
+                <div class="search input-group">
+                    <input type="date" class="form-control">
+                    <span class="input-group-btn"><button class="btn btn-default" type="button">
+							查询
+						</button></span>
+                </div>
+            </div>
+
+            <!--表格部分-->
+            <div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>客户名称</th>
+                        <th>订单类型</th>
+                        <th>报刊名称</th>
+                        <th>新订、转址、退订等</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2222-2-2</td>
+                        <td>客户名称</td>
+                        <td>订单类型</td>
+                        <td>报刊名称</td>
+                        <td>新订</td>
+                        <td><button class="print-log-btn btn btn-info">打印</button></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <!--分页模块-->
+                <div style="text-align: center">
+                    <ul class="pagination pagination-lg ">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

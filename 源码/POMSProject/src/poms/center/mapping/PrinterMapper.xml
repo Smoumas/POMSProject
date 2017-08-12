@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="poms.center.dao.IPrinterDao">
+
+	<select id="selectPrinterByID" resultType="poms.center.entity.Printer"
+		parameterType="java.lang.Integer">
+		select *
+		from printer
+		where printerID = #{printerID}
+	</select>
+
+	<select id="selectAllPrinter" resultType="poms.center.entity.Printer"
+		parameterType="java.lang.Integer">
+		select *
+		from printer
+		where stationID = #{stationID}
+	</select>
+
+	<delete id="deletePrinterByID" parameterType="java.lang.Integer">
+		delete from employee
+		where printerID = #{printerID}
+	</delete>
+
+	<insert id="insertPrinter" parameterType="poms.center.entity.Printer">
+		insert into printer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="printerName != null">
+				printerName,
+			</if>
+			<if test="printerAddress != null">
+				printerAddress,
+			</if>
+			<if test="stationID != null">
+				stationID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="printerName != null">
+				#{printerName},
+			</if>
+			<if test="printerAddress != null">
+				#{printerAddress},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updatePrinter" parameterType="poms.center.entity.Printer">
+		update printer
+		<set>
+			<if test="printerName != null">
+				printerName = #{printerName},
+			</if>
+			<if test="printerAddress != null">
+				printerAddress = #{printerAddress},
+			</if>
+			<if test="stationID != null">
+				stationID = #{stationID},
+			</if>
+		</set>
+		where printerID = #{printerID}
+	</update>
+
+	<select id="summaryPrintNumber" resultType="poms.center.entity.PrinterEverydaySummary">
+		select printerID,printerName,sum(orderNum) as summaryPrintNumber
+		from printer natural join printDeliver natural join deliverArea natural
+		join `order`
+		where stationID = #{stationID} and orderDate = #{date}
+		group by printerID
+	</select>
+</mapper>
