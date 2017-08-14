@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.DeliverPoint;
 import poms.center.entity.PrintDeliver;
@@ -21,6 +22,7 @@ import poms.deliver.service.IPrinterService;
 
 @Controller
 @RequestMapping("/deliver/systemManage")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class SystemManageController {
 	@Resource
 	private IPrinterService printerService;
@@ -36,7 +38,7 @@ public class SystemManageController {
 		printer.setStationID(stationID);
 		int state = this.printerService.insertPrinter(printer);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点信息添加失败,请重试");
 		}
@@ -46,11 +48,9 @@ public class SystemManageController {
 	@RequestMapping("/updatePrinter")
 	@ResponseBody
 	public Map<String, Object> updatePrinter(Printer printer, ModelMap modelMap) {
-		int stationID = (int) modelMap.get("stationID");
-		printer.setStationID(stationID);
 		int state = this.printerService.updatePrinter(printer);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点信息更新失败,请重试");
 		}
@@ -83,7 +83,7 @@ public class SystemManageController {
 	public Map<String, Object> deletePrinterByID(@RequestParam("printerID") int printerID) {
 		int state = this.printerService.deletePrinterByID(printerID);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点信息删除失败,请重试");
 		}
@@ -97,7 +97,7 @@ public class SystemManageController {
 		deliverPoint.setStationID(stationID);
 		int state = this.deliverPointService.insertDeliverPoint(deliverPoint);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "送报点信息添加失败,请重试");
 		}
@@ -107,11 +107,9 @@ public class SystemManageController {
 	@RequestMapping("/updateDeliverPoint")
 	@ResponseBody
 	public Map<String, Object> updateDeliverPoint(DeliverPoint deliverPoint, ModelMap modelMap) {
-		int stationID = (int) modelMap.get("stationID");
-		deliverPoint.setStationID(stationID);
 		int state = this.deliverPointService.updateDeliverPoint(deliverPoint);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "送报点信息更新失败,请重试");
 		}
@@ -144,7 +142,7 @@ public class SystemManageController {
 	public Map<String, Object> deleteDeliverPointByID(@RequestParam("deliverPointID") int deliverPointID) {
 		int state = this.deliverPointService.deleteDeliverPointByID(deliverPointID);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "送报点信息删除失败,请重试");
 		}
@@ -156,7 +154,7 @@ public class SystemManageController {
 	public Map<String, Object> addPrintDeliver(PrintDeliver printDeliver) {
 		int state = this.printDeliverService.insertPrintDeliver(printDeliver);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点送报点对应信息添加失败,请重试");
 		}
@@ -168,7 +166,7 @@ public class SystemManageController {
 	public Map<String, Object> updatePrintDeliver(PrintDeliver printDeliver) {
 		int state = this.printDeliverService.updatePrintDeliver(printDeliver);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点送报点对应信息更新失败,请重试");
 		}
@@ -201,7 +199,7 @@ public class SystemManageController {
 	public Map<String, Object> deletePrintDeliverByID(@RequestParam("printID") int printID,@RequestParam("deliverPointID") int deliverPointID) {
 		int state = this.printDeliverService.deletePrintDeliverByID(printID,deliverPointID);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if (state != 1) {
 			map.put("error", "印刷点送报点对应信息删除失败,请重试");
 		}

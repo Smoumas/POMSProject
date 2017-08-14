@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
@@ -19,6 +20,7 @@ import poms.deliver.service.IPersonManageService;
 
 @Controller
 @RequestMapping("/deliver/personManage")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PersonManageController {
 
 	@Resource
@@ -31,7 +33,7 @@ public class PersonManageController {
 		employee.setStationID(stationID);
 		int state = this.personManageService.insertEmployee(employee);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error","员工信息添加失败,请重试");
 		}
@@ -43,7 +45,7 @@ public class PersonManageController {
 	public Map<String,Object> deleteEmployee(@RequestParam("employeeID") int employeeID){
 		int state = this.personManageService.deleteEmployeeByID(employeeID);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error","员工信息删除失败,请重试");
 		}
@@ -55,7 +57,7 @@ public class PersonManageController {
 	public Map<String,Object> updateEmployee(Employee employee){
 		int state = this.personManageService.updateEmployee(employee);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error", "员工信息更新失败,请重试");
 		}
@@ -78,7 +80,7 @@ public class PersonManageController {
 	public Map<String,Object> addOperator(Operator operator){
 		int state = this.personManageService.insertOperator(operator);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error","操作员信息添加失败,请重试");
 		}
@@ -90,7 +92,7 @@ public class PersonManageController {
 	public Map<String,Object> deleteOperator(@RequestParam("operatorID") int operatorID){
 		int state = this.personManageService.deleteOperatorByID(operatorID);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error","操作员信息删除失败,请重试");
 		}
@@ -102,7 +104,7 @@ public class PersonManageController {
 	public Map<String,Object> updateOperator(Operator operator){
 		int state = this.personManageService.updateOperator(operator);
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error", "操作员信息更新失败,请重试");
 		}
