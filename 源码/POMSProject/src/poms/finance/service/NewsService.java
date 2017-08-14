@@ -1,16 +1,12 @@
 package poms.finance.service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import poms.center.entity.DeliverAreaCustomer;
 import poms.center.entity.NewspaperCount;
-import poms.center.entity.Station;
 import poms.center.service.ICenterCustomerService;
 import poms.center.service.ICenterOrderService;
 
@@ -27,8 +23,8 @@ public class NewsService {
 	private ICenterOrderService centerOrderService;
 	
 	
-    public List<Double> getSumByPeriod(Date start,Date end){
-        return null;
+    public Map<String, Double> getSumByPeriod(Date startDate, Date endDate, int stationID){
+        return centerOrderService.selectSumByPeriod(startDate,endDate,stationID);
     }
 
     public List<DeliverAreaCustomer> getCustomerArea(int stationID){

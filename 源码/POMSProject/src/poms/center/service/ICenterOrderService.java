@@ -2,14 +2,13 @@ package poms.center.service;
 
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import poms.center.entity.NewspaperCount;
-import poms.center.entity.Order;
-import poms.center.entity.OrderChange;
-import poms.center.entity.PromptOrder;
+import poms.center.entity.*;
 
 public interface ICenterOrderService {
 	
@@ -29,4 +28,8 @@ public interface ICenterOrderService {
 	public List<PromptOrder> selectPromptOrderList(@Param("stationID") int stationID);
 	
 	public List<NewspaperCount> selectNewspaperCount();
+
+	Map<String, Double> selectSumByPeriod(Date startDate, Date endDate, int stationID);
+
+	int updateOrderPay(OrderPay orderPay);
 }

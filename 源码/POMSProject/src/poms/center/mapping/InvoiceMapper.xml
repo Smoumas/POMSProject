@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="poms.center.dao.IInvoiceDao" >
   <select id="selectInoviceList" resultType="poms.center.entity.Invoice">
-    select * 
-    from invoice
-    where stationID=#{stationID}
+    select i.*,s,stationName
+    from invoice i,station s
+    WHERE i.stationID = s.stationID
   </select>
   
   <insert id="insertInvoice" parameterType="poms.center.entity.Invoice">
@@ -55,9 +55,9 @@
   </update>
   
   <select id="selectInoviceByID"  resultType="poms.center.entity.Invoice">
-  	select * 
+  	select *
   	from invoice
-  	where invoiceID=#{invoiceID} 
+  	where stationID=#{stationID}
   </select>
   
 </mapper>

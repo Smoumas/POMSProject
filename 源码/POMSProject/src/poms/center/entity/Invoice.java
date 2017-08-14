@@ -5,6 +5,7 @@ public class Invoice {
 	private int invoiceID;//发票ID
 	private int orderID;//订单ID
 	private int stationID;//所属分站ID
+	private String stationName;
 	private int state;//发票状态
 	
 	//对应的get、set方法
@@ -32,7 +33,13 @@ public class Invoice {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
-	
-	
+
+
+	public String getStationName() {
+		return stationName;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
 }

@@ -2,7 +2,7 @@ package poms.center.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import poms.center.constants.ModifyTypeConstants;
 import poms.center.dao.IOrderChangeDao;
 import poms.center.dao.IOrderDao;
-import poms.center.entity.NewspaperCount;
-import poms.center.entity.Order;
-import poms.center.entity.OrderChange;
-import poms.center.entity.PromptOrder;
+import poms.center.entity.*;
 
 @Service("centerOrderService")
 public class CenterOrderServiceImpl implements ICenterOrderService{
@@ -113,5 +110,18 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 		return orderDao.selectNewspaperCount();
 	}
 
+	@Override
+	public Map<String, Double> selectSumByPeriod(Date startDate, Date endDate, int stationID){
+		Map<String ,Double> result = new HashMap<>();
+		result.put("cash",orderDao.getCashByPeriod(startDate,endDate,stationID));
+		result.put("check",orderDao.getCheckSumByPeriod(startDate,endDate,stationID));
+		result.put("coupon",orderDao.getCouponByPeriod(startDate,endDate,stationID));
+		return result;
+	}
+
+	@Override
+	public int updateOrderPay(OrderPay orderPay){
+		return orderDao.updateOrderPay(orderPay);
+	}
 	
 }

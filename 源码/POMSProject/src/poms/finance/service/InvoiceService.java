@@ -1,12 +1,12 @@
 package poms.finance.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import poms.center.entity.Invoice;
 import poms.center.service.ICenterInvoiceManageService;
+
+import java.util.List;
 
 /**
  * Created by sakamichi on 2017/8/8.
@@ -21,14 +21,16 @@ public class InvoiceService {
     	return centerInvoiceManageService.insertInvoice(invoice);
     }
 
-    public int grant(int stationID,int grantStationID,int invoiceID){
-        Invoice invoice = centerInvoiceManageService.selectInvoiceByID(stationID, invoiceID).get(0);
-        invoice.setStationID(grantStationID);
+    public int grant(Invoice invoice){
     	return centerInvoiceManageService.updateInovice(invoice);
     }
 
-    public List<Invoice> returnService(int stationID){
-        List<Invoice> invoiceList = centerInvoiceManageService.selectInoviceList(stationID);
-        return invoiceList;
+    public int returnService(Invoice invoice){
+        return centerInvoiceManageService.updateInovice(invoice);
     }
+
+    public List<Invoice> query(){
+        return centerInvoiceManageService.selectInoviceList();
+    }
+
 }

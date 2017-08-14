@@ -1,5 +1,6 @@
 package poms.finance.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class AssistantService {
 	private ICenterPersonManageService centerPersonManageService;
 	
     public int sendAdvice(Advice advice){
+		advice.setSendDate(new Date(System.currentTimeMillis()));
+		advice.setIsReaded(0);
     	return centerAssistService.insertAdvice(advice);
     }
 

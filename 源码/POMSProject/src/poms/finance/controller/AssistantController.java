@@ -24,19 +24,11 @@ import poms.finance.service.AssistantService;
 
 
 @Controller
-@RequestMapping("/assistant")
+@RequestMapping("/assist")
 @SessionAttributes("stationID")
 public class AssistantController {
     @Autowired
     private AssistantService assistantService;
-
-
-    //测试登录
-    @RequestMapping(value="/form",method= RequestMethod.GET)
-    public ModelAndView index(ModelMap map){
-        map.addAttribute("stationID", 123);
-        return new ModelAndView("form","command",new Advice());//// TODO: 2017/8/7  
-    }
 
     @RequestMapping(value="/unreadedAdvice",method=RequestMethod.GET)
     @ResponseBody
@@ -72,10 +64,9 @@ public class AssistantController {
         return modelMap;
     }
 
-    @RequestMapping(value="/changePassword",method=RequestMethod.GET)
+    @RequestMapping(value="/changePassword",method=RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> changePassword(@RequestParam("newsPasword")String newPassword,ModelMap map){
-    	int operatorID = ((Operator)map.get("operator")).getOperatorID();
+    public Map<String,Object> changePassword(@RequestParam("operatorID")int operatorID,@RequestParam("newPasword")String newPassword,ModelMap map){
         int result = assistantService.changePassword(operatorID,newPassword);
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("result", result);
