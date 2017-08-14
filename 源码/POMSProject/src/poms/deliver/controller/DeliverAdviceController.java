@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.constants.CommonConstants;
 import poms.center.entity.Advice;
@@ -19,6 +20,7 @@ import poms.deliver.service.IDeliverAdviceService;
 
 @Controller
 @RequestMapping("/deliver/advice")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class DeliverAdviceController {
 
 	@Resource
@@ -39,7 +41,6 @@ public class DeliverAdviceController {
 	@RequestMapping(value = "/sendAdvice", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> sendAdvice(Advice advice, ModelMap modelMap) {
-		// System.out.println(map.get("stationID"));
 		int stationID=(int) modelMap.get("stationID");
 		int deptID=(int) modelMap.get("departmentID");
 		advice.setSendStationID(stationID);
