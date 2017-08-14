@@ -73,5 +73,14 @@ public class CenterAssistController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value="/setAdviceReaded",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> setAdiceReaded(@RequestParam("adviceID")int adviceID){
+		int result = centerAssistService.setAdviceReaded(adviceID);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
+		return resultMap;
+	}
+	
 	
 }

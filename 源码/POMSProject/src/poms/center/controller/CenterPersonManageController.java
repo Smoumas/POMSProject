@@ -123,7 +123,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/updateOperator",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> updateOperator(Operator operator){
+	public Map<String,Object> updateOperator(Operator operator,ModelMap map){
+		Operator sessionOperator = (Operator)map.get("operator");
+		operator.setOperatorID(sessionOperator.getOperatorID());
 		int result = centerPersonManageService.updateOperator(operator);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);

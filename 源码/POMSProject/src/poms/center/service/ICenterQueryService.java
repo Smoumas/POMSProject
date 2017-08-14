@@ -3,7 +3,8 @@ package poms.center.service;
 import java.util.Date;
 import java.util.List;
 
-
+import poms.center.entity.Company;
+import poms.center.entity.DepartmentDuty;
 import poms.center.entity.Order;
 
 public interface ICenterQueryService {
@@ -15,4 +16,7 @@ public interface ICenterQueryService {
 	
 	public Integer orderCount(int stationID,Date orderDate);
 	
+	public List<Company> selectCompanyInfo();
+	
+	public List<DepartmentDuty> selectDepartmentDutyInfo();
 }

@@ -16,6 +16,7 @@ import poms.center.dao.IOrderDao;
 import poms.center.entity.NewspaperCount;
 import poms.center.entity.Order;
 import poms.center.entity.OrderChange;
+import poms.center.entity.OrderCount;
 import poms.center.entity.OrderPay;
 import poms.center.entity.PromptOrder;
 
@@ -131,6 +132,12 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 	public int updateOrderPay(OrderPay orderPay) {
 		// TODO Auto-generated method stub
 		return orderDao.updateOrderPay(orderPay);
+	}
+
+	@Override
+	public List<OrderCount> selectOrderCountGroupByStationAndDate(Date date) {
+		// TODO Auto-generated method stub
+		return orderDao.selectOrderCountGroupByStationAndDate(date);
 	}
 
 	

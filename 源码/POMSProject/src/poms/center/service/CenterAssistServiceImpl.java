@@ -66,4 +66,10 @@ public class CenterAssistServiceImpl implements ICenterAssistService{
 		calendar.add(Calendar.DAY_OF_MONTH, 1);
 		return calendar.getTime();
 	}
+
+	@Override
+	public int setAdviceReaded(int adviceID) {
+		// TODO Auto-generated method stub
+		return adviceDao.setAdviceReaded(adviceID);
+	}
 }

@@ -219,6 +219,14 @@
   	group by `order`.stationID
   </select>
   
+  <select id="selectOrderCountGroupByStationAndDate" resultType="poms.center.entity.OrderCount">
+  	select `order`.stationID,station.stationName,ifnull(sum(orderNum),0) as count
+  	from `order`,station
+  	where `order`.stationID = station.stationID and orderDate = #{date}
+  	group by `order`.stationID
+  </select>
+  
+  
   <select id="selectCustomerPeriodOrder" resultType="poms.center.entity.Order">
   	select orderID,newspaperID,stationID,orderType,orderAddress,orderNum,orderDate
   	from `order`

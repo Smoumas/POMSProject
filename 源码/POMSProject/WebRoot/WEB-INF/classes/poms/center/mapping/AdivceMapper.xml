@@ -53,4 +53,12 @@
 		</if>
 	</trim> 
   </insert>
+  
+  <update id="setAdviceReaded">
+  	update advice
+  	<set>
+		isReaded=1
+  	</set>
+  	where adviceID = #{adviceID}
+  </update>
 </mapper>

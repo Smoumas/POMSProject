@@ -12,5 +12,7 @@ public interface IAdviceDao {
 
 	public List<Advice> selectAdviceList(@Param("receiveStationID") int receiveStationID,
 			@Param("receiveDeptID") int receiveDeptID, @Param("isReaded") int isReaded);
+	
+	public int setAdviceReaded(@Param("adviceID") int adviceID);
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import poms.center.dao.ICompanyDao;
 import poms.center.dao.IDeliverAreaDao;
 import poms.center.dao.IDepartmentDao;
 import poms.center.dao.IDutyDao;
@@ -21,9 +20,6 @@ import poms.center.entity.UserModify;
 @Service("centerDictionaryMaintainService")
 public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMaintainService{
 
-	@Autowired
-	private ICompanyDao companyDao;
-	
 	@Autowired
 	private IUserModifyDao userModifyDao;
 	

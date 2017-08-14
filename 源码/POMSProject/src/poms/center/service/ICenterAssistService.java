@@ -12,4 +12,5 @@ public interface ICenterAssistService {
 	public int correctOrderAddress(int stationID,int orderID,String newAddress);
 	public int finishDeliverd(int stationID,int orderID);
 	
+	public int setAdviceReaded(int adviceID);
  }

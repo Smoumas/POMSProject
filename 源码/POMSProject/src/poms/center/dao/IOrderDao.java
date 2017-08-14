@@ -39,5 +39,7 @@ public interface IOrderDao {
 
 	public int updateOrderPay(@Param("orderPay")OrderPay orderPay);
 	
+	
+	public List<OrderCount> selectOrderCountGroupByStationAndDate(@Param("date")Date date);
 
 }
