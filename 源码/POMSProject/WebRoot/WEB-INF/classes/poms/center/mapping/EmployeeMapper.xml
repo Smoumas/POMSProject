@@ -11,7 +11,7 @@
 	<select id="selectEmployeeByName" resultType="poms.center.entity.Employee">
 		select *
 		from employee
-		where employeeName like %#{employeeName}% and stationID = #{stationID}
+		where employeeName like CONCAT('%',#{employeeName},'%' )  and stationID = #{stationID}
 	</select>
 
 	<select id="selectDeliverPerformance" resultType="poms.center.entity.Performance">

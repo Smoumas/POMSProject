@@ -49,9 +49,8 @@ public class PublishEmployeeManageServiceImpl implements IPublishEmployeeManageS
 	}
 
 	@Override
-	public int setOperatorLevel(int operatorID, int level) {
+	public int setOperatorLevel(Operator operator, int level) {
 		// TODO Auto-generated method stub
-		Operator operator = centerPersonManageService.selectOperatorByID(operatorID).get(0);
 		operator.setLevel(level);
 		return centerPersonManageService.updateOperator(operator);
 	}

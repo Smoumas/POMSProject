@@ -25,11 +25,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<form method="POST" action="/POMSProject/publish/query/periodInvoiceList">
-				开始时间<input type="date" style="width: 200px;" name="beginDate">
-				<br/>
-				结束时间<input type="date" style="width: 200px;" name="endDate">
-				<input type="submit" value="Submit"/>
+	<form method="post" action="/POMSProject/center/dictionaryMaintain/insertUserModify">
+				订单ID<input type="text" name = "orderID"/>
+				typeID<input type="text" name = "type"/>
+				<input type="submit"/>
 	</form>
   </body>
 </html>

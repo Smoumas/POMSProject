@@ -28,7 +28,11 @@ public class CenterPersonManageController {
 
 	@RequestMapping(value="/insertEmployee",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> insertEmployee(Employee employee){
+	public Map<String,Object> insertEmployee(Employee employee,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		employee.setStationID(stationID);
+		employee.setDepartmentID(departmentID);
 		int result = centerPersonManageService.insertEmployee(employee);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -169,10 +173,13 @@ public class CenterPersonManageController {
 			map.addAttribute("operator", loginOperator);
 			map.addAttribute("stationID", employee.getStationID());
 			map.addAttribute("departmentID", employee.getDepartmentID());
-			
 		}
-		
 		return resultMap;
+	}
+	
+	@RequestMapping(value="/loginPage",method=RequestMethod.GET)
+	public String loginPage(){
+		return "login";
 	}
 	
 }

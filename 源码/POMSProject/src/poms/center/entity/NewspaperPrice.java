@@ -2,7 +2,7 @@ package poms.center.entity;
 
 public class NewspaperPrice {
 	//报刊报价表对应属性,维护报刊定价信息
-	private int newspaperID;		//报刊ID
+	private Integer newspaperID;		//报刊ID
 	private float dayPrice;			//报刊日价
 	private float mouthPrice;		//报刊月价
 	private float seasonPrice;		//报刊季价
@@ -11,14 +11,15 @@ public class NewspaperPrice {
 	private float baseDiscount;		//折扣基础倍率
 	
 	//对应的get、set方法
-	public int getNewspaperID() {
-		return newspaperID;
-	}
-	public void setNewspaperID(int newspaperID) {
-		this.newspaperID = newspaperID;
-	}
+	
 	public float getDayPrice() {
 		return dayPrice;
+	}
+	public Integer getNewspaperID() {
+		return newspaperID;
+	}
+	public void setNewspaperID(Integer newspaperID) {
+		this.newspaperID = newspaperID;
 	}
 	public void setDayPrice(float dayPrice) {
 		this.dayPrice = dayPrice;

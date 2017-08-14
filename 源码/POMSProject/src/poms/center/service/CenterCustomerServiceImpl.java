@@ -10,6 +10,7 @@ import poms.center.dao.ICustomerDao;
 import poms.center.entity.Comment;
 import poms.center.entity.Customer;
 import poms.center.entity.DeliverAreaCustomer;
+import poms.center.entity.Order;
 
 @Service("centerCustomerService")
 public class CenterCustomerServiceImpl implements ICenterCustomerService{
@@ -85,5 +86,18 @@ public class CenterCustomerServiceImpl implements ICenterCustomerService{
 		// TODO Auto-generated method stub
 		return customerDao.selectDeliverAreaCustomer(stationID);
 	}
+	
+	@Override
+	public List<Order> selectDebtByCustomer(int customerID) {
+		// TODO Auto-generated method stub
+		return customerDao.selectCustomerDebt(customerID);
+	}
+
+	@Override
+	public List<Customer> selectAllBigCustomer() {
+		// TODO Auto-generated method stub
+		return customerDao.selectBigCustomer();
+	}
+	
 	
 }

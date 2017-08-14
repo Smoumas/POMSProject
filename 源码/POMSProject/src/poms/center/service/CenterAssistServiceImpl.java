@@ -1,5 +1,7 @@
 package poms.center.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,11 @@ public class CenterAssistServiceImpl implements ICenterAssistService{
 	@Override
 	public List<Advice> selectAdviceList(int stationID, int departmentID,int isReaded) {
 		// TODO Auto-generated method stub
-		return adviceDao.selectAdviceList(stationID,departmentID,isReaded);
+		List<Advice> adviceList = adviceDao.selectAdviceList(stationID,departmentID,isReaded);
+		for(Advice advice:adviceList){
+			advice.setSendDate(adjustDate(advice.getSendDate()));
+		}
+		return adviceList;
 	}
 
 	@Override
@@ -54,5 +60,10 @@ public class CenterAssistServiceImpl implements ICenterAssistService{
 		return orderDao.updateOrder(order);
 	}
 
-	
+	public Date adjustDate(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, 1);
+		return calendar.getTime();
+	}
 }

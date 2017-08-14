@@ -42,7 +42,7 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 		orderChange.setOrderID(order.getOrderID());
 		orderChange.setOldValue(order.getOrderAddress());
 		orderChange.setNewValue(newAddress);
-		orderChange.setOrderType(ModifyTypeConstants.REDIRECT);
+		orderChange.setChangeType(ModifyTypeConstants.REDIRECT);
 		centerOrderService.insertOrderChange(orderChange);
 		order.setOrderAddress(newAddress);
 		return centerOrderService.updateOrder(order);
@@ -57,7 +57,7 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 		orderChange.setOrderID(order.getOrderID());
 		orderChange.setOldValue(simpleDateFormat.format(order.getDeliverDate()));
 		orderChange.setNewValue(simpleDateFormat.format(date));
-		orderChange.setOrderType(ModifyTypeConstants.POSTPONE);
+		orderChange.setChangeType(ModifyTypeConstants.POSTPONE);
 		centerOrderService.insertOrderChange(orderChange);
 		order.setDeliverDate(date);
 		return centerOrderService.updateOrder(order);

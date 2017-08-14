@@ -2,14 +2,12 @@ package poms.center.entity;
 
 public class Duty {
 	//职务表对应属性,维护基本职务类别
-	private int dutyType;//职务ID
+	private Integer dutyType;//职务ID
 	private String dutyName;//职务名称
-	
-	//对应的get、set方法
-	public int getDutyType() {
+	public Integer getDutyType() {
 		return dutyType;
 	}
-	public void setDutyType(int dutyType) {
+	public void setDutyType(Integer dutyType) {
 		this.dutyType = dutyType;
 	}
 	public String getDutyName() {
@@ -19,5 +17,6 @@ public class Duty {
 		this.dutyName = dutyName;
 	}
 	
+	//对应的get、set方法
 	
 }

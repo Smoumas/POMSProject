@@ -1,15 +1,13 @@
 package poms.center.entity;
 
 public class PrinterEverydaySummary {
-	private int printerID;		//印刷点ID
+	private Integer printerID;		//印刷点ID
 	private String printerName;	//印刷点姓名
-	private int summaryPrintNumber;		//该印刷点当天印刷数
-	
-	//对应的get、set方法
-	public int getPrinterID() {
+	private Integer summaryPrintNumber;		//该印刷点当天印刷数
+	public Integer getPrinterID() {
 		return printerID;
 	}
-	public void setPrinterID(int printerID) {
+	public void setPrinterID(Integer printerID) {
 		this.printerID = printerID;
 	}
 	public String getPrinterName() {
@@ -18,10 +16,13 @@ public class PrinterEverydaySummary {
 	public void setPrinterName(String printerName) {
 		this.printerName = printerName;
 	}
-	public int getSummary() {
+	public Integer getSummaryPrintNumber() {
 		return summaryPrintNumber;
 	}
-	public void setSummary(int summary) {
-		this.summaryPrintNumber = summary;
+	public void setSummaryPrintNumber(Integer summaryPrintNumber) {
+		this.summaryPrintNumber = summaryPrintNumber;
 	}
+	
+	//对应的get、set方法
+	
 }

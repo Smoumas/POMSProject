@@ -2,29 +2,29 @@ package poms.center.entity;
 
 public class Performance {
 	
-	private int employeeID;
+	private Integer employeeID;
 	private String employeeName;
-	private int performance;
-	
-	
+	private Integer performance;
+	public Integer getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(Integer employeeID) {
+		this.employeeID = employeeID;
+	}
 	public String getEmployeeName() {
 		return employeeName;
 	}
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-	public int getEmployeeID() {
-		return employeeID;
-	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
-	}
-	public int getPerformance() {
+	public Integer getPerformance() {
 		return performance;
 	}
-	public void setPerformance(int performance) {
+	public void setPerformance(Integer performance) {
 		this.performance = performance;
 	}
+	
+	
 	
 	
 }

@@ -3,7 +3,7 @@
 <mapper namespace="poms.center.dao.IOperatorDao" >
   <select id="selectOperatorList" resultType="poms.center.entity.Operator">
     select operatorID,password,level,employeeID 
-    from operator natural join
+    from operator natural join employee
     where stationID=#{stationID}
   </select>
   
@@ -56,8 +56,8 @@
   
   
   <select id="selectOperatorByID" resultType="poms.center.entity.Operator">
-  	select operator.operatorID,operator.password,operator.level,operator.employeeID 
-  	from operator natural join employee
+  	select operatorID,password,level,employeeID 
+  	from operator
   	where operatorID=#{operatorID}
   </select>
 </mapper>

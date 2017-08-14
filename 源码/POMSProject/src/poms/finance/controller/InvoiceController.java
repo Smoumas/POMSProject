@@ -30,32 +30,38 @@ public class InvoiceController {
 	@RequestMapping(value = "/registerInvoice", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> registerInvoice(Invoice invoice, ModelMap map) {
-		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		int result = invoiceService.register(invoice);
-		modelMap.put("result", result);
-		return modelMap;
+		resultMap.put("result", result);
+		return resultMap;
 	}
 
-	@RequestMapping(value = "/grantInvoice", method = RequestMethod.GET)
+	@RequestMapping(value = "/grantInvoice", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> grantInvoiceToStation(@RequestParam("grantStationID") int grantStationID,
-			@RequestParam("invoiceID") int invoiceID, ModelMap map) {
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		int stationID = (Integer) map.get("stationID");
-		int result = invoiceService.grant(stationID, grantStationID, invoiceID);
-		modelMap.put("result", result);
-		return modelMap;
+	public Map<String, Object> grantInvoiceToStation(Invoice invoice, ModelMap map) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		int result = invoiceService.grant(invoice);
+		resultMap.put("result", result);
+		return resultMap;
 	}
 
-	@RequestMapping(value = "/returnInvoice", method = RequestMethod.GET)
+	@RequestMapping(value = "/returnInvoice", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> returnInvoice(ModelMap map) {
-		int stationID = (Integer)map.get("stationID");
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		List<Invoice> invoiceList = invoiceService.returnService(stationID);
-		modelMap.put("size", invoiceList.size());
-		modelMap.put("data", invoiceList);
-		return modelMap;
+	public Map<String, Object> returnInvoice(Invoice invoice, ModelMap map) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		int result = invoiceService.returnService(invoice);
+		resultMap.put("result", result);
+		return resultMap;
+	}
+
+	@RequestMapping(value = "/queryInvoice", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> queryInvoice(ModelMap map) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<Invoice> invoiceList = invoiceService.query();
+		resultMap.put("size", invoiceList.size());
+		resultMap.put("data", invoiceList);
+		return resultMap;
 	}
 
 }

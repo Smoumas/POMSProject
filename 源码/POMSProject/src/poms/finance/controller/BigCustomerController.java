@@ -1,13 +1,20 @@
 package poms.finance.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import poms.center.entity.Customer;
+import poms.center.entity.Order;
+import poms.center.entity.OrderPay;
+import poms.finance.service.BigCustomerService;
+import poms.finance.service.InvoiceService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,20 +24,37 @@ import java.util.Map;
 @RequestMapping("/bigCustomer")
 @SessionAttributes("stationID")
 public class BigCustomerController {
+    @Autowired
+    private BigCustomerService bigCustomerService;
 
-    @RequestMapping(value="/updatePaymentState",method= RequestMethod.GET)
+    @RequestMapping(value="/updatePaymentState",method= RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> updatePaymentState(ModelMap map){
-        Map<String,Object> modelMap = new HashMap<>();
-
-        return modelMap;
+    public Map<String,Object> updatePaymentState(Order order, OrderPay orderPay, ModelMap map){
+        Map<String,Object> resultMap = new HashMap<>();
+        int result = bigCustomerService.update(order,orderPay);
+        resultMap.put("result",result);
+        return resultMap;
     }
 
     @RequestMapping(value="/queryDebt",method= RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> queryDebt(ModelMap map){
-        Map<String,Object> modelMap = new HashMap<>();
+        Map<String,Object> resultMap = new HashMap<>();
+        int customerID = (int)map.get("customerID");
 
-        return modelMap;
+        List<Order> orderList = bigCustomerService.query(customerID);
+        resultMap.put("size",orderList.size());
+        resultMap.put("data",orderList);
+        return resultMap;
+    }
+
+    @RequestMapping(value="/queryAll",method= RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> queryAll(ModelMap map){
+        Map<String,Object> resultMap = new HashMap<>();
+        List<Customer> customerList = bigCustomerService.queryAll();
+        resultMap.put("size",customerList.size());
+        resultMap.put("data",customerList);
+        return resultMap;
     }
 }

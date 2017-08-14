@@ -55,6 +55,6 @@
   <select id="selectDepartmentListByName" resultType="poms.center.entity.Department">
 	select *
 	from department
-	where departmentName like %#{departmentName}% and stationID=#{stationID}  	
+	where departmentName like CONCAT('%',#{departmentName},'%' ) and stationID=#{stationID}  	
   </select>
 </mapper>

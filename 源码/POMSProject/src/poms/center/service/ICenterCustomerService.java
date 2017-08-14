@@ -2,11 +2,10 @@ package poms.center.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import poms.center.entity.Comment;
 import poms.center.entity.Customer;
 import poms.center.entity.DeliverAreaCustomer;
+import poms.center.entity.Order;
 
 public interface ICenterCustomerService {
 
@@ -24,4 +23,9 @@ public interface ICenterCustomerService {
 	public List<Comment> selectCommentByTypeAndCustomerID(int stationID,int customerID,int commentType);
 	
 	public List<DeliverAreaCustomer> selectDeliverAreaCustomer(int stationID);
+
+	public List<Order> selectDebtByCustomer(int customerID);
+
+	public List<Customer> selectAllBigCustomer();
+	
 }

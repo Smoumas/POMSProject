@@ -2,15 +2,13 @@ package poms.center.entity;
 
 public class Department {
 	//部门表对应属性,存储部门基本信息
-	private int departmentID;//部门ID
+	private Integer departmentID;//部门ID
 	private String departmentName;//部门名称
-	private int stationID;//所属分站ID
-	
-	//对应的get、set方法
-	public int getDepartmentID() {
+	private Integer stationID;//所属分站ID
+	public Integer getDepartmentID() {
 		return departmentID;
 	}
-	public void setDepartmentID(int departmentID) {
+	public void setDepartmentID(Integer departmentID) {
 		this.departmentID = departmentID;
 	}
 	public String getDepartmentName() {
@@ -19,12 +17,15 @@ public class Department {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	public int getStationID() {
+	public Integer getStationID() {
 		return stationID;
 	}
-	public void setStationID(int stationID) {
+	public void setStationID(Integer stationID) {
 		this.stationID = stationID;
 	}
+	
+	//对应的get、set方法
+
 	
 	
 }

@@ -19,17 +19,16 @@ import poms.supporter.service.IQueryService;
 
 @Controller
 @RequestMapping("/support/query")
-@SessionAttributes("stationID")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class QueryController {
 	
 	@Autowired
 	private IQueryService queryService;
 	
-	@RequestMapping(value="/expiredOreder",method=RequestMethod.GET)
+	@RequestMapping(value="/expiredOrder",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> selectExpiredOrder(ModelMap map){
-//		int stationID = Integer.parseInt(map.get("stationID").toString());
-		int stationID = 1;
+		int stationID = (Integer)map.get("stationID");
 		List<Order> orderList = queryService.selectExpiredOrder(stationID);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", orderList.size());
@@ -40,7 +39,7 @@ public class QueryController {
 	@RequestMapping(value="/operateLog",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> selectOperateLog(@RequestParam("beginDate") String beginDate,@RequestParam("endDate") String endDate,ModelMap map){
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Log> logList = queryService.selectOperateLog(stationID, beginDate, endDate);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", logList.size());

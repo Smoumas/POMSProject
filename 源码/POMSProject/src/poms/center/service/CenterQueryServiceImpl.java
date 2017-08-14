@@ -40,7 +40,7 @@ public class CenterQueryServiceImpl implements ICenterQueryService{
 	}
 
 	@Override
-	public int orderCount(int stationID, Date orderDate) {
+	public Integer orderCount(int stationID, Date orderDate) {
 		// TODO Auto-generated method stub
 		return orderDao.orderCount(stationID,orderDate);
 	}

@@ -105,7 +105,7 @@
   <select id="selectNewspaperByName"  resultType="poms.center.entity.Newspaper">
   	select * 
   	from newspaper
-  	where newspaperName like %#{newspaperName}% 
+  	where newspaperName like CONCAT('%',#{newspaperName},'%' ) 
   </select>
   
   

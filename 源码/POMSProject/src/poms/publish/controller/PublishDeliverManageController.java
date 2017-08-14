@@ -1,16 +1,22 @@
 package poms.publish.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.DeliverArea;
 import poms.center.entity.Order;
@@ -18,6 +24,7 @@ import poms.publish.service.IPublishDeliverManageService;
 
 @Controller
 @RequestMapping("/publish/deliverManage")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishDeliverManageController {
 
 	@Autowired
@@ -47,11 +54,11 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/getOrderCount",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getOrderCount(ModelMap map){
+	public Map<String,Object> getOrderCount(@RequestParam("date")Date date,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		int data = publishDeliverManageService.getOrderCount(stationID);
+		int data = publishDeliverManageService.getOrderCount(date,stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("data", data);
+		resultMap.put("result", data);
 		return resultMap;
 	}
 	
@@ -73,5 +80,12 @@ public class PublishDeliverManageController {
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 }

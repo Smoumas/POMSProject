@@ -2,14 +2,15 @@ package poms.center.entity;
 
 public class PromptOrder {
 	
-	private int orderID;
+	private Integer orderID;
 	private String customerName;
 	private String customerPhone;
-	private int paymentState;
-	public int getOrderID() {
+	private Integer paymentState;
+	
+	public Integer getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(int orderID) {
+	public void setOrderID(Integer orderID) {
 		this.orderID = orderID;
 	}
 	public String getCustomerName() {
@@ -24,12 +25,14 @@ public class PromptOrder {
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
 	}
-	public int getPaymentState() {
+	public Integer getPaymentState() {
 		return paymentState;
 	}
-	public void setPaymentState(int paymentState) {
+	public void setPaymentState(Integer paymentState) {
 		this.paymentState = paymentState;
 	}
+	
+	
 	
 	
 }

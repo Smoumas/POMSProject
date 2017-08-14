@@ -10,12 +10,15 @@
   <select id="selectPromptOrderList" resultType="poms.center.entity.PromptOrder">
     select `order`.orderID,customer.customerName,customer.customerPhone,`order`.paymentState 
     from `order`,customer
-    where `order`.customerID = customer.customerID and stationID=#{stationID} and `order`.paymentState > 0
+    where `order`.customerID = customer.customerID and order.stationID=#{stationID} and `order`.paymentState > 0
   </select>
   
   
   <select id="selectNewspaperCount" resultType="poms.center.entity.NewspaperCount">
-   SELECT stationID,newspaperID,sum(orderNum) as sum FROM `order` group by stationID,newspaperID
+   SELECT s.stationName,n.newspaperName,ifnull(sum(orderNum),0)
+   FROM `order` o,station s,newspaper n
+   WHERE o.stationID = stationID AND o.newspaperID = n.newspaperID
+   group by stationName,newspaperName
   </select>
   
   
@@ -219,25 +222,65 @@
   <select id="selectCustomerPeriodOrder" resultType="poms.center.entity.Order">
   	select orderID,newspaperID,stationID,orderType,orderAddress,orderNum,orderDate
   	from `order`
-  	where orderDate between #{startDate} and #{endDate} and customerID=#{customerID} and stationID=#{stationID}
+  	where orderDate between #{beginDate} and #{endDate} and customerID=#{customerID} and stationID=#{stationID}
   </select>
   
   <select id="selectOrderListByNewspaperName" resultType="poms.center.entity.Order">
   	select *
-  	from `order`
-  	where newspaperName like %#{newspaperName}% and stationID=#{stationID}
+  	from `order`,newspaper
+  	where `order`.newspaperID = newspaper.newspaperID 
+  	and newspaper.newspaperName like CONCAT('%',#{newspaperName},'%' ) 
+  	and `order`.stationID=#{stationID}
   </select>
   
   <select id="selectOrderListByCustomerName" resultType="poms.center.entity.Order">
   	select *
-  	from `order`
-  	where customerName like %#{customerName}% and stationID=#{stationID}
+  	from `order` natural join customer
+  	where customerName like CONCAT('%',#{customerName},'%' ) and stationID=#{stationID}
   </select>
   
   <select id="orderCount" resultType="java.lang.Integer">
-  	select sum(orderNum)
+  	select ifnull(sum(orderNum),0)
   	from `order`
   	where orderDate = #{orderDate} and stationID=#{stationID}
   </select>
+  
+  <select id="getCheckSumByPeriod" resultType="java.lang.Double">
+		SELECT sum(credit)
+		FROM orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 2 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<select id="getCouponByPeriod" resultType="java.lang.Double">
+		SELECT ifnull(sum(price),0)
+		FROM coupon c,orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND op.couponID = c.couponID AND o.stationID = #(stationID) AND o.paymentType = 4 AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<select id="getCashByPeriod" resultType="java.lang.Double">
+		SELECT ifnull(sum(cash),0)
+		FROM orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 1 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<update id="updateOrderPay" parameterType="poms.center.entity.OrderPay">
+		update orderPay
+		<set>
+			<if test="cash != null">
+				cash=#{cash},
+			</if>
+			<if test="credit != null">
+				cash=#{cash},
+			</if>
+			<if test="giftCardID != null">
+				giftCardID=#{giftCardID},
+			</if>
+			<if test="couponID != null">
+				couponID=#{couponID},
+			</if>
+		</set>
+		where orderID = #{orderID}
+	</update>
+	
   
 </mapper>
