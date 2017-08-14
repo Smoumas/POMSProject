@@ -15,7 +15,10 @@
   
   
   <select id="selectNewspaperCount" resultType="poms.center.entity.NewspaperCount">
-   SELECT stationID,newspaperID,sum(orderNum) as sum FROM `order` group by stationID,newspaperID
+   SELECT s.stationName,n.newspaperName,sum(orderNum)
+   FROM `order` o,station s,newspaper n
+   WHERE o.stationID = stationID AND o.newspaperID = n.newspaperID
+   group by stationName,newspaperName
   </select>
   
   
@@ -239,5 +242,41 @@
   	from `order`
   	where orderDate = #{orderDate} and stationID=#{stationID}
   </select>
-  
+
+	<select id="getCheckSumByPeriod" resultType="java.lang.Double">
+		SELECT sum(credit)
+		FROM orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 2 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<select id="getCouponByPeriod" resultType="java.lang.Double">
+		SELECT sum(price)
+		FROM coupon c,orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND op.couponID = c.couponID AND o.stationID = #(stationID) AND o.paymentType = 4 AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<select id="getCashByPeriod" resultType="java.lang.Double">
+		SELECT sum(cash)
+		FROM orderPay op,`order` o
+		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 1 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+	</select>
+
+	<update id="updateOrderPay" parameterType="poms.center.entity.OrderPay">
+		update orderPay
+		<set>
+			<if test="cash != null">
+				cash=#{cash},
+			</if>
+			<if test="credit != null">
+				cash=#{cash},
+			</if>
+			<if test="giftCardID != null">
+				giftCardID=#{giftCardID},
+			</if>
+			<if test="couponID != null">
+				couponID=#{couponID},
+			</if>
+		</set>
+		where orderID = #{orderID}
+	</update>
 </mapper>

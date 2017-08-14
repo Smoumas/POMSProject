@@ -2,29 +2,32 @@ package poms.center.entity;
 
 public class NewspaperCount {
 	
-	private int stationID;
-	private int newspaperID;
+	private String  stationName;
+	private String newspaperName;
 	private int sum;
-	public int getStationID() {
-		return stationID;
+
+
+	public String getStationID() {
+		return stationName;
 	}
-	public void setStationID(int stationID) {
-		this.stationID = stationID;
+
+	public void setStationID(String stationID) {
+		this.stationName = stationID;
 	}
-	public int getNewspaperID() {
-		return newspaperID;
+
+	public String getNewspaperID() {
+		return newspaperName;
 	}
-	public void setNewspaperID(int newspaperID) {
-		this.newspaperID = newspaperID;
+
+	public void setNewspaperID(String newspaperID) {
+		this.newspaperName = newspaperID;
 	}
+
 	public int getSum() {
 		return sum;
 	}
+
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
-
-	
-	
-	
 }

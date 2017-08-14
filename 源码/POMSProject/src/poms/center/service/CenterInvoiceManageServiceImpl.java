@@ -33,15 +33,15 @@ public class CenterInvoiceManageServiceImpl implements ICenterInvoiceManageServi
 	}
 
 	@Override
-	public List<Invoice> selectInoviceList(int stationID) {
+	public List<Invoice> selectInoviceList() {
 		// TODO Auto-generated method stub
-		return invoiceDao.selectInoviceList(stationID);
+		return invoiceDao.selectInoviceList();
 	}
 
 	@Override
-	public List<Invoice> selectInvoiceByID(int stationID, int invoiceID) {
+	public List<Invoice> selectInvoiceByID(int stationID) {
 		// TODO Auto-generated method stub
-		return invoiceDao.selectInoviceByID(stationID, invoiceID);
+		return invoiceDao.selectInoviceByID(stationID);
 	}
 
 }

@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import poms.center.entity.NewspaperCount;
-import poms.center.entity.Order;
-import poms.center.entity.OrderCount;
-import poms.center.entity.PromptOrder;
+import poms.center.entity.*;
 
 public interface IOrderDao {
 
@@ -32,4 +29,9 @@ public interface IOrderDao {
 	
 	public List<NewspaperCount> selectNewspaperCount();
 
+	public double getCheckSumByPeriod(Date startDate,Date endDate,int stationID);
+	public double getCouponByPeriod(Date startDate,Date endDate,int stationID);
+	public double getCashByPeriod(Date startDate, Date endDate,int stationID);
+
+	public int updateOrderPay(@Param("orderPay")OrderPay orderPay);
 }

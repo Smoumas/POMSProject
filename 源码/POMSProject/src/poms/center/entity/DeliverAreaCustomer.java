@@ -2,16 +2,16 @@ package poms.center.entity;
 
 public class DeliverAreaCustomer {
 	
-	private int deliverAreaID;
+	private String deliverAreaName;
 	
 	private int count;
 
-	public int getDeliverAreaID() {
-		return deliverAreaID;
+	public String getDeliverAreaID() {
+		return deliverAreaName;
 	}
 
-	public void setDeliverAreaID(int deliverAreaID) {
-		this.deliverAreaID = deliverAreaID;
+	public void setDeliverAreaID(String deliverAreaName) {
+		this.deliverAreaName = deliverAreaName;
 	}
 
 	public int getCount() {

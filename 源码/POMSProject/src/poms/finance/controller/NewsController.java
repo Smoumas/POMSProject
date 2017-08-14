@@ -1,16 +1,14 @@
 package poms.finance.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import poms.center.entity.DeliverAreaCustomer;
 import poms.center.entity.NewspaperCount;
@@ -28,18 +26,16 @@ public class NewsController {
 
     @RequestMapping(value="/sumAccount",method= RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> sumAccoutByPeriod(ModelMap map){
-        Map<String,Object> modelMap = new HashMap<>();
-
-        return modelMap;
+    public Map<String, Double> sumAccoutByPeriod(ModelMap map){
+        return newsService.getSumByPeriod((Date)map.get("startDate"),(Date)map.get("endDate"),(int)map.get("stationID"));
     }
 
     @RequestMapping(value="/deliverAccount",method= RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> newsDeliverAccount(ModelMap map){
-    	Map<String,Object> resultMap = new HashMap<String, Object>();
+    	Map<String,Object> resultMap = new HashMap<>();
     	List<NewspaperCount> countList = newsService.getDeliverSum();
-    	resultMap.put("size", countList);
+    	resultMap.put("size", countList.size());
     	resultMap.put("data", countList);
     	return resultMap;
     }
@@ -77,5 +73,12 @@ public class NewsController {
     	resultMap.put("size", customerAreaList.size());
     	resultMap.put("data", customerAreaList);
     	return resultMap;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }
