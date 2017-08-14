@@ -3,7 +3,7 @@
 <mapper namespace="poms.center.dao.ICustomerDao">
 
 	<select id="selectDeliverAreaCustomer" resultType="poms.center.entity.DeliverAreaCustomer">
-		SELECT o.deliverAreaID,count(distinct(customerID)) as count
+		SELECT da.deliverAreaValue,count(distinct(customerID)) as count
 		FROM `order` o,deliverArea da 
 		WHERE o.deliverAreaID = da.deliverAreaID AND o.stationID = #{stationID} 
 		group by o.deliverAreaID
@@ -33,6 +33,9 @@
 			<if test="customerType != null">
 				customerType,
 			</if>
+			<if test="stationID != null">
+				stationID,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="customerName != null">
@@ -43,6 +46,9 @@
 			</if>
 			<if test="customerType != null">
 				#{customerType},
+			</if>
+			<if test="stationID != null">
+				#{stationID},
 			</if>
 		</trim>
 	</insert>
@@ -59,7 +65,23 @@
 			<if test="customerType != null">
 				customerType = #{customerType},
 			</if>
+			<if test="stationID != null">
+				stationID = #{stationID},
+			</if>
 		</set>
 		where customerID = #{customerID}
 	</update>
+	
+	<select id="selectCustomerDebt" resultType="poms.center.entity.Order">
+		SELECT *
+		FROM `order`
+		WHERE customerID = #{customerID} AND paymentState != 0
+	</select>
+
+	<select id="selectBigCustomer" resultType="poms.center.entity.Customer">
+		select *
+		from customer
+		where customerType = 2
+	</select>
+	
 </mapper>

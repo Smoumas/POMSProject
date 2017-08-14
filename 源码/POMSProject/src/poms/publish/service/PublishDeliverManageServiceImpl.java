@@ -39,9 +39,9 @@ public class PublishDeliverManageServiceImpl implements IPublishDeliverManageSer
 	}
 
 	@Override
-	public int getOrderCount(int stationID) {
+	public int getOrderCount(Date date,int stationID) {
 		// TODO Auto-generated method stub
-		return centerQueryService.orderCount(stationID, new Date());
+		return centerQueryService.orderCount(stationID, date);
 	}
 
 	@Override

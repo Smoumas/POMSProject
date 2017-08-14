@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="poms.center.dao.IUserModifyDao" >
-  <select id="selectGiftCardList" resultType="poms.center.entity.UserModify">
+  <select id="selectUserModifyList" resultType="poms.center.entity.UserModify">
     select * 
     from userModify
   </select>
@@ -34,7 +34,7 @@
   
   <delete id="deleteUserModify">
   	delete from userModify 
-  	where userModifyID = #{userModifyID}
+  	where recordID = #{userModifyID}
   </delete>
   
   <update id="updateUserModify" parameterType="poms.center.entity.UserModify">

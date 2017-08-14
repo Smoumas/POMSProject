@@ -2,20 +2,18 @@ package poms.center.entity;
 
 public class Employee {
 	//员工表对应属性,维护员工的基本信息
-	private int employeeID;//员工ID
+	private Integer employeeID;//员工ID
 	private String employeeName;//员工姓名
-	private int sex;//性别
-	private int age;//年龄
-	private int stationID;//所属分站ID
-	private int departmentID;//所属部门ID
-	private int dutyID;//职务ID
+	private Integer sex;//性别
+	private Integer age;//年龄
+	private Integer stationID;//所属分站ID
+	private Integer departmentID;//所属部门ID
+	private Integer dutyID;//职务ID
 	private String phone;//联系方式
-	
-	//对应的get、set方法
-	public int getEmployeeID() {
+	public Integer getEmployeeID() {
 		return employeeID;
 	}
-	public void setEmployeeID(int employeeID) {
+	public void setEmployeeID(Integer employeeID) {
 		this.employeeID = employeeID;
 	}
 	public String getEmployeeName() {
@@ -24,34 +22,34 @@ public class Employee {
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-	public int getSex() {
+	public Integer getSex() {
 		return sex;
 	}
-	public void setSex(int sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public int getStationID() {
+	public Integer getStationID() {
 		return stationID;
 	}
-	public void setStationID(int stationID) {
+	public void setStationID(Integer stationID) {
 		this.stationID = stationID;
 	}
-	public int getDepartmentID() {
+	public Integer getDepartmentID() {
 		return departmentID;
 	}
-	public void setDepartmentID(int departmentID) {
+	public void setDepartmentID(Integer departmentID) {
 		this.departmentID = departmentID;
 	}
-	public int getDutyID() {
+	public Integer getDutyID() {
 		return dutyID;
 	}
-	public void setDutyID(int dutyID) {
+	public void setDutyID(Integer dutyID) {
 		this.dutyID = dutyID;
 	}
 	public String getPhone() {
@@ -60,4 +58,7 @@ public class Employee {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	//对应的get、set方法
+	
 }

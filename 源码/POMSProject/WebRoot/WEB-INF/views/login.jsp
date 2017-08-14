@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -11,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'form.jsp' starting page</title>
+    <title>My JSP 'login.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,10 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<form method="post" action="/POMSProject/center/dictionaryMaintain/insertUserModify">
-				订单ID<input type="text" name = "orderID"/>
-				typeID<input type="text" name = "type"/>
-				<input type="submit"/>
-	</form>
+		<form action="center/personManage/login" method="post">
+			账号：<input type= "text" name="operatorID"/>
+			密码:<input type="text" name="password"/>
+			<input type="submit" value="登录"/>
+		</form>
   </body>
 </html>

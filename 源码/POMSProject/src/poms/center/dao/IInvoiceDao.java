@@ -13,5 +13,5 @@ public interface IInvoiceDao {
 	public int updateInovice(Invoice invoice);
 	
 	public List<Invoice> selectInoviceList();
-	public List<Invoice> selectInoviceByID(@Param("stationID") int stationID);
+	public List<Invoice> selectInoviceByID(@Param("invoiceID") int invoiceID);
 }

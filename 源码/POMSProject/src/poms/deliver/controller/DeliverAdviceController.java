@@ -41,13 +41,13 @@ public class DeliverAdviceController {
 	public Map<String, Object> sendAdvice(Advice advice, ModelMap modelMap) {
 		// System.out.println(map.get("stationID"));
 		int stationID=(int) modelMap.get("stationID");
-		int deptID=(int) modelMap.get("deptID");
+		int deptID=(int) modelMap.get("departmentID");
 		advice.setSendStationID(stationID);
 		advice.setSendDeptID(deptID);
 		advice.setSendDate(new Date());
 		int state =this.deliverAdviceService.insertAdvice(advice);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", state);
 		if(state!=1){
 			map.put("error", "通知发送失败");
 		}

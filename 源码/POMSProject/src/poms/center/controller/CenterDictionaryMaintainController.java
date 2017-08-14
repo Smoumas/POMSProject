@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.DeliverArea;
 import poms.center.entity.Department;
@@ -22,6 +23,7 @@ import poms.center.service.ICenterDictionaryMaintainService;
 
 @Controller
 @RequestMapping("/center/dictionaryMaintain")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class CenterDictionaryMaintainController {
 
 	@Autowired
@@ -132,8 +134,8 @@ public class CenterDictionaryMaintainController {
 	public Map<String,Object> dutyByType(@RequestParam("dutyType") int dutyType){
 		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyByType(dutyType);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("size", dutyList);
-		resultMap.put("data", dutyList.size());
+		resultMap.put("size", dutyList.size());
+		resultMap.put("data", dutyList);
 		return resultMap;
 	}
 	
@@ -255,7 +257,7 @@ public class CenterDictionaryMaintainController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/insertUserModify",method=RequestMethod.GET)
+	@RequestMapping(value="/insertUserModify",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> insertUserModify(UserModify userModify){
 		int result = centerDictionaryMaintainService.insertUserModify(userModify);
@@ -358,5 +360,10 @@ public class CenterDictionaryMaintainController {
 		resultMap.put("size", newsOfficeList.size());
 		resultMap.put("data", newsOfficeList);
 		return resultMap;
+	}
+	
+	@RequestMapping(value="/form2")
+	public String form2(){
+		return "form2";
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Customer;
 import poms.center.entity.Invoice;
@@ -27,6 +28,7 @@ import poms.publish.service.IPublishQueryService;
 
 @Controller
 @RequestMapping("/publish/query")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishQueryController {
 	
 	@Autowired
@@ -75,7 +77,7 @@ public class PublishQueryController {
 	@RequestMapping(value="/deliverOrderList",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> deliverOrderList(ModelMap map){	//分站投递单情况
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Order> deliverOrderList = publishQueryService.selectDeliverOrder(stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size",deliverOrderList.size());

@@ -2,23 +2,22 @@ package poms.center.entity;
 
 public class OrderChange {
 	//订单操作表对应属性,维护用户修改订单的信息
-	private int orderID;//订单ID
-	private int orderType;//操作类型
+	private Integer orderID;//订单ID
+	private Integer changeType;//操作类型
 	private String oldValue;//原值
 	private String newValue;//新值
-	
-	//对应的get、set方法
-	public int getOrderID() {
+	public Integer getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(int orderID) {
+	public void setOrderID(Integer orderID) {
 		this.orderID = orderID;
 	}
-	public int getOrderType() {
-		return orderType;
+	
+	public Integer getChangeType() {
+		return changeType;
 	}
-	public void setOrderType(int orderType) {
-		this.orderType = orderType;
+	public void setChangeType(Integer changeType) {
+		this.changeType = changeType;
 	}
 	public String getOldValue() {
 		return oldValue;
@@ -32,4 +31,8 @@ public class OrderChange {
 	public void setNewValue(String newValue) {
 		this.newValue = newValue;
 	}
+	
+	//对应的get、set方法
+	
+	
 }

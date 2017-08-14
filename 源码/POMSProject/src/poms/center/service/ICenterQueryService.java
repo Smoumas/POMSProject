@@ -13,6 +13,6 @@ public interface ICenterQueryService {
 	public List<Order> selectOrderListByCustomerName(int stationID,String customerName);
 	public List<Order> selectOrderByID(int stationID,int orderID);
 	
-	public int orderCount(int stationID,Date orderDate);
+	public Integer orderCount(int stationID,Date orderDate);
 	
 }

@@ -10,12 +10,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Customer;
 import poms.publish.service.IPublishCustomerService;
 
 @Controller
 @RequestMapping("/publish/customer")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishCustomerController {
 	
 	@Autowired
@@ -23,7 +25,9 @@ public class PublishCustomerController {
 
 	@RequestMapping(value="/customerRegister",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> customerRegister(Customer customer){
+	public Map<String,Object> customerRegister(Customer customer,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		customer.setStationID(stationID);
 		int result = publishCustomerService.customerRegister(customer);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -33,7 +37,7 @@ public class PublishCustomerController {
 	@RequestMapping(value="/customerList",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> customerList(ModelMap map){
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Customer> customerList = publishCustomerService.selectCustomer(stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", customerList.size());

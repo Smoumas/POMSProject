@@ -4,7 +4,6 @@
   <select id="selectInoviceList" resultType="poms.center.entity.Invoice">
     select * 
     from invoice
-    where stationID=#{stationID}
   </select>
   
   <insert id="insertInvoice" parameterType="poms.center.entity.Invoice">

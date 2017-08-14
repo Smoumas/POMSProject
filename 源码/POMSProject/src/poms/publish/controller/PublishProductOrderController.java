@@ -1,17 +1,22 @@
 package poms.publish.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Coupon;
 import poms.center.entity.GiftCard;
@@ -20,6 +25,7 @@ import poms.publish.service.IPublishProductOrderService;
 
 @Controller
 @RequestMapping("/publish/productOrder")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishProductOrderController {
 
 	@Autowired
@@ -27,7 +33,9 @@ public class PublishProductOrderController {
 
 	@RequestMapping(value="/newOrder",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> newOrder(Order order){
+	public Map<String,Object> newOrder(Order order,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		order.setStationID(stationID);
 		int result = publishProductOrderService.newOrder(order);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -92,5 +100,12 @@ public class PublishProductOrderController {
 		resultMap.put("size", couponList.size());
 		resultMap.put("data", couponList);
 		return resultMap;
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 }

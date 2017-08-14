@@ -4,30 +4,29 @@ public class NewspaperCount {
 	
 	private String  stationName;
 	private String newspaperName;
-	private int sum;
-
-
-	public String getStationID() {
+	private Integer sum;
+	public String getStationName() {
 		return stationName;
 	}
-
-	public void setStationID(String stationID) {
-		this.stationName = stationID;
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
 	}
-
-	public String getNewspaperID() {
+	public String getNewspaperName() {
 		return newspaperName;
 	}
-
-	public void setNewspaperID(String newspaperID) {
-		this.newspaperName = newspaperID;
+	public void setNewspaperName(String newspaperName) {
+		this.newspaperName = newspaperName;
 	}
-
-	public int getSum() {
+	public Integer getSum() {
 		return sum;
 	}
-
-	public void setSum(int sum) {
+	public void setSum(Integer sum) {
 		this.sum = sum;
 	}
+
+	
+	
+	
+	
+	
 }

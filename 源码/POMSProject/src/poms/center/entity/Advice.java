@@ -5,49 +5,50 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Advice {
-	private int adviceID;
-	private int sendStationID;
-	private int sendDeptID;
-	private int receiveStationID;
-	private int receiveDeptID;
-	private int isReaded;
+	
+	private Integer adviceID;
+	private Integer sendStationID;
+	private Integer sendDeptID;
+	private Integer receiveStationID;
+	private Integer receiveDeptID;
+	private Integer isReaded;
 	private String content;
 	private Date sendDate;
-	public int getAdviceID() {
+
+	public Integer getAdviceID() {
 		return adviceID;
 	}
-	public void setAdviceID(int adviceID) {
+	public void setAdviceID(Integer adviceID) {
 		this.adviceID = adviceID;
 	}
-	public int getSendStationID() {
+	public Integer getSendStationID() {
 		return sendStationID;
 	}
-	public void setSendStationID(int sendStationID) {
+	public void setSendStationID(Integer sendStationID) {
 		this.sendStationID = sendStationID;
 	}
-	public int getSendDeptID() {
+	public Integer getSendDeptID() {
 		return sendDeptID;
 	}
-	public void setSendDeptID(int sendDeptID) {
+	public void setSendDeptID(Integer sendDeptID) {
 		this.sendDeptID = sendDeptID;
 	}
-	public int getReceiveStationID() {
+	public Integer getReceiveStationID() {
 		return receiveStationID;
 	}
-	public void setReceiveStationID(int receiveStationID) {
+	public void setReceiveStationID(Integer receiveStationID) {
 		this.receiveStationID = receiveStationID;
 	}
-	public int getReceiveDeptID() {
+	public Integer getReceiveDeptID() {
 		return receiveDeptID;
 	}
-	public void setReceiveDeptID(int receiveDeptID) {
+	public void setReceiveDeptID(Integer receiveDeptID) {
 		this.receiveDeptID = receiveDeptID;
 	}
-	
-	public int getIsReaded() {
+	public Integer getIsReaded() {
 		return isReaded;
 	}
-	public void setIsReaded(int isReaded) {
+	public void setIsReaded(Integer isReaded) {
 		this.isReaded = isReaded;
 	}
 	public String getContent() {
@@ -56,7 +57,6 @@ public class Advice {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getSendDate() {
 		return sendDate;
@@ -64,6 +64,9 @@ public class Advice {
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
+	
+	
+	
 	
 	
 }

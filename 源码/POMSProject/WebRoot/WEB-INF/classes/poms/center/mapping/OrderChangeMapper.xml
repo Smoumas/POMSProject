@@ -5,6 +5,9 @@
   <insert id="insertOrderChange" parameterType="poms.center.entity.OrderChange">
 	insert into orderChange
 	<trim prefix="(" suffix=")" suffixOverrides="," >
+		<if test="orderID != null">
+			orderID,
+		</if>
 		<if test="changeType != null">
 			changeType,
 		</if>
@@ -16,6 +19,9 @@
 		</if>
 	</trim>
 	<trim prefix="values(" suffix=")" suffixOverrides=",">
+		<if test="orderID != null">
+			#{orderID},
+		</if>
 		<if test="changeType != null">
 			#{changeType},
 		</if>

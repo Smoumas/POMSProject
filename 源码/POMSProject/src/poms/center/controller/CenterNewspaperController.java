@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Newspaper;
 import poms.center.entity.NewspaperPrice;
@@ -17,6 +18,7 @@ import poms.center.service.ICenterNewspaperService;
 
 @Controller
 @RequestMapping("/center/newspaper")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class CenterNewspaperController {
 
 	@Autowired
@@ -89,7 +91,7 @@ public class CenterNewspaperController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/insertNewspaperPrice",method=RequestMethod.GET)
+	@RequestMapping(value="/insertNewspaperPrice",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> insertNewspaperPrice(NewspaperPrice newspaperPrice){
 		int result = centerNewspaperService.insertNewspaperPrice(newspaperPrice);
@@ -98,7 +100,7 @@ public class CenterNewspaperController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/updateNewspaperPrice",method=RequestMethod.GET)
+	@RequestMapping(value="/updateNewspaperPrice",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> updateNewspaperPrice(NewspaperPrice newspaperPrice){
 		int result = centerNewspaperService.updateNewspaperPrice(newspaperPrice);

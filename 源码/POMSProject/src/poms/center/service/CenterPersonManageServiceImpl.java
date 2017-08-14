@@ -101,10 +101,15 @@ public class CenterPersonManageServiceImpl implements ICenterPersonManageService
 	@Override
 	public int login(Operator operator) {
 		// TODO Auto-generated method stub
+		List<Operator> operatorList = operatorDao.selectOperatorByID(operator.getOperatorID());
+		if(operatorList.size() == 0){
+			return 0;
+		}
 		Operator resultOperator = operatorDao.selectOperatorByID(operator.getOperatorID()).get(0);
-		if(resultOperator == null || (!resultOperator.getPassword().equals(operator.getPassword()))){
+		if((!resultOperator.getPassword().equals(operator.getPassword()))){
 			return 0;	
 		}
 		return resultOperator.getLevel();
 	}
+	
 }

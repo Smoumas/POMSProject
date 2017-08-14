@@ -2,21 +2,22 @@ package poms.center.entity;
 
 public class DeliverManage {
 	//投递管理表,维护投递员和投递段的关系
-	private int deliverID;		//投递员ID
-	private int deliverAreaID;	//投递段ID
-	
-	//对应的get、set方法
-	public int getDeliverID() {
+	private Integer deliverID;		//投递员ID
+	private Integer deliverAreaID;	//投递段ID
+	public Integer getDeliverID() {
 		return deliverID;
 	}
-	public void setDeliverID(int deliverID) {
+	public void setDeliverID(Integer deliverID) {
 		this.deliverID = deliverID;
 	}
-	public int getDeliverAreaID() {
+	public Integer getDeliverAreaID() {
 		return deliverAreaID;
 	}
-	public void setDeliverAreaID(int deliverAreaID) {
+	public void setDeliverAreaID(Integer deliverAreaID) {
 		this.deliverAreaID = deliverAreaID;
 	}
+	
+	//对应的get、set方法
+
 	
 }

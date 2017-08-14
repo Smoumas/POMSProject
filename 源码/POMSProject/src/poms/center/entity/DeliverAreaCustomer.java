@@ -4,23 +4,27 @@ public class DeliverAreaCustomer {
 	
 	private String deliverAreaName;
 	
-	private int count;
+	private Integer count;
 
-	public String getDeliverAreaID() {
+	
+	
+	public String getDeliverAreaName() {
 		return deliverAreaName;
 	}
 
-	public void setDeliverAreaID(String deliverAreaName) {
+	public void setDeliverAreaName(String deliverAreaName) {
 		this.deliverAreaName = deliverAreaName;
 	}
 
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
+
+
 	
 	
 }

@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Comment;
 import poms.publish.service.IPublishSupervisionManageService;
 
 @Controller
 @RequestMapping("/publish/supervisionManage")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishSupervisionManageController {
 	
 	@Autowired
@@ -65,6 +67,8 @@ public class PublishSupervisionManageController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value="/suggestionList",method=RequestMethod.GET)
+	@ResponseBody
 	public Map<String,Object> suggestionList(ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Comment> suggestionList = publishSupervisionManageService.selectSuggesion(stationID);

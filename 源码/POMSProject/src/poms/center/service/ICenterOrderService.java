@@ -8,7 +8,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import poms.center.entity.*;
+import poms.center.entity.NewspaperCount;
+import poms.center.entity.Order;
+import poms.center.entity.OrderChange;
+import poms.center.entity.OrderPay;
+import poms.center.entity.PromptOrder;
 
 public interface ICenterOrderService {
 	
@@ -28,8 +32,10 @@ public interface ICenterOrderService {
 	public List<PromptOrder> selectPromptOrderList(@Param("stationID") int stationID);
 	
 	public List<NewspaperCount> selectNewspaperCount();
+	
+	public Map<String, Double> selectSumByPeriod(@Param("startDate")Date startDate, @Param("endDate")Date endDate, int stationID);
 
-	Map<String, Double> selectSumByPeriod(Date startDate, Date endDate, int stationID);
-
-	int updateOrderPay(OrderPay orderPay);
+	public int updateOrderPay(OrderPay orderPay);
+	
+	
 }

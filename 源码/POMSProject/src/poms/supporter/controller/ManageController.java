@@ -19,7 +19,7 @@ import poms.supporter.service.IManageService;
 
 @Controller
 @RequestMapping("/support/manage")
-@SessionAttributes({"stationID","operator"})
+@SessionAttributes({"stationID","departmentID","operator"})
 public class ManageController {
 	
 	@Autowired
@@ -46,7 +46,9 @@ public class ManageController {
 	
 	@RequestMapping(value="/insertNewCustomer",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> insertNewCustomer(Customer customer){
+	public Map<String,Object> insertNewCustomer(Customer customer,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		customer.setStationID(stationID);
 		int result = manageService.insertNewCustomer(customer);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("result", result);
@@ -55,7 +57,9 @@ public class ManageController {
 	
 	@RequestMapping(value="/setInvestigation",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> setCustomerInvestigation(Comment comment){
+	public Map<String,Object> setCustomerInvestigation(Comment comment,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		comment.setStationID(stationID);
 		int result = manageService.setCustomerInvestigation(comment);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("result", result);
@@ -65,7 +69,7 @@ public class ManageController {
 	@RequestMapping(value="/allInvestigation")
 	@ResponseBody
 	public Map<String,Object> selectAllInvestigation(ModelMap map){
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Comment> commentList = manageService.selectAllInvestigation(stationID);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", commentList.size());
@@ -76,8 +80,8 @@ public class ManageController {
 	@RequestMapping(value="/changePassword")
 	@ResponseBody
 	public Map<String,Object> changePassword(@RequestParam("newPassword")String newPassword,ModelMap map){
-		int operatorID = ((Operator)map.get("operator")).getOperatorID();
-		int result = manageService.changePassword(operatorID, newPassword);
+		Operator operator = (Operator)map.get("operator");
+		int result = manageService.changePassword(operator, newPassword);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("result", result);
 		return resultMap;
@@ -86,7 +90,7 @@ public class ManageController {
 	@RequestMapping(value="/investigationByType")
 	@ResponseBody
 	public Map<String,Object> selectInvestigationByType(@RequestParam("commentType") int commentType,ModelMap map){
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Comment> commentList = manageService.selectInvestigationByType(stationID, commentType);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", commentList.size());
@@ -97,7 +101,7 @@ public class ManageController {
 	@RequestMapping(value="customerList")
 	@ResponseBody
 	public Map<String,Object> customerList(ModelMap map){
-		int stationID = Integer.parseInt(map.get("stationID").toString());
+		int stationID = (Integer)map.get("stationID");
 		List<Customer> customerList = manageService.selectCustomerList(stationID);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", customerList.size());

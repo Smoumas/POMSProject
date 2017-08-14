@@ -24,7 +24,8 @@ public interface ICenterCustomerService {
 	
 	public List<DeliverAreaCustomer> selectDeliverAreaCustomer(int stationID);
 
-	List<Order> selectDebtByCustomer(int customerID);
+	public List<Order> selectDebtByCustomer(int customerID);
 
-	List<Customer> selectAllBigCustomer();
+	public List<Customer> selectAllBigCustomer();
+	
 }

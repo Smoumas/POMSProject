@@ -2,15 +2,13 @@ package poms.center.entity;
 
 public class Coupon {
 	//代金券表对应属性,维护代金券基本信息
-	private int couponID;//代金券ID
+	private Integer couponID;//代金券ID
 	private float price;//代金券金额
-	private int isUsed;//是否被使用
-	
-	//对应的get、set方法
-	public int getCouponID() {
+	private Integer isUsed;//是否被使用
+	public Integer getCouponID() {
 		return couponID;
 	}
-	public void setCouponID(int couponID) {
+	public void setCouponID(Integer couponID) {
 		this.couponID = couponID;
 	}
 	public float getPrice() {
@@ -19,12 +17,14 @@ public class Coupon {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getIsUsed() {
+	public Integer getIsUsed() {
 		return isUsed;
 	}
-	public void setIsUsed(int isUsed) {
+	public void setIsUsed(Integer isUsed) {
 		this.isUsed = isUsed;
 	}
+	
+	//对应的get、set方法
 	
 	
 }

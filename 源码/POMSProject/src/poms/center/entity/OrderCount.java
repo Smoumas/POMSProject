@@ -2,16 +2,14 @@ package poms.center.entity;
 
 public class OrderCount {
 
-	private int stationID;
+	private Integer stationID;
 	private String stationName;
-	private int count;
-
+	private Integer count;
 	
-	
-	public int getStationID() {
+	public Integer getStationID() {
 		return stationID;
 	}
-	public void setStationID(int stationID) {
+	public void setStationID(Integer stationID) {
 		this.stationID = stationID;
 	}
 	public String getStationName() {
@@ -20,11 +18,14 @@ public class OrderCount {
 	public void setStationName(String stationName) {
 		this.stationName = stationName;
 	}
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
+
+	
+	
 	
 }

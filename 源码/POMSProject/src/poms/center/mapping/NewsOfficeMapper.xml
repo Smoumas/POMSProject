@@ -54,7 +54,7 @@
   <select id="selectNewsOfficeByName" resultType="poms.center.entity.NewsOffice">
   	select * 
   	from newsOffice
-  	where noName like %#{noName}% 
+  	where noName like CONCAT('%',#{noName},'%' ) 
   </select>
   
 </mapper>

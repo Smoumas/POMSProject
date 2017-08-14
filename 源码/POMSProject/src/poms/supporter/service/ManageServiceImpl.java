@@ -63,9 +63,8 @@ public class ManageServiceImpl implements IManageService{
 	}
 
 	@Override
-	public int changePassword(int operatorID, String newPassword) {
+	public int changePassword(Operator operator, String newPassword) {
 		// TODO Auto-generated method stub
-		Operator operator = centerPersonManageService.selectOperatorByID(operatorID).get(0);
 		operator.setPassword(newPassword);
 		return centerPersonManageService.updateOperator(operator);
 	}

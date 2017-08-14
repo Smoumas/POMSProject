@@ -34,7 +34,7 @@
   
   <delete id="deleteTransferCom">
   	delete from transferCom 
-  	where trasnferComID = #{trasnferComID}
+  	where companyID = #{transferComID}
   </delete>
   
   <update id="updateTransferCom" parameterType="poms.center.entity.TransferCom">
@@ -63,7 +63,7 @@
   <select id="selectTransferComListByName" resultType="poms.center.entity.TransferCom">
   	select * 
   	from transferCom
-  	where transferComName like %#{transferComName}% 
+  	where companyName like CONCAT('%',#{transferComName},'%' ) 
   </select>
   
 </mapper>

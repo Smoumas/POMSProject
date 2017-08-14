@@ -19,7 +19,8 @@ public interface ICustomerDao {
 	public List<Customer> selectAllCustomer(@Param("stationID")int stationID);
 	
 	public List<DeliverAreaCustomer> selectDeliverAreaCustomer(@Param("stationID")int stationID);
-
+	
 	public List<Order> selectCustomerDebt(@Param("customerID")int customerID);
 	public List<Customer> selectBigCustomer();
+	
 }

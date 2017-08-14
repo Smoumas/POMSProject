@@ -1,5 +1,6 @@
 package poms.supporter.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import poms.supporter.service.IAdviceService;
 
 @Controller
 @RequestMapping("/support/advice")
-@SessionAttributes("stationID")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class AdviceController {
 	
 	@Autowired
@@ -47,7 +48,11 @@ public class AdviceController {
 	@RequestMapping(value="/sendAdvice",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> sendService(Advice advice,ModelMap map){
-//		System.out.println(map.get("stationID"));
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		advice.setSendStationID(stationID);
+		advice.setSendDeptID(departmentID);
+		advice.setSendDate(new Date());
 		int result=adviceService.sendAdvice(advice);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("result", result);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
@@ -19,6 +20,7 @@ import poms.publish.service.IPublishEmployeeManageService;
 
 @Controller
 @RequestMapping("/publish/employeeManage")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class PublishEmployeeManageController {
 
 	@Autowired
@@ -74,8 +76,8 @@ public class PublishEmployeeManageController {
 	@RequestMapping(value="/setOperatorLevel",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> setOperatorLevel(@RequestParam("level") int level,ModelMap map){
-		int operatorID = ((Operator)map.get("operator")).getOperatorID();
-		int result = publishEmployeeManageService.setOperatorLevel(operatorID, level);
+		Operator operator = (Operator)map.get("operator");
+		int result = publishEmployeeManageService.setOperatorLevel(operator, level);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;

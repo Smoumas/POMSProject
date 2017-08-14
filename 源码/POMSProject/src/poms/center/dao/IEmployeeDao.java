@@ -14,7 +14,7 @@ public interface IEmployeeDao {
 	public int deleteEmployee(@Param("employeeID") int employeeID);
 	public List<Employee> selectEmployeeList(@Param("stationID") int stationID);
 	public List<Employee> selectEmployeeByID(@Param("employeeID")int employeeID);
-	public List<Employee> selectEmployeeByName(@Param("stationID") int stationID,@Param("name") String name);
+	public List<Employee> selectEmployeeByName(@Param("stationID") int stationID,@Param("employeeName") String name);
 	public List<Performance> selectDeliverPerformance(@Param("stationID") int stationID);
 	public List<Performance> selectSalerPerformance(@Param("stationID") int stationID);
 	

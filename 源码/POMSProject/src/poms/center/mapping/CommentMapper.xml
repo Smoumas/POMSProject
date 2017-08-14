@@ -70,19 +70,19 @@
   	update comment
   	<set>
 		  <if test="customerID != null">
-				#{customerID},
+				customerID=#{customerID},
 			</if>
 			<if test="commentType != null">
-				#{commentType},
+				commentType=#{commentType},
 			</if>
 			<if test="stationID != null">
-				#{stationID},
+				stationID=#{stationID},
 			</if>
 			<if test="content != null">
-				#{content},
+				content=#{content},
 			</if>
 			<if test="receipt != null">
-				#{receipt},
+				receipt=#{receipt},
 			</if>
   	</set>
   	where recordID = #{recordID}
