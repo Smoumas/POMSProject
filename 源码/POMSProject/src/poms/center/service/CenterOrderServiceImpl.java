@@ -119,9 +119,10 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 	}
 
 	@Override
-	public Map<String, Double> selectSumByPeriod(Date startDate, Date endDate, int stationID) {
+	public Map<String, Object> selectSumByPeriod(Date startDate, Date endDate, int stationID) {
 		// TODO Auto-generated method stub
-		Map<String ,Double> result = new HashMap<String,Double>();
+		Map<String ,Object> result = new HashMap<String,Object>();
+		result.put("stationID",stationID);
 		result.put("cash",orderDao.getCashByPeriod(startDate,endDate,stationID));
 		result.put("check",orderDao.getCheckSumByPeriod(startDate,endDate,stationID));
 		result.put("coupon",orderDao.getCouponByPeriod(startDate,endDate,stationID));
