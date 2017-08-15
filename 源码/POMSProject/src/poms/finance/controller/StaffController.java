@@ -73,4 +73,24 @@ public class StaffController {
 		resultMap.put("result", result);
 		return resultMap;
 	}
+	
+	@RequestMapping("/queryAllOperator")
+	@ResponseBody
+	public Map<String,Object> OperatorList(ModelMap modelMap){
+		int stationID = (int) modelMap.get("stationID");
+		List<Operator> employeeList = this.staffService.getAllOperator(stationID);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("size", employeeList.size());
+		map.put("data", employeeList);
+		return map;
+	}
+
+	@RequestMapping("/updateLevel")
+	@ResponseBody
+	public Map<String,Object> updateLevel(@RequestParam("operatorID") int operatorID,@RequestParam("level") int level){
+		int state = this.staffService.updateLevel(operatorID,level);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("state", state);
+		return map;
+	}
 }
