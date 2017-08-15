@@ -26,7 +26,7 @@ public class NewsController {
 
     @RequestMapping(value="/sumAccount",method= RequestMethod.GET)
     @ResponseBody
-    public Map<String, Double> sumAccoutByPeriod(ModelMap map){
+    public Map<String, Object> sumAccoutByPeriod(ModelMap map){
         return newsService.getSumByPeriod((Date)map.get("startDate"),(Date)map.get("endDate"),(int)map.get("stationID"));
     }
 
