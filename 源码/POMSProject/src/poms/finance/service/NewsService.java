@@ -23,7 +23,7 @@ public class NewsService {
 	private ICenterOrderService centerOrderService;
 	
 	
-    public Map<String, Double> getSumByPeriod(Date startDate, Date endDate, int stationID){
+    public Map<String, Object> getSumByPeriod(Date startDate, Date endDate, int stationID){
         return centerOrderService.selectSumByPeriod(startDate,endDate,stationID);
     }
 
