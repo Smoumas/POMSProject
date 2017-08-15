@@ -35,15 +35,15 @@ public class PublishEmployeeManageServiceImpl implements IPublishEmployeeManageS
 	}
 
 	@Override
-	public List<Employee> selectEmployeeList(int stationID) {
+	public List<Employee> selectEmployeeList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectEmployeeList(stationID);
+		return centerPersonManageService.selectEmployeeList(stationID,page);
 	}
 
 	@Override
-	public int setEmployeeDuty(int employeeID, int dutyType) {
+	public int setEmployeeDuty(int employeeID, int dutyType,int page) {
 		// TODO Auto-generated method stub
-		Employee employee = centerPersonManageService.selectEmployeeByID(employeeID).get(0);
+		Employee employee = centerPersonManageService.selectEmployeeByID(employeeID,page).get(0);
 		employee.setDutyID(dutyType);
 		return centerPersonManageService.updateEmployee(employee);
 	}
@@ -56,15 +56,15 @@ public class PublishEmployeeManageServiceImpl implements IPublishEmployeeManageS
 	}
 
 	@Override
-	public List<Performance> selectSalerPerformance(int stationID) {
+	public List<Performance> selectSalerPerformance(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectSalerPerformance(stationID);
+		return centerPersonManageService.selectSalerPerformance(stationID,page);
 	}
 
 	@Override
-	public List<Performance> selectDeliverPerformance(int stationID) {
+	public List<Performance> selectDeliverPerformance(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectDeliverPerformance(stationID);
+		return centerPersonManageService.selectDeliverPerformance(stationID,page);
 	}
 	
 }

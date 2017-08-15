@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.IEmployeeDao;
 import poms.center.dao.IOperatorDao;
 import poms.center.entity.Employee;
@@ -39,33 +40,33 @@ public class CenterPersonManageServiceImpl implements ICenterPersonManageService
 	}
 
 	@Override
-	public List<Employee> selectEmployeeList(int stationID) {
+	public List<Employee> selectEmployeeList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return employeeDao.selectEmployeeList(stationID);
+		return employeeDao.selectEmployeeList(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Employee> selectEmployeeByID(int employeeID) {
+	public List<Employee> selectEmployeeByID(int employeeID,int page) {
 		// TODO Auto-generated method stub
-		return employeeDao.selectEmployeeByID(employeeID);
+		return employeeDao.selectEmployeeByID(employeeID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Employee> selectEmployeeByName(int stationID, String name) {
+	public List<Employee> selectEmployeeByName(int stationID, String name,int page) {
 		// TODO Auto-generated method stub
-		return employeeDao.selectEmployeeByName(stationID, name);
+		return employeeDao.selectEmployeeByName(stationID, name,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Performance> selectDeliverPerformance(int stationID) {
+	public List<Performance> selectDeliverPerformance(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return employeeDao.selectDeliverPerformance(stationID);
+		return employeeDao.selectDeliverPerformance(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Performance> selectSalerPerformance(int stationID) {
+	public List<Performance> selectSalerPerformance(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return employeeDao.selectSalerPerformance(stationID);
+		return employeeDao.selectSalerPerformance(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -87,9 +88,9 @@ public class CenterPersonManageServiceImpl implements ICenterPersonManageService
 	}
 
 	@Override
-	public List<Operator> selectOperatorList(int stationID) {
+	public List<Operator> selectOperatorList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return operatorDao.selectOperatorList(stationID);
+		return operatorDao.selectOperatorList(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override

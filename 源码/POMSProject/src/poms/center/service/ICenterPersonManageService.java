@@ -11,16 +11,16 @@ public interface ICenterPersonManageService {
 	public int insertEmployee(Employee employee);
 	public int updateEmployee(Employee employee);
 	public int deleteEmployee(int employeeID);
-	public List<Employee> selectEmployeeList(int stationID);
-	public List<Employee> selectEmployeeByID(int employeeID);
-	public List<Employee> selectEmployeeByName(int stationID,String name);
-	public List<Performance> selectDeliverPerformance(int stationID);
-	public List<Performance> selectSalerPerformance(int stationID);
+	public List<Employee> selectEmployeeList(int stationID,int page);
+	public List<Employee> selectEmployeeByID(int employeeID,int page);
+	public List<Employee> selectEmployeeByName(int stationID,String name,int page);
+	public List<Performance> selectDeliverPerformance(int stationID,int page);
+	public List<Performance> selectSalerPerformance(int stationID,int page);
 	
 	public int insertOperator(Operator operator);
 	public int updateOperator(Operator operator);
 	public int deleteOperator(int operatorID);
-	public List<Operator> selectOperatorList(int stationID);
+	public List<Operator> selectOperatorList(int stationID,int page);
 	public List<Operator> selectOperatorByID(int operatorID);
 	
 	public int login(Operator operator);

@@ -13,9 +13,9 @@ public class PublishInvoiceManageServiceImpl implements IPublishInvoiceManageSer
 	private ICenterInvoiceManageService centerInvoiceManageService;
 	
 	@Override
-	public int invoiceManage(int invoiceID, int state) {
+	public int invoiceManage(int invoiceID, int state,int page) {
 		// TODO Auto-generated method stub
-		Invoice invoice = centerInvoiceManageService.selectInvoiceByID(invoiceID).get(0);
+		Invoice invoice = centerInvoiceManageService.selectInvoiceByID(invoiceID,page).get(0);
 		invoice.setState(state);
 		return centerInvoiceManageService.updateInovice(invoice);
 	}

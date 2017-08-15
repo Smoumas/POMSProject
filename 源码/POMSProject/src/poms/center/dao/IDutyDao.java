@@ -14,10 +14,10 @@ public interface IDutyDao {
 
 	public int deleteDuty(@Param("dutyType") int dutyType);
 
-	public List<Duty> selectDutyList();
+	public List<Duty> selectDutyList(@Param("departmentID")int departmentID,@Param("begin") int begin);
 
-	public List<Duty> selectDutyByType(@Param("dutyType") int dutyType);
+	public List<Duty> selectDutyByType(@Param("dutyType") int dutyType,@Param("begin") int begin);
 	
-	public List<Duty> selectDutyListByName(@Param("dutyName") String dutyName);
+	public List<Duty> selectDutyListByName(@Param("dutyName") String dutyName,@Param("begin") int begin);
 
 }

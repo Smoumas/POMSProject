@@ -26,10 +26,10 @@ public class PublishDeliverManageServiceImpl implements IPublishDeliverManageSer
 	
 	
 	@Override
-	public List<DeliverArea> getDeliverArea(int stationID,int orderID) {
+	public List<DeliverArea> getDeliverArea(int stationID,int orderID,int page) {
 		// TODO Auto-generated method stub
 		int deliverAreaID = centerQueryService.selectOrderByID(stationID, orderID).get(0).getDeliverAreaID();
-		return centerDictionaryMaintainService.selectDeliverAreaByID(stationID, deliverAreaID);
+		return centerDictionaryMaintainService.selectDeliverAreaByID(stationID, deliverAreaID,page);
 	}
 
 	@Override

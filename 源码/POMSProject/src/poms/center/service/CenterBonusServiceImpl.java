@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.ICouponDao;
 import poms.center.dao.IGiftCardDao;
 import poms.center.entity.Coupon;
@@ -38,9 +39,9 @@ public class CenterBonusServiceImpl implements ICenterBonusService{
 	}
 
 	@Override
-	public List<GiftCard> selectGiftCardList() {
+	public List<GiftCard> selectGiftCardList(int page) {
 		// TODO Auto-generated method stub
-		return giftCardDao.selectGiftCardList();
+		return giftCardDao.selectGiftCardList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -68,9 +69,9 @@ public class CenterBonusServiceImpl implements ICenterBonusService{
 	}
 
 	@Override
-	public List<Coupon> selectCouponList() {
+	public List<Coupon> selectCouponList(int page) {
 		// TODO Auto-generated method stub
-		return couponDao.selectCouponList();
+		return couponDao.selectCouponList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override

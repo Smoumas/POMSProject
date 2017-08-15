@@ -14,9 +14,11 @@ public interface IDepartmentDao {
 
 	public int deleteDepartment(@Param("departmentID") int departmentID);
 
-	public List<Department> selectDepartmentList(@Param("stationID") int stationID);
+	public List<Department> selectDepartmentList(@Param("stationID") int stationID, @Param("begin") int begin);
 
-	public List<Department> selectDepartmentByID(@Param("stationID") int stationID, @Param("departmentID") int departmentID);
+	public List<Department> selectDepartmentByID(@Param("stationID") int stationID,
+			@Param("departmentID") int departmentID, @Param("begin") int begin);
 
-	public List<Department> selectDepartmentListByName(@Param("stationID") int stationID, @Param("departmentName") String departmentName);
+	public List<Department> selectDepartmentListByName(@Param("stationID") int stationID,
+			@Param("departmentName") String departmentName,@Param("begin") int begin);
 }

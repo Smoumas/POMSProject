@@ -4,6 +4,7 @@
   <select id="selectGiftCardList" resultType="poms.center.entity.GiftCard">
     select * 
     from giftCard
+    limit #{begin},15
   </select>
   
   <insert id="insertGiftCard" parameterType="poms.center.entity.GiftCard">

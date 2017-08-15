@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.IInvoiceDao;
 import poms.center.entity.Invoice;
 
@@ -33,15 +34,15 @@ public class CenterInvoiceManageServiceImpl implements ICenterInvoiceManageServi
 	}
 
 	@Override
-	public List<Invoice> selectInoviceList() {
+	public List<Invoice> selectInoviceList(int page) {
 		// TODO Auto-generated method stub
-		return invoiceDao.selectInoviceList();
+		return invoiceDao.selectInoviceList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Invoice> selectInvoiceByID(int invoiceID) {
+	public List<Invoice> selectInvoiceByID(int invoiceID,int page) {
 		// TODO Auto-generated method stub
-		return invoiceDao.selectInoviceByID(invoiceID);
+		return invoiceDao.selectInoviceByID(invoiceID,page*CommonConstants.PAGE_SIZE);
 	}
 
 }

@@ -31,9 +31,9 @@ public class CenterAssistServiceImpl implements ICenterAssistService{
 	}
 
 	@Override
-	public List<Advice> selectAdviceList(int stationID, int departmentID,int isReaded) {
+	public List<Advice> selectAdviceList(int stationID, int departmentID,int isReaded,int page) {
 		// TODO Auto-generated method stub
-		List<Advice> adviceList = adviceDao.selectAdviceList(stationID,departmentID,isReaded);
+		List<Advice> adviceList = adviceDao.selectAdviceList(stationID,departmentID,isReaded,page*CommonConstants.PAGE_SIZE);
 		for(Advice advice:adviceList){
 			advice.setSendDate(adjustDate(advice.getSendDate()));
 		}
@@ -71,5 +71,11 @@ public class CenterAssistServiceImpl implements ICenterAssistService{
 	public int setAdviceReaded(int adviceID) {
 		// TODO Auto-generated method stub
 		return adviceDao.setAdviceReaded(adviceID);
+	}
+
+	@Override
+	public List<Advice> selectAdviceListByPage(int receiveStationID, int receiveDeptID, int isReaded, int page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

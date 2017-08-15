@@ -30,10 +30,10 @@ public class AssistantController {
 
     @RequestMapping(value="/unreadedAdvice",method=RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getUnreadedAdvice(ModelMap map){
+    public Map<String,Object> getUnreadedAdvice(@RequestParam("page") int page,ModelMap map){
     	int stationID = (Integer)map.get("stationID");
     	int departmentID = (Integer)map.get("departmentID");
-        List<Advice> unreadedAdviceList = assistantService.getUnreadedAdvice(stationID,departmentID);
+        List<Advice> unreadedAdviceList = assistantService.getUnreadedAdvice(stationID,departmentID,page);
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("size", unreadedAdviceList.size());
         modelMap.put("data", unreadedAdviceList);
@@ -52,10 +52,10 @@ public class AssistantController {
 
     @RequestMapping(value="/readedAdvice",method=RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getReadedAdvice(ModelMap map){
+    public Map<String,Object> getReadedAdvice(@RequestParam("page") int page,ModelMap map){
     	int stationID = (Integer)map.get("stationID");
     	int departmentID = (Integer)map.get("departmentID");
-        List<Advice> readedAdviceList = assistantService.getReadedAdvice(stationID,departmentID);
+        List<Advice> readedAdviceList = assistantService.getReadedAdvice(stationID,departmentID,page);
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("size", readedAdviceList.size());
         modelMap.put("data", readedAdviceList);

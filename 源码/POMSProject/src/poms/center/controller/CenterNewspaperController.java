@@ -53,8 +53,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperList(){
-		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperList();
+	public Map<String,Object> newspaperList(@RequestParam("page") int page){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperList(page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperList.size());
 		resultMap.put("data", newspaperList);
@@ -63,8 +63,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperByID(@RequestParam("newspaperID") int newspaperID){
-		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByID(newspaperID);
+	public Map<String,Object> newspaperByID(@RequestParam("page") int page,@RequestParam("newspaperID") int newspaperID){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByID(newspaperID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperList.size());
 		resultMap.put("data", newspaperList);
@@ -73,8 +73,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperListByName",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperListByName(@RequestParam("newspaperName")String newspaperName){
-		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperListByName(newspaperName);
+	public Map<String,Object> newspaperListByName(@RequestParam("page") int page,@RequestParam("newspaperName")String newspaperName){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperListByName(newspaperName,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperList.size());
 		resultMap.put("data", newspaperList);
@@ -83,8 +83,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperListByNO",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperListByNO(@RequestParam("noID") int noID){
-		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByNO(noID);
+	public Map<String,Object> newspaperListByNO(@RequestParam("page") int page,@RequestParam("noID") int noID){
+		List<Newspaper> newspaperList = centerNewspaperService.selectNewspaperByNO(noID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperList.size());
 		resultMap.put("data", newspaperList);
@@ -120,8 +120,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperPriceList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperPriceList(){
-		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceList();
+	public Map<String,Object> newspaperPriceList(@RequestParam("page") int page){
+		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceList(page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperPriceList.size());
 		resultMap.put("data", newspaperPriceList);
@@ -130,8 +130,8 @@ public class CenterNewspaperController {
 	
 	@RequestMapping(value="/newspaperPriceByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> newspaperPriceByID(@RequestParam("newspaperID") int newspaperID){
-		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceByID(newspaperID);
+	public Map<String,Object> newspaperPriceByID(@RequestParam("page") int page,@RequestParam("newspaperID") int newspaperID){
+		List<NewspaperPrice> newspaperPriceList = centerNewspaperService.selectNewspaperPriceByID(newspaperID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperPriceList.size());
 		resultMap.put("data",newspaperPriceList);

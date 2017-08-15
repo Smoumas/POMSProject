@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.IDeliverPointDao;
 import poms.center.entity.DeliverPoint;
 
@@ -30,15 +31,15 @@ public class CenterDeliverManageServiceImpl implements ICenterDeliverManageServi
 	}
 
 	@Override
-	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID) {
+	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID,int page) {
 		// TODO Auto-generated method stub
-		return deliverPointDao.selectDeliverPointByID(deliverPointID);
+		return deliverPointDao.selectDeliverPointByID(deliverPointID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<DeliverPoint> selectAllDeliverPoint(int stationID) {
+	public List<DeliverPoint> selectAllDeliverPoint(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return deliverPointDao.selectAllDeliverPoint(stationID);
+		return deliverPointDao.selectAllDeliverPoint(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override

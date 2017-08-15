@@ -6,5 +6,5 @@ import java.util.List;
 import poms.center.entity.PrinterEverydaySummary;
 
 public interface ISummaryService {
-	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID);
+	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID,int page);
 }

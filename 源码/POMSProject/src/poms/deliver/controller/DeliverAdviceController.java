@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -28,10 +29,10 @@ public class DeliverAdviceController {
 
 	@RequestMapping(value = "/adviceUnReaded", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getAdviceUnReaded(ModelMap modelMap) {
+	public Map<String, Object> getAdviceUnReaded(@RequestParam("page") int page,ModelMap modelMap) {
 		int receiveStationID = (int) modelMap.get("stationID");
 		int receiveDeptID = (int)modelMap.get("departmentID");
-		List<Advice> list = this.deliverAdviceService.selectAdviceList(receiveStationID,receiveDeptID,CommonConstants.UNREADED);
+		List<Advice> list = this.deliverAdviceService.selectAdviceList(receiveStationID,receiveDeptID,CommonConstants.UNREADED,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
@@ -57,10 +58,10 @@ public class DeliverAdviceController {
 
 	@RequestMapping(value = "/readedAdvice", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getAdviceReaded(ModelMap modelMap) {
+	public Map<String, Object> getAdviceReaded(@RequestParam("page")int page,ModelMap modelMap) {
 		int receiveStationID=(int) modelMap.get("stationID");
 		int receiveDeptID = (int)modelMap.get("departmentID");
-		List<Advice> list = this.deliverAdviceService.selectAdviceList(receiveStationID,receiveDeptID,CommonConstants.READED);
+		List<Advice> list = this.deliverAdviceService.selectAdviceList(receiveStationID,receiveDeptID,CommonConstants.READED,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);

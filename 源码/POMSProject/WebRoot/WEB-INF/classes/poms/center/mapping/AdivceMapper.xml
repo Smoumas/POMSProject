@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="poms.center.dao.IAdviceDao" >
+
+	<select id="selectAdviceListByPage" resultType="poms.center.entity.Advice">
+    select * 
+    from advice
+    where receiveStationID = #{receiveStationID} and isReaded = #{isReaded} and receiveDeptID = #{receiveDeptID}
+    limit #{begin},15
+  </select>
+  
+  
+
   <select id="selectAdviceList" resultType="poms.center.entity.Advice">
     select * 
     from advice
     where receiveStationID = #{receiveStationID} and isReaded = #{isReaded} and receiveDeptID = #{receiveDeptID}
+    ORDER BY adviceID DESC
+    limit #{begin},15
   </select>
   
   <insert id="insertAdvice" parameterType="poms.center.entity.Advice">

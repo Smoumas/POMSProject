@@ -4,6 +4,7 @@
   <select id="selectInoviceList" resultType="poms.center.entity.Invoice">
     select * 
     from invoice
+    limit #{begin},15
   </select>
   
   <insert id="insertInvoice" parameterType="poms.center.entity.Invoice">
@@ -57,6 +58,7 @@
   	select * 
   	from invoice
   	where invoiceID=#{invoiceID} 
+  	limit #{begin},15
   </select>
   
 </mapper>

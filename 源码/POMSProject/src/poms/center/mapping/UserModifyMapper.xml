@@ -4,6 +4,7 @@
   <select id="selectUserModifyList" resultType="poms.center.entity.UserModify">
     select * 
     from userModify
+    limit #{begin},15
   </select>
   
   <insert id="insertUserModify" parameterType="poms.center.entity.UserModify">
@@ -57,6 +58,7 @@
   <select id="selectUserModifyListByType" resultType="poms.center.entity.UserModify">
   	select * 
   	from userModify
-  	where type=#{type} 
+  	where type=#{type}
+  	limit #{begin},15
   </select>
 </mapper>

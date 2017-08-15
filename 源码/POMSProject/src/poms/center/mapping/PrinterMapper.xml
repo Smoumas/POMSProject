@@ -14,6 +14,7 @@
 		select *
 		from printer
 		where stationID = #{stationID}
+		limit #{begin},15
 	</select>
 
 	<delete id="deletePrinterByID" parameterType="java.lang.Integer">
@@ -69,5 +70,6 @@
 		join `order`
 		where stationID = #{stationID} and orderDate = #{date}
 		group by printerID
+		limit #{begin},15
 	</select>
 </mapper>

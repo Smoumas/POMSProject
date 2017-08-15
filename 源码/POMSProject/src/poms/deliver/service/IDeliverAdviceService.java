@@ -7,5 +7,5 @@ import poms.center.entity.Advice;
 public interface IDeliverAdviceService {
 	public int insertAdvice(Advice advice);
 
-	public List<Advice> selectAdviceList(int receiveStationID,int receiveDeptID,int isReaded);
+	public List<Advice> selectAdviceList(int receiveStationID,int receiveDeptID,int isReaded,int page);
 }

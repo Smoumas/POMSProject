@@ -24,8 +24,8 @@ public class PublishInvoiceManageController {
 	
 	@RequestMapping(value="/invoiceManage",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> invoiceManage(@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state,ModelMap map){
-		int result = publishInvoiceManageService.invoiceManage(invoiceID, state);
+	public Map<String,Object> invoiceManage(@RequestParam("page") int page,@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state,ModelMap map){
+		int result = publishInvoiceManageService.invoiceManage(invoiceID, state,page);
 		Map<String,Object> resultMap  = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;

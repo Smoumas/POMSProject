@@ -45,9 +45,9 @@ public class ManageServiceImpl implements IManageService{
 	}
 
 	@Override
-	public List<Comment> selectAllInvestigation(int stationID) {
+	public List<Comment> selectAllInvestigation(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerCustomerService.selectAllInvestigation(stationID);
+		return centerCustomerService.selectAllInvestigation(stationID,page);
 	}
 
 	@Override
@@ -57,9 +57,9 @@ public class ManageServiceImpl implements IManageService{
 	}
 
 	@Override
-	public List<Customer> selectCustomerList(int stationID) {
+	public List<Customer> selectCustomerList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerCustomerService.selectCustomerList(stationID);
+		return centerCustomerService.selectCustomerList(stationID,page);
 	}
 
 	@Override

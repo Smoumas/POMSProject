@@ -22,8 +22,8 @@ public class DeliverAdviceServiceImpl implements IDeliverAdviceService{
 	}
 
 	@Override
-	public List<Advice> selectAdviceList(int receiveStationID,int receiveDeptID,int isReaded) {
+	public List<Advice> selectAdviceList(int receiveStationID,int receiveDeptID,int isReaded,int page) {
 		// TODO Auto-generated method stub
-		return centerAssistService.selectAdviceList(receiveStationID, receiveDeptID, isReaded);
+		return centerAssistService.selectAdviceList(receiveStationID, receiveDeptID, isReaded,page);
 	}
 }

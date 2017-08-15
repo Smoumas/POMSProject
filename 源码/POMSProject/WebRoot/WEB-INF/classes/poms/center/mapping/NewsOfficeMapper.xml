@@ -4,6 +4,7 @@
   <select id="selectNewsOfficeList" resultType="poms.center.entity.NewsOffice">
     select * 
     from newsOffice
+    limit #{begin},15
   </select>
   
   <insert id="insertNewsOffice" parameterType="poms.center.entity.NewsOffice">
@@ -49,12 +50,14 @@
   	select * 
   	from newsOffice
   	where noID=#{noID} 
+  	limit #{begin},15
   </select>
   
   <select id="selectNewsOfficeByName" resultType="poms.center.entity.NewsOffice">
   	select * 
   	from newsOffice
   	where noName like CONCAT('%',#{noName},'%' ) 
+  	limit #{begin},15
   </select>
   
 </mapper>

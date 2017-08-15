@@ -15,9 +15,9 @@ public interface IPrinterDao {
 
 	public List<Printer> selectPrinterByID(int printerID);
 
-	public List<Printer> selectAllPrinter(int stationID);
+	public List<Printer> selectAllPrinter(@Param("stationID") int stationID,@Param("begin") int begin);
 
 	public int deletePrinterByID(int printerID);
 
-	public List<PrinterEverydaySummary> summaryPrintNumber(@Param("date") Date date, @Param("stationID") int stationID);
+	public List<PrinterEverydaySummary> summaryPrintNumber(@Param("date") Date date, @Param("stationID") int stationID,@Param("begin") int begin);
 }

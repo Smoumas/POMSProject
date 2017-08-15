@@ -16,8 +16,8 @@ public class SummaryServiceImpl implements ISummaryService {
 	private ICenterPrinterManageService centerPrinterManageService;
 	
 	@Override
-	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID) {
+	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPrinterManageService.summaryPrintNumber(date, stationID);
+		return centerPrinterManageService.summaryPrintNumber(date, stationID,page);
 	}
 }

@@ -6,6 +6,7 @@
     select * 
     from deliverArea
     where stationID=#{stationID}
+    limit #{begin},15
   </select>
   
   <insert id="insertDeliverArea" parameterType="poms.center.entity.DeliverArea">
@@ -61,12 +62,14 @@
   	select *
   	from deliverArea
   	where deliverAreaID=#{deliverAreaID} and stationID=#{stationID}
+  	limit #{begin},15
   </select>
   
   <select id="selectDeliverAreaByName" resultType="poms.center.entity.DeliverArea">
   	select *
   	from deliverArea
-  	where deliverAreaValue like CONCAT('%',#{deliverAreaValue},'%' ) and stationID=#{stationID} 
+  	where deliverAreaValue like CONCAT('%',#{deliverAreaValue},'%' ) and stationID=#{stationID}
+  	limit #{begin},15 
   </select>
   
   

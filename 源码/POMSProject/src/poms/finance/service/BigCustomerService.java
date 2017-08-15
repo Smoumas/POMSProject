@@ -26,8 +26,8 @@ public class BigCustomerService {
         return centerOrderService.updateOrderPay(orderPay);
     }
 
-    public List<Order> query(int customerID){
-        return centerCustomerService.selectDebtByCustomer(customerID);
+    public List<Order> query(int customerID,int page){
+        return centerCustomerService.selectDebtByCustomer(customerID,page);
     }
     public List<Customer> queryAll(){
         return centerCustomerService.selectAllBigCustomer();

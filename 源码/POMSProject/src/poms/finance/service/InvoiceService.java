@@ -29,8 +29,8 @@ public class InvoiceService {
         return centerInvoiceManageService.updateInovice(invoice);
     }
 
-    public List<Invoice> query(){
-        return centerInvoiceManageService.selectInoviceList();
+    public List<Invoice> query(int page){
+        return centerInvoiceManageService.selectInoviceList(page);
     }
 
 }

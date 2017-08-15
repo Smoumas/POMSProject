@@ -27,8 +27,8 @@ public class NewsService {
         return centerOrderService.selectSumByPeriod(startDate,endDate,stationID);
     }
 
-    public List<DeliverAreaCustomer> getCustomerArea(int stationID){
-        return centerCustomerService.selectDeliverAreaCustomer(stationID);
+    public List<DeliverAreaCustomer> getCustomerArea(int stationID,int page){
+        return centerCustomerService.selectDeliverAreaCustomer(stationID,page);
     }
 
     public List<NewspaperCount> getDeliverSum(){

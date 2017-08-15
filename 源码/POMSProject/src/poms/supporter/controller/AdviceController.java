@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,10 +36,10 @@ public class AdviceController {
 	
 	@RequestMapping(value="/unreadedAdvice",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getUnreadedAdvice(ModelMap map){
+	public Map<String,Object> getUnreadedAdvice(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
-		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(stationID,departmentID); 
+		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(stationID,departmentID,page); 
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", unreadedAdviceList.size());
 		resultMap.put("data", unreadedAdviceList);
@@ -61,10 +62,10 @@ public class AdviceController {
 	
 	@RequestMapping(value="/readedAdvice",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getReadedAdvice(ModelMap map){
+	public Map<String,Object> getReadedAdvice(@RequestParam("page") int page,ModelMap map){
 		int stationID=(Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
-		List<Advice> readedAdviceList = adviceService.getReadedAdvice(stationID,departmentID); 
+		List<Advice> readedAdviceList = adviceService.getReadedAdvice(stationID,departmentID,page); 
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", readedAdviceList.size());
 		resultMap.put("data", readedAdviceList);

@@ -16,15 +16,15 @@ public interface IOrderDao {
 	public int insertOrder(Order order);
 	public int updateOrder(Order order);
 
-	public List<Order> selectOrderList(@Param("stationID")int stationID);
+	public List<Order> selectOrderList(@Param("stationID")int stationID,@Param("begin") int begin);
 	public List<Order> selectOrderByID(@Param("stationID")int stationID,@Param("orderID")int orderID);
-	public List<OrderCount> selectOrderCountGroupByStation();
+	public List<OrderCount> selectOrderCountGroupByStation(@Param("begin") int begin);
 	public List<Order> selectCustomerPeriodOrder(@Param("stationID")int stationID,
-			@Param("customerID")int customerID,@Param("beginDate")Date beginDate,@Param("endDate")Date endDate);
+			@Param("customerID")int customerID,@Param("beginDate")Date beginDate,@Param("endDate")Date endDate,@Param("begin") int begin);
 	public List<Order> selectOrderListByNewspaperName(@Param("stationID") int stationID,
-			@Param("newspaperName")String newspaperName);
+			@Param("newspaperName")String newspaperName,@Param("begin") int begin);
 	public List<Order> selectOrderListByCustomerName(@Param("stationID")int stationID,
-			@Param("customerName")String customerName);
+			@Param("customerName")String customerName,@Param("begin") int begin);
 	
 	
 	public int orderCount(@Param("stationID") int stationID,@Param("orderDate") Date orderDate);

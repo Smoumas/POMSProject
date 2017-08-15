@@ -30,9 +30,9 @@ public class SummaryController {
 
 	@RequestMapping("/summaryPrintNumber")
 	@ResponseBody
-	public Map<String, Object> summaryPrintNumber(@RequestParam("date") Date date, ModelMap modelMap) {
+	public Map<String, Object> summaryPrintNumber(@RequestParam("date") Date date,@RequestParam("page") int page, ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<PrinterEverydaySummary> list = this.summaryService.summaryPrintNumber(date, stationID);
+		List<PrinterEverydaySummary> list = this.summaryService.summaryPrintNumber(date, stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);

@@ -31,12 +31,12 @@ public class AssistantService {
     	return centerAssistService.insertAdvice(advice);
     }
 
-    public List<Advice> getUnreadedAdvice(int stationID,int departmentID){
-    	return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED);
+    public List<Advice> getUnreadedAdvice(int stationID,int departmentID,int page){
+    	return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED,page);
     }
 
-    public List<Advice> getReadedAdvice(int stationID,int departmentID){
-    	return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED);
+    public List<Advice> getReadedAdvice(int stationID,int departmentID,int page){
+    	return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED,page);
     }
     
     public int changePassword(int operatorID, String newPassword){

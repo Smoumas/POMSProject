@@ -17,9 +17,9 @@ public class AdviceServiceImpl implements IAdviceService{
 	
 	
 	@Override
-	public List<Advice> getUnreadedAdvice(int stationID,int departmentID) {
+	public List<Advice> getUnreadedAdvice(int stationID,int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED,page);
 	}
 
 	@Override
@@ -29,9 +29,9 @@ public class AdviceServiceImpl implements IAdviceService{
 	}
 
 	@Override
-	public List<Advice> getReadedAdvice(int stationID,int departmentID) {
+	public List<Advice> getReadedAdvice(int stationID,int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED,page);
 	}
 
 }

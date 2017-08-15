@@ -10,9 +10,9 @@ public interface IPersonManageService {
 
 	public int updateEmployee(Employee employee);
 
-	public List<Employee> selectEmployeeByID(int employeeID);
+	public List<Employee> selectEmployeeByID(int employeeID,int page);
 
-	public List<Employee> queryAllEmployee(int stationID);
+	public List<Employee> queryAllEmployee(int stationID,int page);
 
 	public int deleteEmployeeByID(int employeeID);
 
@@ -22,7 +22,7 @@ public interface IPersonManageService {
 
 	public List<Operator> selectOperatorByID(int operatorID);
 
-	public List<Operator> queryAllOperator(int stationID);
+	public List<Operator> queryAllOperator(int stationID,int page);
 
 	public int deleteOperatorByID(int operatorID);
 }

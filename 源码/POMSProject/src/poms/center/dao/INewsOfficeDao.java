@@ -11,7 +11,7 @@ public interface INewsOfficeDao {
 	public int insertNewsOffice(NewsOffice newsOffice);
 	public int updateNewsOffice(NewsOffice newsOffice);
 	public int deleteNewsOffice(@Param("noID") int noID);
-	public List<NewsOffice> selectNewsOfficeList();
-	public List<NewsOffice> selectNewsOfficeByID(@Param("noID") int noID);
-	public List<NewsOffice> selectNewsOfficeByName(@Param("noName") String noName);
+	public List<NewsOffice> selectNewsOfficeList(@Param("begin") int begin);
+	public List<NewsOffice> selectNewsOfficeByID(@Param("noID") int noID,@Param("begin") int begin);
+	public List<NewsOffice> selectNewsOfficeByName(@Param("noName") String noName,@Param("begin") int begin);
 }

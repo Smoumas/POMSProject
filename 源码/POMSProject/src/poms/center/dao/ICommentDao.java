@@ -9,7 +9,9 @@ import poms.center.entity.Comment;
 public interface ICommentDao {
 	public int insertComment(Comment comment);
 
-	public List<Comment> selectAllComment(@Param("stationID") int stationID);
+	public List<Comment> selectAllComment(@Param("stationID") int stationID,@Param("begin") int begin);
+
+	public List<Comment> selectAllCommentByPage(@Param("stationID") int stationID,@Param("begin")int begin);
 
 	public List<Comment> selectCommentByType(@Param("stationID") int stationID, @Param("commentType") int commentType);
 

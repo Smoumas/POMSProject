@@ -5,6 +5,7 @@
     select operatorID,password,level,employeeID 
     from operator natural join employee
     where stationID=#{stationID}
+    limit #{begin},15
   </select>
   
   <insert id="insertOperator" parameterType="poms.center.entity.Operator">

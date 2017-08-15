@@ -21,9 +21,9 @@ public class PublishAssistService implements IPublishAssistService{
 	private ICenterPersonManageService centerPersonManageService;
 	
 	@Override
-	public List<Advice> getUnreadedAdvice(int stationID,int departmentID) {
+	public List<Advice> getUnreadedAdvice(int stationID,int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.UNREADED,page);
 	}
 
 	@Override
@@ -34,9 +34,9 @@ public class PublishAssistService implements IPublishAssistService{
 	}
 
 	@Override
-	public List<Advice> getReadedAdvice(int stationID,int departmentID) {
+	public List<Advice> getReadedAdvice(int stationID,int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED);
+		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED,page);
 	}
 
 	@Override

@@ -4,6 +4,7 @@
   <select id="selectNewspaperList" resultType="poms.center.entity.Newspaper">
     select * 
     from newspaper
+    limit #{begin},15
   </select>
   
   <insert id="insertNewspaper" parameterType="poms.center.entity.Newspaper">
@@ -94,18 +95,21 @@
   	select * 
   	from newspaper
   	where newspaperID=#{newspapaerID} 
+  	limit #{begin},15
   </select>
   
   <select id="selectNewspaperByNO"  resultType="poms.center.entity.Newspaper">
   	select * 
   	from newspaper
   	where noID=#{noID} 
+  	limit #{begin},15
   </select>
   
   <select id="selectNewspaperByName"  resultType="poms.center.entity.Newspaper">
   	select * 
   	from newspaper
   	where newspaperName like CONCAT('%',#{newspaperName},'%' ) 
+  	limit #{begin},15
   </select>
   
   

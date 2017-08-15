@@ -15,16 +15,16 @@ public interface ICenterPrinterManageService {
 
 	public List<PrintDeliver> selectPrintDeliverByID(int printerID);
 
-	public List<PrintDeliver> queryAllPrintDeliver(int stationID);
+	public List<PrintDeliver> queryAllPrintDeliver(int stationID,int page);
 
 	public int deletePrintDeliverByID(int printerID,int deliverPointID);
 	
 	public int insertPrinter(Printer printer);
 	public int updatePrinter(Printer printer);
 	public List<Printer> selectPrinterByID(int printerID);
-	public List<Printer> queryAllPrinter(int stationID);
+	public List<Printer> queryAllPrinter(int stationID,int page);
 	public int deletePrinterByID(int printerID);
 	
-	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID);
+	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID,int page);
 	
 }

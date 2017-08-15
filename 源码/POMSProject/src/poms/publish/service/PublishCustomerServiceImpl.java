@@ -21,9 +21,9 @@ public class PublishCustomerServiceImpl implements IPublishCustomerService{
 	}
 
 	@Override
-	public List<Customer> selectCustomer(int stationID) {
+	public List<Customer> selectCustomer(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerCustomerService.selectCustomerList(stationID);
+		return centerCustomerService.selectCustomerList(stationID,page);
 	}
 
 }

@@ -5,6 +5,7 @@
     select * 
     from department
     where stationID=#{stationID}
+    limit #{begin},15
   </select>
   
   <insert id="insertDepartment" parameterType="poms.center.entity.Department">
@@ -50,11 +51,13 @@
   	select * 
   	from department
   	where departmentID=#{departmentID} and stationID=#{stationID}
+  	limit #{begin},15
   </select>
   
   <select id="selectDepartmentListByName" resultType="poms.center.entity.Department">
 	select *
 	from department
-	where departmentName like CONCAT('%',#{departmentName},'%' ) and stationID=#{stationID}  	
+	where departmentName like CONCAT('%',#{departmentName},'%' ) and stationID=#{stationID} 
+	limit #{begin},15 	
   </select>
 </mapper>

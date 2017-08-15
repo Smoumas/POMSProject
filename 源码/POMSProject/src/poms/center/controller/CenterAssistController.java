@@ -42,10 +42,22 @@ public class CenterAssistController {
 
 	@RequestMapping(value = "/adviceList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> adviceList(@RequestParam("isReaded") int isReaded, ModelMap map) {
+	public Map<String, Object> adviceList(@RequestParam("page") int page,@RequestParam("isReaded") int isReaded, ModelMap map) {
 		int stationID = (Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
-		List<Advice> adviceList = centerAssistService.selectAdviceList(stationID, departmentID, isReaded);
+		List<Advice> adviceList = centerAssistService.selectAdviceList(stationID, departmentID, isReaded,page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", adviceList.size());
+		resultMap.put("data", adviceList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/adviceListByPage",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> adviceListByPage(@RequestParam("isReaded") int isReaded,@RequestParam("page")int page,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> adviceList = centerAssistService.selectAdviceListByPage(stationID, departmentID, isReaded,page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", adviceList.size());
 		resultMap.put("data", adviceList);

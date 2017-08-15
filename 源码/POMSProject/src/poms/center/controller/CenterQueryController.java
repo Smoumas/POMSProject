@@ -30,24 +30,26 @@ import poms.center.service.ICenterSummaryService;
 
 @Controller
 @RequestMapping("/center/query")
-@SessionAttributes({"stationID","departmentID","operator"})
+@SessionAttributes({ "stationID", "departmentID", "operator" })
 public class CenterQueryController {
 
 	@Autowired
 	private ICenterQueryService centerQueryService;
-	
+
 	@Autowired
 	private ICenterSummaryService centerSummaryService;
-	
+
 	@Autowired
 	private ICenterOrderService centerOrderService;
 
 	@RequestMapping(value = "/customerPeriodOrderList", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> customerPeriodOrderList(@RequestParam("customerID") int customerID,
-			@RequestParam("beginDate") Date beginDate, @RequestParam("endDate") Date endDate, ModelMap map) {
+			@RequestParam("beginDate") Date beginDate, @RequestParam("endDate") Date endDate,
+			@RequestParam("page") int page, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
-		List<Order> orderList = centerQueryService.selectCustomerPeriodOrder(stationID, customerID, beginDate, endDate);
+		List<Order> orderList = centerQueryService.selectCustomerPeriodOrder(stationID, customerID, beginDate, endDate,
+				page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderList.size());
 		resultMap.put("data", orderList);
@@ -57,9 +59,9 @@ public class CenterQueryController {
 	@RequestMapping(value = "/orderListByNewspaperName", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> orderListByNewspaperName(@RequestParam("newspaperName") String newspaperName,
-			ModelMap map) {
+			@RequestParam("page") int page, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
-		List<Order> orderList = centerQueryService.selectOrderListByNewspaperName(stationID, newspaperName);
+		List<Order> orderList = centerQueryService.selectOrderListByNewspaperName(stationID, newspaperName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderList.size());
 		resultMap.put("data", orderList);
@@ -69,64 +71,62 @@ public class CenterQueryController {
 	@RequestMapping(value = "/orderListByCustomerName", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> orderListByCustomerName(@RequestParam("customerName") String customerName,
-			ModelMap map) {
+			@RequestParam("page") int page, ModelMap map) {
 		int staionID = (Integer) map.get("stationID");
-		List<Order> orderList = centerQueryService.selectOrderListByCustomerName(staionID, customerName);
+		List<Order> orderList = centerQueryService.selectOrderListByCustomerName(staionID, customerName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderList.size());
 		resultMap.put("data", orderList);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/orderCountList",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/orderCountList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> orderCountList(){
-		List<OrderCount> orderCountList=centerSummaryService.orderCountListGroupByStation();
-		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("size",orderCountList.size());
+	public Map<String, Object> orderCountList(@RequestParam("page") int page) {
+		List<OrderCount> orderCountList = centerSummaryService.orderCountListGroupByStation(page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", orderCountList.size());
 		resultMap.put("data", orderCountList);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/companyInfo",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/companyInfo", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> companyInfo(){
+	public Map<String, Object> companyInfo() {
 		List<Company> companyInfo = centerQueryService.selectCompanyInfo();
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", companyInfo.size());
-		resultMap.put("data",companyInfo);
+		resultMap.put("data", companyInfo);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/departmentDutyInfo",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/departmentDutyInfo", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> departmentDutyInfo(){
-		List<DepartmentDuty> dutyList = centerQueryService.selectDepartmentDutyInfo();
-		Map<String,Object> resultMap = new HashMap<String, Object>();
+	public Map<String, Object> departmentDutyInfo(@RequestParam("page") int page) {
+		List<DepartmentDuty> dutyList = centerQueryService.selectDepartmentDutyInfo(page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", dutyList.size());
 		resultMap.put("data", dutyList);
 		return resultMap;
 	}
 
-	@RequestMapping(value="/orderCountByDate",method=RequestMethod.GET)
+	@RequestMapping(value = "/orderCountByDate", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> orderCountByDate(@Param("date")Date date){
+	public Map<String, Object> orderCountByDate(@Param("date") Date date) {
 		List<OrderCount> orderCountList = centerOrderService.selectOrderCountGroupByStationAndDate(date);
-		Map<String,Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderCountList.size());
 		resultMap.put("data", orderCountList);
 		return resultMap;
 	}
-	
-	
-	@RequestMapping(value="/{url}",method=RequestMethod.GET)
-	public String forward(@PathVariable("url")String url){
+
+	@RequestMapping(value = "/{url}", method = RequestMethod.GET)
+	public String forward(@PathVariable("url") String url) {
 		return url;
 	}
-	
-	
+
 	@InitBinder
-	public void initBinder(WebDataBinder binder){
+	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -55,9 +56,9 @@ public class InvoiceController {
 
 	@RequestMapping(value = "/queryInvoice", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> queryInvoice(ModelMap map) {
+	public Map<String, Object> queryInvoice(@RequestParam("page")int page,ModelMap map) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Invoice> invoiceList = invoiceService.query();
+		List<Invoice> invoiceList = invoiceService.query(page);
 		resultMap.put("size", invoiceList.size());
 		resultMap.put("data", invoiceList);
 		return resultMap;

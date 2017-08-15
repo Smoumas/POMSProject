@@ -7,6 +7,7 @@
 		FROM `order` o,deliverArea da 
 		WHERE o.deliverAreaID = da.deliverAreaID AND o.stationID = #{stationID} 
 		group by o.deliverAreaID
+		limit #{begin},15
 	</select>
 	
 
@@ -14,6 +15,7 @@
 		select *
 		from customer
 		where stationID = #{stationID}
+		limit #{begin},15
 	</select>
 
 	<delete id="deleteCustomerByID">
@@ -76,6 +78,7 @@
 		SELECT *
 		FROM `order`
 		WHERE customerID = #{customerID} AND paymentState != 0
+		limit #{begin},15
 	</select>
 
 	<select id="selectBigCustomer" resultType="poms.center.entity.Customer">

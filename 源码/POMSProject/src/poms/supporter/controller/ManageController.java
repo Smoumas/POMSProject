@@ -68,9 +68,9 @@ public class ManageController {
 	
 	@RequestMapping(value="/allInvestigation")
 	@ResponseBody
-	public Map<String,Object> selectAllInvestigation(ModelMap map){
+	public Map<String,Object> selectAllInvestigation(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Comment> commentList = manageService.selectAllInvestigation(stationID);
+		List<Comment> commentList = manageService.selectAllInvestigation(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", commentList.size());
 		resultMap.put("data", commentList);
@@ -100,9 +100,9 @@ public class ManageController {
 	
 	@RequestMapping(value="customerList")
 	@ResponseBody
-	public Map<String,Object> customerList(ModelMap map){
+	public Map<String,Object> customerList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Customer> customerList = manageService.selectCustomerList(stationID);
+		List<Customer> customerList = manageService.selectCustomerList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("size", customerList.size());
 		resultMap.put("data", customerList);

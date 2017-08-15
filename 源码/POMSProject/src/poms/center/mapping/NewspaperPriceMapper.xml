@@ -4,6 +4,7 @@
   <select id="selectNewspaperPriceList" resultType="poms.center.entity.NewspaperPrice">
     select * 
     from newspaperPrice
+    limit #{begin},15
   </select>
   
   <insert id="insertNewspaperPrice" parameterType="poms.center.entity.NewspaperPrice">
@@ -91,5 +92,6 @@
   	select * 
   	from newspaperPrice
   	where newspaperID=#{newspaperID} 
+  	limit #{begin},15
   </select>
 </mapper>

@@ -4,6 +4,7 @@
   <select id="selectTransferComList" resultType="poms.center.entity.TransferCom">
     select * 
     from transferCom
+    limit #{begin},15
   </select>
   
   <insert id="insertTransferCom" parameterType="poms.center.entity.TransferCom">
@@ -64,6 +65,7 @@
   	select * 
   	from transferCom
   	where companyName like CONCAT('%',#{transferComName},'%' ) 
+  	limit #{begin},15
   </select>
   
 </mapper>

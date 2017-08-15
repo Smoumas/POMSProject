@@ -11,7 +11,7 @@ public interface IPrintDeliverService {
 
 	public List<PrintDeliver> selectPrintDeliverByID(int printerID);
 
-	public List<PrintDeliver> queryAllPrintDeliver(int stationID);
+	public List<PrintDeliver> queryAllPrintDeliver(int stationID,int page);
 
 	public int deletePrintDeliverByID(int printerID,int deliverPointID);
 }

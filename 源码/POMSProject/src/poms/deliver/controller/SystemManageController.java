@@ -59,9 +59,9 @@ public class SystemManageController {
 
 	@RequestMapping("/queryAllPrinter")
 	@ResponseBody
-	public Map<String, Object> allPrinterList(ModelMap modelMap) {
+	public Map<String, Object> allPrinterList(@RequestParam("page") int page,ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<Printer> list = this.printerService.queryAllPrinter(stationID);
+		List<Printer> list = this.printerService.queryAllPrinter(stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
@@ -118,9 +118,9 @@ public class SystemManageController {
 	
 	@RequestMapping("/queryAllDeliverPoint")
 	@ResponseBody
-	public Map<String, Object> allDeliverPointList(ModelMap modelMap) {
+	public Map<String, Object> allDeliverPointList(@RequestParam("page") int page,ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<DeliverPoint> list = this.deliverPointService.queryAllDeliverPoint(stationID);
+		List<DeliverPoint> list = this.deliverPointService.queryAllDeliverPoint(stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
@@ -129,8 +129,8 @@ public class SystemManageController {
 
 	@RequestMapping("/queryDeliverPoint")
 	@ResponseBody
-	public Map<String, Object> queryDeliverPointByID(@RequestParam("deliverPointID") int deliverPointID) {
-		List<DeliverPoint> list = this.deliverPointService.selectDeliverPointByID(deliverPointID);
+	public Map<String, Object> queryDeliverPointByID(@RequestParam("page") int page,@RequestParam("deliverPointID") int deliverPointID) {
+		List<DeliverPoint> list = this.deliverPointService.selectDeliverPointByID(deliverPointID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", 1);
 		map.put("data", list);
@@ -175,9 +175,9 @@ public class SystemManageController {
 	
 	@RequestMapping("/queryAllPrintDeliver")
 	@ResponseBody
-	public Map<String, Object> allPrintDeliverList(ModelMap modelMap) {
+	public Map<String, Object> allPrintDeliverList(@RequestParam("page") int page,ModelMap modelMap) {
 		int stationID =(int) modelMap.get("stationID");
-		List<PrintDeliver> list = this.printDeliverService.queryAllPrintDeliver(stationID);
+		List<PrintDeliver> list = this.printDeliverService.queryAllPrintDeliver(stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);

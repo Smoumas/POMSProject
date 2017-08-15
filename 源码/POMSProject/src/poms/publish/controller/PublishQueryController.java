@@ -76,9 +76,9 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/deliverOrderList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverOrderList(ModelMap map){	//分站投递单情况
+	public Map<String,Object> deliverOrderList(@RequestParam("page") int page,ModelMap map){	//分站投递单情况
 		int stationID = (Integer)map.get("stationID");
-		List<Order> deliverOrderList = publishQueryService.selectDeliverOrder(stationID);
+		List<Order> deliverOrderList = publishQueryService.selectDeliverOrder(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size",deliverOrderList.size());
 		resultMap.put("data", deliverOrderList);
@@ -87,8 +87,8 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/getNewspaperPriceByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getNewspaperPriceByID(@RequestParam("newspaperID") int newspaperID){
-		List<NewspaperPrice> newspaperPriceList = publishQueryService.getNewspaperPriceByID(newspaperID);
+	public Map<String,Object> getNewspaperPriceByID(@RequestParam("page") int page,@RequestParam("newspaperID") int newspaperID){
+		List<NewspaperPrice> newspaperPriceList = publishQueryService.getNewspaperPriceByID(newspaperID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperPriceList.size());
 		resultMap.put("data", newspaperPriceList);
@@ -97,9 +97,9 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/customerList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> customerList(ModelMap map){	//分站客户列表
+	public Map<String,Object> customerList(@RequestParam("page")int page,ModelMap map){	//分站客户列表
 		int stationID = Integer.parseInt(map.get("stationID").toString());
-		List<Customer> customerList = publishQueryService.getStationCustomer(stationID);
+		List<Customer> customerList = publishQueryService.getStationCustomer(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", customerList.size());
 		resultMap.put("data", customerList);
@@ -130,9 +130,9 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/paymentList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> paymentList(ModelMap map){
+	public Map<String,Object> paymentList(@RequestParam("page") int page,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
-		List<Order> paymentList = publishQueryService.getPaymentList(stationID);
+		List<Order> paymentList = publishQueryService.getPaymentList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", paymentList.size());
 		resultMap.put("data", paymentList);
@@ -142,9 +142,9 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/orderList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> orderList(ModelMap map){
+	public Map<String,Object> orderList(@RequestParam("page") int page,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
-		List<Order> orderList = publishQueryService.getOrderList(stationID);
+		List<Order> orderList = publishQueryService.getOrderList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderList.size());
 		resultMap.put("data", orderList);

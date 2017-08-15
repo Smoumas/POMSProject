@@ -6,7 +6,7 @@ import poms.center.entity.OrderCount;
 
 public interface ICenterSummaryService {
 
-	public List<OrderCount> orderCountListGroupByStation();
+	public List<OrderCount> orderCountListGroupByStation(int page);
 	
 	
 }

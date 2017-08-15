@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -36,9 +37,9 @@ public class PublishCustomerController {
 	
 	@RequestMapping(value="/customerList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> customerList(ModelMap map){
+	public Map<String,Object> customerList(@RequestParam("page")int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Customer> customerList = publishCustomerService.selectCustomer(stationID);
+		List<Customer> customerList = publishCustomerService.selectCustomer(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", customerList.size());
 		resultMap.put("data", customerList);

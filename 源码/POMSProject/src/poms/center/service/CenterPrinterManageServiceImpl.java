@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.IPrintDeliverDao;
 import poms.center.dao.IPrinterDao;
 import poms.center.entity.PrintDeliver;
@@ -40,9 +41,9 @@ public class CenterPrinterManageServiceImpl implements ICenterPrinterManageServi
 	}
 
 	@Override
-	public List<PrintDeliver> queryAllPrintDeliver(int stationID) {
+	public List<PrintDeliver> queryAllPrintDeliver(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return printDeliverDao.selectAllPrintDeliver(stationID);
+		return printDeliverDao.selectAllPrintDeliver(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -70,9 +71,9 @@ public class CenterPrinterManageServiceImpl implements ICenterPrinterManageServi
 	}
 
 	@Override
-	public List<Printer> queryAllPrinter(int stationID) {
+	public List<Printer> queryAllPrinter(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return printerDao.selectAllPrinter(stationID);
+		return printerDao.selectAllPrinter(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -82,9 +83,9 @@ public class CenterPrinterManageServiceImpl implements ICenterPrinterManageServi
 	}
 
 	@Override
-	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID) {
+	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID,int page) {
 		// TODO Auto-generated method stub
-		return printerDao.summaryPrintNumber(date, stationID);
+		return printerDao.summaryPrintNumber(date, stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 }

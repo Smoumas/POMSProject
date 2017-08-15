@@ -34,9 +34,9 @@ public class PrintDeliverServiceImpl implements IPrintDeliverService{
 	}
 
 	@Override
-	public List<PrintDeliver> queryAllPrintDeliver(int stationID) {
+	public List<PrintDeliver> queryAllPrintDeliver(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPrinterManageService.queryAllPrintDeliver(stationID);
+		return centerPrinterManageService.queryAllPrintDeliver(stationID,page);
 	}
 
 	@Override

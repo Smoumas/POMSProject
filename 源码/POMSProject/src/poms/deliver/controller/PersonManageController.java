@@ -66,9 +66,9 @@ public class PersonManageController {
 	
 	@RequestMapping(value="/queryAllEmployee",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeList(ModelMap modelMap){
+	public Map<String,Object> employeeList(@RequestParam("page") int page,ModelMap modelMap){
 		int stationID = (int) modelMap.get("stationID");
-		List<Employee> employeeList = this.personManageService.queryAllEmployee(stationID);
+		List<Employee> employeeList = this.personManageService.queryAllEmployee(stationID,page);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("size", employeeList.size());
 		map.put("data", employeeList);
@@ -113,9 +113,9 @@ public class PersonManageController {
 	
 	@RequestMapping("/queryAllOperator")
 	@ResponseBody
-	public Map<String,Object> OperatorList(ModelMap modelMap){
+	public Map<String,Object> OperatorList(@RequestParam("page") int page,ModelMap modelMap){
 		int stationID = (int) modelMap.get("stationID");
-		List<Operator> employeeList = this.personManageService.queryAllOperator(stationID);
+		List<Operator> employeeList = this.personManageService.queryAllOperator(stationID,page);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("size", employeeList.size());
 		map.put("data", employeeList);

@@ -30,15 +30,15 @@ public class PersonManageServiceImpl implements IPersonManageService {
 	}
 
 	@Override
-	public List<Employee> selectEmployeeByID(int employeeID) {
+	public List<Employee> selectEmployeeByID(int employeeID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectEmployeeByID(employeeID);
+		return centerPersonManageService.selectEmployeeByID(employeeID,page);
 	}
 
 	@Override
-	public List<Employee> queryAllEmployee(int stationID) {
+	public List<Employee> queryAllEmployee(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectEmployeeList(stationID);
+		return centerPersonManageService.selectEmployeeList(stationID,page);
 	}
 
 	@Override
@@ -66,9 +66,9 @@ public class PersonManageServiceImpl implements IPersonManageService {
 	}
 
 	@Override
-	public List<Operator> queryAllOperator(int stationID) {
+	public List<Operator> queryAllOperator(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPersonManageService.selectOperatorList(stationID);
+		return centerPersonManageService.selectOperatorList(stationID,page);
 	}
 
 	@Override

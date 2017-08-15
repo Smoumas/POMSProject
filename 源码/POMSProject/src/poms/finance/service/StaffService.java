@@ -18,8 +18,8 @@ public class StaffService {
 	@Autowired
 	private ICenterPersonManageService centerPersonManageService;
 	
-    public List<Employee> getAllEmployee(int stationID){
-    	return centerPersonManageService.selectEmployeeList(stationID);
+    public List<Employee> getAllEmployee(int stationID,int page){
+    	return centerPersonManageService.selectEmployeeList(stationID,page);
     }
 
     public int updateEmployee(Employee employee){
@@ -34,12 +34,12 @@ public class StaffService {
     	return centerPersonManageService.deleteEmployee(employeeID);
     }
     
-    public List<Employee> employeeList(int stationID){
-    	return centerPersonManageService.selectEmployeeList(stationID);
+    public List<Employee> employeeList(int stationID,int page){
+    	return centerPersonManageService.selectEmployeeList(stationID,page);
     }
 
-    public List<Operator> getAllOperator(int stationID){
-    	return centerPersonManageService.selectOperatorList(stationID);
+    public List<Operator> getAllOperator(int stationID,int page){
+    	return centerPersonManageService.selectOperatorList(stationID,page);
     }
 
     public int updateLevel(int operatorID,int level){
@@ -48,8 +48,8 @@ public class StaffService {
     	return centerPersonManageService.updateOperator(operator);
     }
     
-    public int setEmployeeDuty(int employeeID, int dutyType){
-    	Employee employee = centerPersonManageService.selectEmployeeByID(employeeID).get(0);
+    public int setEmployeeDuty(int employeeID, int dutyType,int page){
+    	Employee employee = centerPersonManageService.selectEmployeeByID(employeeID,page).get(0);
     	employee.setDutyID(dutyType);
     	return centerPersonManageService.updateEmployee(employee);
     }

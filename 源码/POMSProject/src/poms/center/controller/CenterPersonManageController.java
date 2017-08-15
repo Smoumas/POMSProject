@@ -59,9 +59,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeList(ModelMap map){
+	public Map<String,Object> employeeList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Employee> employeeList = centerPersonManageService.selectEmployeeList(stationID);
+		List<Employee> employeeList = centerPersonManageService.selectEmployeeList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", employeeList.size());
 		resultMap.put("data", employeeList);
@@ -71,8 +71,8 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeByID(@RequestParam("employeeID") int employeeID,ModelMap map){
-		List<Employee> employeeList = centerPersonManageService.selectEmployeeByID(employeeID);
+	public Map<String,Object> employeeByID(@RequestParam("page") int page,@RequestParam("employeeID") int employeeID,ModelMap map){
+		List<Employee> employeeList = centerPersonManageService.selectEmployeeByID(employeeID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size",employeeList.size());
 		resultMap.put("data",employeeList);
@@ -81,9 +81,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeByName",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeByName(@RequestParam("employeeName")String employeeName,ModelMap map){
+	public Map<String,Object> employeeByName(@RequestParam("page") int page,@RequestParam("employeeName")String employeeName,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Employee> employeeList = centerPersonManageService.selectEmployeeByName(stationID, employeeName);
+		List<Employee> employeeList = centerPersonManageService.selectEmployeeByName(stationID, employeeName,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", employeeList.size());
 		resultMap.put("data", employeeList);
@@ -92,9 +92,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/deliverPerformance",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverPerformance(ModelMap map){
+	public Map<String,Object> deliverPerformance(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Performance> deliverPerformanceList = centerPersonManageService.selectDeliverPerformance(stationID);
+		List<Performance> deliverPerformanceList = centerPersonManageService.selectDeliverPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", deliverPerformanceList.size());
 		resultMap.put("data", deliverPerformanceList);
@@ -103,9 +103,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/salerPerformance",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> salerPerformance(ModelMap map){
+	public Map<String,Object> salerPerformance(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Performance> salerPerformanceList = centerPersonManageService.selectSalerPerformance(stationID);
+		List<Performance> salerPerformanceList = centerPersonManageService.selectSalerPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", salerPerformanceList.size());
 		resultMap.put("data", salerPerformanceList);
@@ -143,9 +143,9 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/operatorList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> operatorList(ModelMap map){
+	public Map<String,Object> operatorList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Operator> operatorList = centerPersonManageService.selectOperatorList(stationID);
+		List<Operator> operatorList = centerPersonManageService.selectOperatorList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", operatorList.size());
 		resultMap.put("data", operatorList);
@@ -171,7 +171,7 @@ public class CenterPersonManageController {
 
 		if(result>0){
 			Operator loginOperator = centerPersonManageService.selectOperatorByID(operator.getOperatorID()).get(0);
-			Employee employee = centerPersonManageService.selectEmployeeByID(loginOperator.getEmployeeID()).get(0);
+			Employee employee = centerPersonManageService.selectEmployeeByID(loginOperator.getEmployeeID(),0).get(0);
 			map.addAttribute("operator", loginOperator);
 			map.addAttribute("stationID", employee.getStationID());
 			map.addAttribute("departmentID", employee.getDepartmentID());
@@ -181,7 +181,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/loginPage",method=RequestMethod.GET)
 	public String loginPage(){
-		return "login";
+		return "login2";
 	}
 	
 }

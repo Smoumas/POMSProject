@@ -12,11 +12,11 @@ public interface IPublishEmployeeManageService {
 	public int newEmployee(Employee employee);
 	public int deleteEmployee(int employeeID);
 	public int updateEmployee(Employee employee);
-	public List<Employee> selectEmployeeList(int stationID);
+	public List<Employee> selectEmployeeList(int stationID,int page);
 	
-	public int setEmployeeDuty(int employeeID,int dutyType);
+	public int setEmployeeDuty(int employeeID,int dutyType,int page);
 	public int setOperatorLevel(Operator operator,int level);
 	
-	public List<Performance> selectSalerPerformance(int stationID);
-	public List<Performance> selectDeliverPerformance(int stationID);
+	public List<Performance> selectSalerPerformance(int stationID,int page);
+	public List<Performance> selectDeliverPerformance(int stationID,int page);
 }

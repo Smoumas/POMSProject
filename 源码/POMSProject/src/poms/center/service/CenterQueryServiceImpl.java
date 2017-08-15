@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.ICompanyDao;
 import poms.center.dao.IDepartmentDutyDao;
 import poms.center.dao.IOrderDao;
@@ -25,22 +26,23 @@ public class CenterQueryServiceImpl implements ICenterQueryService{
 	@Autowired
 	private IDepartmentDutyDao departmentDutyDao;
 	
+	
 	@Override
-	public List<Order> selectCustomerPeriodOrder(int stationID,int customerID, Date beginDate, Date endDate) {
+	public List<Order> selectCustomerPeriodOrder(int stationID,int customerID, Date beginDate, Date endDate,int page) {
 		// TODO Auto-generated method stub
-		return orderDao.selectCustomerPeriodOrder(stationID,customerID, beginDate, endDate);
+		return orderDao.selectCustomerPeriodOrder(stationID,customerID, beginDate, endDate,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Order> selectOrderListByNewspaperName(int stationID,String newspaperName) {
+	public List<Order> selectOrderListByNewspaperName(int stationID,String newspaperName,int page) {
 		// TODO Auto-generated method stub
-		return orderDao.selectOrderListByNewspaperName(stationID,newspaperName);
+		return orderDao.selectOrderListByNewspaperName(stationID,newspaperName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Order> selectOrderListByCustomerName(int staionID,String customerName) {
+	public List<Order> selectOrderListByCustomerName(int staionID,String customerName,int page) {
 		// TODO Auto-generated method stub
-		return orderDao.selectOrderListByCustomerName(staionID,customerName);
+		return orderDao.selectOrderListByCustomerName(staionID,customerName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -62,10 +64,11 @@ public class CenterQueryServiceImpl implements ICenterQueryService{
 	}
 
 	@Override
-	public List<DepartmentDuty> selectDepartmentDutyInfo() {
+	public List<DepartmentDuty> selectDepartmentDutyInfo(int page) {
 		// TODO Auto-generated method stub
-		return departmentDutyDao.departmentDutyList();
+		return departmentDutyDao.departmentDutyList(page*CommonConstants.PAGE_SIZE);
 	}
+
 	
 	
 	

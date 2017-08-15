@@ -26,14 +26,14 @@ public class DeliverPointServiceImpl implements IDeliverPointService{
 	}
 
 	@Override
-	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID) {
-		return centerDeliverManageService.selectDeliverPointByID(deliverPointID);
+	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID,int page) {
+		return centerDeliverManageService.selectDeliverPointByID(deliverPointID,page);
 	}
 
 	@Override
-	public List<DeliverPoint> queryAllDeliverPoint(int stationID) {
+	public List<DeliverPoint> queryAllDeliverPoint(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerDeliverManageService.selectAllDeliverPoint(stationID);
+		return centerDeliverManageService.selectAllDeliverPoint(stationID,page);
 	}
 
 	@Override

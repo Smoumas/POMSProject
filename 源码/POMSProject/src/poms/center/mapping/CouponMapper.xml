@@ -4,6 +4,7 @@
   <select id="selectCouponList" resultType="poms.center.entity.Coupon">
     select * 
     from coupon
+    limit #{begin},15
   </select>
   
   <insert id="insertCoupon" parameterType="poms.center.entity.Coupon">

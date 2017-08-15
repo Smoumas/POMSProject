@@ -11,6 +11,6 @@ public interface ICenterInvoiceManageService {
 	public int deleteInvoice(int invoiceID);
 	public int updateInovice(Invoice invoice);
 	
-	public List<Invoice> selectInoviceList();
-	public List<Invoice> selectInvoiceByID(int invoiceID);
+	public List<Invoice> selectInoviceList(int page);
+	public List<Invoice> selectInvoiceByID(int invoiceID,int page);
 }

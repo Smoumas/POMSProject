@@ -9,9 +9,9 @@ public interface IDeliverPointService {
 
 	public int updateDeliverPoint(DeliverPoint deliverPoint);
 
-	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID);
+	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID,int page);
 
-	public List<DeliverPoint> queryAllDeliverPoint(int stationID);
+	public List<DeliverPoint> queryAllDeliverPoint(int stationID,int page);
 
 	public int deleteDeliverPointByID(int deliverPointID);
 }

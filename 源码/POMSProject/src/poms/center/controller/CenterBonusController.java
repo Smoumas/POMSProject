@@ -53,8 +53,8 @@ public class CenterBonusController {
 	
 	@RequestMapping(value="/giftCardList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> giftCardList(){
-		List<GiftCard> giftCardList = centerBonusService.selectGiftCardList();
+	public Map<String,Object> giftCardList(@RequestParam("page") int page){
+		List<GiftCard> giftCardList = centerBonusService.selectGiftCardList(page);
 		Map<String,Object> resultMap = new  HashMap<String, Object>();
 		resultMap.put("size", giftCardList.size());
 		resultMap.put("data", giftCardList);
@@ -100,8 +100,8 @@ public class CenterBonusController {
 	
 	@RequestMapping(value="/couponList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> couponList(){
-		List<Coupon> couponList = centerBonusService.selectCouponList();
+	public Map<String,Object> couponList(@RequestParam("page") int page){
+		List<Coupon> couponList = centerBonusService.selectCouponList(page);
 		Map<String,Object> resultMap = new  HashMap<String, Object>();
 		resultMap.put("size", couponList.size());
 		resultMap.put("data", couponList);

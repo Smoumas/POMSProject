@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.constants.ModifyTypeConstants;
 import poms.center.dao.IOrderChangeDao;
 import poms.center.dao.IOrderDao;
@@ -101,9 +102,9 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 	}
 
 	@Override
-	public List<Order> selectAllOrder(int stationID) {
+	public List<Order> selectAllOrder(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return orderDao.selectOrderList(stationID);
+		return orderDao.selectOrderList(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override

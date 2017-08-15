@@ -47,21 +47,21 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	}
 
 	@Override
-	public List<Order> selectDeliverOrder(int stationID) {
+	public List<Order> selectDeliverOrder(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerOrderService.selectAllOrder(stationID);
+		return centerOrderService.selectAllOrder(stationID, page);
 	}
 
 	@Override
-	public List<NewspaperPrice> getNewspaperPriceByID(int newspaperID) {
+	public List<NewspaperPrice> getNewspaperPriceByID(int newspaperID,int page) {
 		// TODO Auto-generated method stub
-		return centerNewspaperService.selectNewspaperPriceByID(newspaperID);
+		return centerNewspaperService.selectNewspaperPriceByID(newspaperID,page);
 	}
 
 	@Override
-	public List<Customer> getStationCustomer(int stationID) {
+	public List<Customer> getStationCustomer(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerCustomerService.selectCustomerList(stationID);
+		return centerCustomerService.selectCustomerList(stationID,page);
 	}
 
 	@Override
@@ -71,15 +71,15 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	}
 
 	@Override
-	public List<Order> getPaymentList(int stationID) {
+	public List<Order> getPaymentList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerOrderService.selectAllOrder(stationID);
+		return centerOrderService.selectAllOrder(stationID, page);
 	}
 
 	@Override
-	public List<Order> getOrderList(int stationID) {
+	public List<Order> getOrderList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerOrderService.selectAllOrder(stationID);
+		return centerOrderService.selectAllOrder(stationID,page);
 	}
 
 	@Override

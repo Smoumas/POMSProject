@@ -11,7 +11,7 @@ public interface IUserModifyDao {
 	public int insertUserModify(UserModify userModify);
 	public int updateUserModify(UserModify userModify);
 	public int deleteUserModify(@Param("userModifyID")int userModifyID);
-	public List<UserModify> selectUserModifyList();
-	public List<UserModify> selectUserModifyListByType(@Param("type")int type);
+	public List<UserModify> selectUserModifyList(@Param("begin") int begin);
+	public List<UserModify> selectUserModifyListByType(@Param("type")int type,@Param("begin") int begin);
 
 }

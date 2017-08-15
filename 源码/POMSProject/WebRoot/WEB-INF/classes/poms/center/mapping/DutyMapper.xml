@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="poms.center.dao.IDutyDao" >
   <select id="selectDutyList" resultType="poms.center.entity.Duty">
-    select * 
-    from duty
+    select duty.dutyType,duty.dutyName 
+    from departmentDuty,duty
+    where departmentDuty.dutyType = duty.dutyType
+    and departmentDuty.departmentID = #{departmentID}
+    limit #{begin},15
   </select>
   
   <insert id="insertDuty" parameterType="poms.center.entity.Duty">
@@ -49,11 +52,13 @@
   	select * 
   	from duty
   	where dutyType=#{dutyType}
+  	limit {begin},15
   </select>
   
   <select id="selectDutyListByName" resultType="poms.center.entity.Duty">
 	select *
 	from duty
-	where dutyName like CONCAT('%',#{dutyName},'%' )  	
+	where dutyName like CONCAT('%',#{dutyName},'%' )
+	limit {begin},15  	
   </select>
 </mapper>

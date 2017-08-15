@@ -5,6 +5,13 @@ public class Invoice {
 	private Integer invoiceID;//发票ID
 	private Integer orderID;//订单ID
 	private Integer stationID;//所属分站ID
+	private String stationName;
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
 	private Integer state;//发票状态
 	public Integer getInvoiceID() {
 		return invoiceID;

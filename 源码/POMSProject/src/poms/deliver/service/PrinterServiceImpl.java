@@ -34,9 +34,9 @@ public class PrinterServiceImpl implements IPrinterService {
 	}
 
 	@Override
-	public List<Printer> queryAllPrinter(int stationID) {
+	public List<Printer> queryAllPrinter(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerPrinterMangeService.queryAllPrinter(stationID);
+		return centerPrinterMangeService.queryAllPrinter(stationID,page);
 	}
 
 	@Override

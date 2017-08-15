@@ -6,6 +6,7 @@
     from departmentDuty,department,duty
 	where departmentDuty.departmentID = department.departmentID
 	and departmentDuty.dutyType = duty.dutyType
+	limit #{begin},15
   </select>
   
 </mapper>

@@ -11,10 +11,10 @@ public interface INewspaperDao {
 	public int insertNewspaper(Newspaper newspaper);
 	public int updateNewspaper(Newspaper newspaper);
 	public int deleteNewspaper(@Param("newspaperID") int newspaperID);
-	public List<Newspaper> selectNewspaperList();
-	public List<Newspaper> selectNewspaperByID(@Param("newspaperID") int newspaperID);
-	public List<Newspaper> selectNewspaperByNO(@Param("noID") int noID);
-	public List<Newspaper> selectNewspaperByName(@Param("newspaperName") String newspaperName);
+	public List<Newspaper> selectNewspaperList(@Param("begin") int begin);
+	public List<Newspaper> selectNewspaperByID(@Param("newspaperID") int newspaperID,@Param("begin") int begin);
+	public List<Newspaper> selectNewspaperByNO(@Param("noID") int noID,@Param("begin") int begin);
+	public List<Newspaper> selectNewspaperByName(@Param("newspaperName") String newspaperName,@Param("begin") int begin);
 	
 	
 }

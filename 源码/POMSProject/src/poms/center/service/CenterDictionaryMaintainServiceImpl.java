@@ -5,16 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.IDeliverAreaDao;
 import poms.center.dao.IDepartmentDao;
 import poms.center.dao.IDutyDao;
 import poms.center.dao.INewsOfficeDao;
+import poms.center.dao.IStationDao;
 import poms.center.dao.ITransferComDao;
 import poms.center.dao.IUserModifyDao;
 import poms.center.entity.DeliverArea;
 import poms.center.entity.Department;
 import poms.center.entity.Duty;
 import poms.center.entity.NewsOffice;
+import poms.center.entity.Station;
 import poms.center.entity.TransferCom;
 import poms.center.entity.UserModify;
 @Service("centerDictionaryMaintainService")
@@ -38,6 +41,8 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	@Autowired
 	private IDepartmentDao departmentDao;
 	
+	@Autowired
+	private IStationDao stationDao;
 	
 	
 	@Override
@@ -62,21 +67,21 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<Department> selectDepartmentList(int stationID) {
+	public List<Department> selectDepartmentList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return departmentDao.selectDepartmentList(stationID);
+		return departmentDao.selectDepartmentList(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Department> selectDepartmentByID(int stationID, int departmentID) {
+	public List<Department> selectDepartmentByID(int stationID, int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return departmentDao.selectDepartmentByID(stationID, departmentID);
+		return departmentDao.selectDepartmentByID(stationID, departmentID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Department> selectDepartmentListByName(int stationID, String departmentName) {
+	public List<Department> selectDepartmentListByName(int stationID, String departmentName,int page) {
 		// TODO Auto-generated method stub
-		return departmentDao.selectDepartmentListByName(stationID, departmentName);
+		return departmentDao.selectDepartmentListByName(stationID, departmentName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -101,21 +106,21 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<Duty> selectDutyList() {
+	public List<Duty> selectDutyList(int departmentID,int page) {
 		// TODO Auto-generated method stub
-		return dutyDao.selectDutyList();
+		return dutyDao.selectDutyList(departmentID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Duty> selectDutyByType(int dutyType) {
+	public List<Duty> selectDutyByType(int dutyType,int page) {
 		// TODO Auto-generated method stub
-		return dutyDao.selectDutyByType(dutyType);
+		return dutyDao.selectDutyByType(dutyType,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Duty> selectDutyByName(String dutyName) {
+	public List<Duty> selectDutyByName(String dutyName,int page) {
 		// TODO Auto-generated method stub
-		return dutyDao.selectDutyListByName(dutyName);
+		return dutyDao.selectDutyListByName(dutyName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -140,9 +145,9 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<TransferCom> selectTransferComList() {
+	public List<TransferCom> selectTransferComList(int page) {
 		// TODO Auto-generated method stub
-		return transferComDao.selectTransferComList();
+		return transferComDao.selectTransferComList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -152,9 +157,9 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<TransferCom> selectTransferComByName(String transferComName) {
+	public List<TransferCom> selectTransferComByName(String transferComName,int page) {
 		// TODO Auto-generated method stub
-		return transferComDao.selectTransferComListByName(transferComName);
+		return transferComDao.selectTransferComListByName(transferComName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -179,21 +184,21 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<DeliverArea> selectDeliverAreaList(int stationID) {
+	public List<DeliverArea> selectDeliverAreaList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return deliverAreaDao.selectDeliverAreaList(stationID);
+		return deliverAreaDao.selectDeliverAreaList(stationID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<DeliverArea> selectDeliverAreaByID(int stationID, int deliverAreaID) {
+	public List<DeliverArea> selectDeliverAreaByID(int stationID, int deliverAreaID,int page) {
 		// TODO Auto-generated method stub
-		return deliverAreaDao.selectDeliverAreaByID(stationID, deliverAreaID);
+		return deliverAreaDao.selectDeliverAreaByID(stationID, deliverAreaID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<DeliverArea> selecctDeliverAreaListByName(int stationID, String deliverAreaName) {
+	public List<DeliverArea> selecctDeliverAreaListByName(int stationID, String deliverAreaName,int page) {
 		// TODO Auto-generated method stub
-		return deliverAreaDao.selectDeliverAreaByName(stationID, deliverAreaName);
+		return deliverAreaDao.selectDeliverAreaByName(stationID, deliverAreaName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -218,15 +223,15 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<UserModify> selectUserModifyList() {
+	public List<UserModify> selectUserModifyList(int page) {
 		// TODO Auto-generated method stub
-		return userModifyDao.selectUserModifyList();
+		return userModifyDao.selectUserModifyList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<UserModify> selectUserModifyByType(int type) {
+	public List<UserModify> selectUserModifyByType(int type,int page) {
 		// TODO Auto-generated method stub
-		return userModifyDao.selectUserModifyListByType(type);
+		return userModifyDao.selectUserModifyListByType(type,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -248,21 +253,27 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 	}
 
 	@Override
-	public List<NewsOffice> selectNewsOfficeList() {
+	public List<NewsOffice> selectNewsOfficeList(int page) {
 		// TODO Auto-generated method stub
-		return newsOfficeDao.selectNewsOfficeList();
+		return newsOfficeDao.selectNewsOfficeList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<NewsOffice> selectNewsOfficeByID(int noID) {
+	public List<NewsOffice> selectNewsOfficeByID(int noID,int page) {
 		// TODO Auto-generated method stub
-		return newsOfficeDao.selectNewsOfficeByID(noID);
+		return newsOfficeDao.selectNewsOfficeByID(noID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<NewsOffice> selectNewsOfficeByName(String noName) {
+	public List<NewsOffice> selectNewsOfficeByName(String noName,int page) {
 		// TODO Auto-generated method stub
-		return newsOfficeDao.selectNewsOfficeByName(noName);
+		return newsOfficeDao.selectNewsOfficeByName(noName,page*CommonConstants.PAGE_SIZE);
+	}
+
+	@Override
+	public List<Station> stationList(int page) {
+		// TODO Auto-generated method stub
+		return stationDao.stationList(page*CommonConstants.PAGE_SIZE);
 	}
 	
 	

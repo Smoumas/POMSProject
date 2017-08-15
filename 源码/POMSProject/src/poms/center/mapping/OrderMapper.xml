@@ -5,6 +5,7 @@
     select * 
     from `order`
     where stationID=#{stationID}
+    limit #{begin},15
   </select>
   
   <select id="selectPromptOrderList" resultType="poms.center.entity.PromptOrder">
@@ -224,6 +225,7 @@
   	from `order`,station
   	where `order`.stationID = station.stationID and orderDate = #{date}
   	group by `order`.stationID
+  	limit #{begin},15
   </select>
   
   
@@ -231,6 +233,7 @@
   	select orderID,newspaperID,stationID,orderType,orderAddress,orderNum,orderDate
   	from `order`
   	where orderDate between #{beginDate} and #{endDate} and customerID=#{customerID} and stationID=#{stationID}
+  	limit #{begin},15
   </select>
   
   <select id="selectOrderListByNewspaperName" resultType="poms.center.entity.Order">
@@ -239,12 +242,14 @@
   	where `order`.newspaperID = newspaper.newspaperID 
   	and newspaper.newspaperName like CONCAT('%',#{newspaperName},'%' ) 
   	and `order`.stationID=#{stationID}
+  	limit #{begin},15
   </select>
   
   <select id="selectOrderListByCustomerName" resultType="poms.center.entity.Order">
   	select *
   	from `order` natural join customer
   	where customerName like CONCAT('%',#{customerName},'%' ) and stationID=#{stationID}
+  	limit #{begin},15
   </select>
   
   <select id="orderCount" resultType="java.lang.Integer">

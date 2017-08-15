@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.constants.CommonConstants;
 import poms.center.dao.INewspaperDao;
 import poms.center.dao.INewspaperPriceDao;
 import poms.center.entity.Newspaper;
@@ -38,27 +39,27 @@ public class CenterNewspaperServiceImpl implements ICenterNewspaperService{
 	}
 
 	@Override
-	public List<Newspaper> selectNewspaperList() {
+	public List<Newspaper> selectNewspaperList(int page) {
 		// TODO Auto-generated method stub
-		return newspaperDao.selectNewspaperList();
+		return newspaperDao.selectNewspaperList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Newspaper> selectNewspaperByID(int newspaperID) {
+	public List<Newspaper> selectNewspaperByID(int newspaperID,int page) {
 		// TODO Auto-generated method stub
-		return newspaperDao.selectNewspaperByID(newspaperID);
+		return newspaperDao.selectNewspaperByID(newspaperID,0);
 	}
 
 	@Override
-	public List<Newspaper> selectNewspaperListByName(String newspaperName) {
+	public List<Newspaper> selectNewspaperListByName(String newspaperName,int page) {
 		// TODO Auto-generated method stub
-		return newspaperDao.selectNewspaperByName(newspaperName);
+		return newspaperDao.selectNewspaperByName(newspaperName,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<Newspaper> selectNewspaperByNO(int noID) {
+	public List<Newspaper> selectNewspaperByNO(int noID,int page) {
 		// TODO Auto-generated method stub
-		return newspaperDao.selectNewspaperByNO(noID);
+		return newspaperDao.selectNewspaperByNO(noID,page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
@@ -80,15 +81,15 @@ public class CenterNewspaperServiceImpl implements ICenterNewspaperService{
 	}
 
 	@Override
-	public List<NewspaperPrice> selectNewspaperPriceList() {
+	public List<NewspaperPrice> selectNewspaperPriceList(int page) {
 		// TODO Auto-generated method stub
-		return newspaperPriceDao.selectNewspaperPriceList();
+		return newspaperPriceDao.selectNewspaperPriceList(page*CommonConstants.PAGE_SIZE);
 	}
 
 	@Override
-	public List<NewspaperPrice> selectNewspaperPriceByID(int newspaperID) {
+	public List<NewspaperPrice> selectNewspaperPriceByID(int newspaperID,int page) {
 		// TODO Auto-generated method stub
-		return newspaperPriceDao.selectNewspaperPriceByID(newspaperID);
+		return newspaperPriceDao.selectNewspaperPriceByID(newspaperID,page*CommonConstants.PAGE_SIZE);
 	}
 	
 }

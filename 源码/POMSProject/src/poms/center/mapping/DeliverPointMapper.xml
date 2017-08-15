@@ -7,6 +7,7 @@
 		select *
 		from deliverPoint
 		where deliverPointID = #{deliverPointID}
+		limit #{begin},15
 	</select>
 
 	<select id="selectAllDeliverPoint" resultType="poms.center.entity.DeliverPoint"
@@ -14,6 +15,7 @@
 		select *
 		from deliverPoint
 		where stationID = #{stationID}
+		limit #{begin},15
 	</select>
 
 	<delete id="deleteDeliverPointByID" parameterType="java.lang.Integer">

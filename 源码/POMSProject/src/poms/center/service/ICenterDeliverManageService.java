@@ -8,8 +8,8 @@ public interface ICenterDeliverManageService {
 
 	public int insertDeliverPoint(DeliverPoint deliverPoint);
 	public int updateDeliverPoint(DeliverPoint deliverPoint);
-	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID);
-	public List<DeliverPoint> selectAllDeliverPoint(int stationID);
+	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID,int page);
+	public List<DeliverPoint> selectAllDeliverPoint(int stationID,int page);
 	public int deleteDeliverPointByID(int deliverPointID);
 	
 }

@@ -32,9 +32,9 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/getDeliverArea",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getDeliverArea(@RequestParam("orderID") int orderID,ModelMap map){
+	public Map<String,Object> getDeliverArea(@RequestParam("page") int page,@RequestParam("orderID") int orderID,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<DeliverArea> deliverAreaList = publishDeliverManageService.getDeliverArea(stationID,orderID);
+		List<DeliverArea> deliverAreaList = publishDeliverManageService.getDeliverArea(stationID,orderID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", deliverAreaList.size());
 		resultMap.put("data", deliverAreaList);

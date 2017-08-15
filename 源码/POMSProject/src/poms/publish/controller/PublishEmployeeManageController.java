@@ -55,9 +55,9 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/employeeList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeList(ModelMap map){
+	public Map<String,Object> employeeList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Employee> employeeList = publishEmployeeManageService.selectEmployeeList(stationID);
+		List<Employee> employeeList = publishEmployeeManageService.selectEmployeeList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", employeeList.size());
 		resultMap.put("data", employeeList);
@@ -66,8 +66,8 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/setEmployeeDuty",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> setEmployeeDuty(@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType,ModelMap map){
-		int result = publishEmployeeManageService.setEmployeeDuty(employeeID, dutyType);
+	public Map<String,Object> setEmployeeDuty(@RequestParam("page") int page,@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType,ModelMap map){
+		int result = publishEmployeeManageService.setEmployeeDuty(employeeID, dutyType,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
@@ -85,9 +85,9 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/salerPerformanceList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> salerPerformanceList(ModelMap map){
+	public Map<String,Object> salerPerformanceList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Performance> salerPerformanceList = publishEmployeeManageService.selectSalerPerformance(stationID);
+		List<Performance> salerPerformanceList = publishEmployeeManageService.selectSalerPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", salerPerformanceList.size());
 		resultMap.put("data", salerPerformanceList);
@@ -96,9 +96,9 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/deliverPerformanceList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverPerformanceList(ModelMap map){
+	public Map<String,Object> deliverPerformanceList(@RequestParam("page") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
-		List<Performance> deliverPerformanceList = publishEmployeeManageService.selectDeliverPerformance(stationID);
+		List<Performance> deliverPerformanceList = publishEmployeeManageService.selectDeliverPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", deliverPerformanceList.size());
 		resultMap.put("data", deliverPerformanceList);
