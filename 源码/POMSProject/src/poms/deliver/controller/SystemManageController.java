@@ -22,7 +22,7 @@ import poms.deliver.service.IPrinterService;
 
 @Controller
 @RequestMapping("/deliver/systemManage")
-@SessionAttributes({"stationID","departmentID","operator"})
+@SessionAttributes({ "stationID", "departmentID", "operator" })
 public class SystemManageController {
 	@Resource
 	private IPrinterService printerService;
@@ -59,12 +59,25 @@ public class SystemManageController {
 
 	@RequestMapping("/queryAllPrinter")
 	@ResponseBody
-	public Map<String, Object> allPrinterList(@RequestParam("page") int page,ModelMap modelMap) {
+	public Map<String, Object> allPrinterList(@RequestParam(value = "page", defaultValue = "0") int page,
+			ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<Printer> list = this.printerService.queryAllPrinter(stationID,page);
+		List<Printer> list = this.printerService.queryAllPrinter(stationID, page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
+		return map;
+	}
+
+	@RequestMapping("/queryPrinterByName")
+	@ResponseBody
+	public Map<String, Object> queryPrinterByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("printerName") String printerName, ModelMap modelMap) {
+		int stationID = (int) modelMap.get("stationID");
+		List<Printer> list = this.printerService.selectPrinterByName(printerName, stationID, page);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("size",list.size());
+		map.put("data",list);
 		return map;
 	}
 
@@ -92,8 +105,8 @@ public class SystemManageController {
 
 	@RequestMapping("/addDeliverPoint")
 	@ResponseBody
-	public Map<String, Object> addDeliverPoint(DeliverPoint deliverPoint,ModelMap modelMap) {
-		int stationID=(int)modelMap.get("stationID");
+	public Map<String, Object> addDeliverPoint(DeliverPoint deliverPoint, ModelMap modelMap) {
+		int stationID = (int) modelMap.get("stationID");
 		deliverPoint.setStationID(stationID);
 		int state = this.deliverPointService.insertDeliverPoint(deliverPoint);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -103,7 +116,7 @@ public class SystemManageController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/updateDeliverPoint")
 	@ResponseBody
 	public Map<String, Object> updateDeliverPoint(DeliverPoint deliverPoint, ModelMap modelMap) {
@@ -115,22 +128,36 @@ public class SystemManageController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/queryAllDeliverPoint")
 	@ResponseBody
-	public Map<String, Object> allDeliverPointList(@RequestParam("page") int page,ModelMap modelMap) {
+	public Map<String, Object> allDeliverPointList(@RequestParam(value = "page", defaultValue = "0") int page,
+			ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<DeliverPoint> list = this.deliverPointService.queryAllDeliverPoint(stationID,page);
+		List<DeliverPoint> list = this.deliverPointService.queryAllDeliverPoint(stationID, page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
 		return map;
 	}
+	
+	@RequestMapping("/queryDeliverPointByName")
+	@ResponseBody
+	public Map<String, Object> queryDeliverPointByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("deliverPointName") String deliverPointName, ModelMap modelMap) {
+		int stationID = (int) modelMap.get("stationID");
+		List<Printer> list = this.printerService.selectPrinterByName(deliverPointName, stationID, page);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("size",list.size());
+		map.put("data",list);
+		return map;
+	}
 
 	@RequestMapping("/queryDeliverPoint")
 	@ResponseBody
-	public Map<String, Object> queryDeliverPointByID(@RequestParam("page") int page,@RequestParam("deliverPointID") int deliverPointID) {
-		List<DeliverPoint> list = this.deliverPointService.selectDeliverPointByID(deliverPointID,page);
+	public Map<String, Object> queryDeliverPointByID(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("deliverPointID") int deliverPointID) {
+		List<DeliverPoint> list = this.deliverPointService.selectDeliverPointByID(deliverPointID, page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", 1);
 		map.put("data", list);
@@ -148,7 +175,7 @@ public class SystemManageController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/addPrintDeliver")
 	@ResponseBody
 	public Map<String, Object> addPrintDeliver(PrintDeliver printDeliver) {
@@ -160,7 +187,7 @@ public class SystemManageController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/updatePrintDeliver")
 	@ResponseBody
 	public Map<String, Object> updatePrintDeliver(PrintDeliver printDeliver) {
@@ -172,12 +199,13 @@ public class SystemManageController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/queryAllPrintDeliver")
 	@ResponseBody
-	public Map<String, Object> allPrintDeliverList(@RequestParam("page") int page,ModelMap modelMap) {
-		int stationID =(int) modelMap.get("stationID");
-		List<PrintDeliver> list = this.printDeliverService.queryAllPrintDeliver(stationID,page);
+	public Map<String, Object> allPrintDeliverList(@RequestParam(value = "page", defaultValue = "0") int page,
+			ModelMap modelMap) {
+		int stationID = (int) modelMap.get("stationID");
+		List<PrintDeliver> list = this.printDeliverService.queryAllPrintDeliver(stationID, page);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("size", list.size());
 		map.put("data", list);
@@ -196,8 +224,9 @@ public class SystemManageController {
 
 	@RequestMapping("/deletePrintDeliver")
 	@ResponseBody
-	public Map<String, Object> deletePrintDeliverByID(@RequestParam("printID") int printID,@RequestParam("deliverPointID") int deliverPointID) {
-		int state = this.printDeliverService.deletePrintDeliverByID(printID,deliverPointID);
+	public Map<String, Object> deletePrintDeliverByID(@RequestParam("printID") int printID,
+			@RequestParam("deliverPointID") int deliverPointID) {
+		int state = this.printDeliverService.deletePrintDeliverByID(printID, deliverPointID);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", state);
 		if (state != 1) {

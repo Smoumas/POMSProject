@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import poms.center.entity.Customer;
 import poms.center.entity.Invoice;
 import poms.center.entity.Log;
+import poms.center.entity.Newspaper;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
 import poms.center.entity.PromptOrder;
@@ -89,9 +90,15 @@ public class PublishQueryServiceImpl implements IPublishQueryService{
 	}
 
 	@Override
-	public List<PromptOrder> getPromptList(int stationID) {
+	public List<PromptOrder> getPromptList(int stationID,int page) {
 		// TODO Auto-generated method stub
-		return centerOrderService.selectPromptOrderList(stationID);
+		return centerOrderService.selectPromptOrderList(stationID,page);
+	}
+
+	@Override
+	public List<Newspaper> selectNewspaperList(int page) {
+		// TODO Auto-generated method stub
+		return centerNewspaperService.selectNewspaperList(page);
 	}
 	
 }

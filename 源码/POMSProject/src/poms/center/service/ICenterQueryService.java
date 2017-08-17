@@ -20,4 +20,6 @@ public interface ICenterQueryService {
 	
 	public List<DepartmentDuty> selectDepartmentDutyInfo(int page);
 	
+	public List<DepartmentDuty> selectDepartmentDutyInfoByName(String departmentName,int page);
+	
 }

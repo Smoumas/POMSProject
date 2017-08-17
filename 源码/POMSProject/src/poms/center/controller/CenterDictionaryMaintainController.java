@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import poms.center.entity.DeliverArea;
+import poms.center.entity.DeliverPoint;
 import poms.center.entity.Department;
 import poms.center.entity.Duty;
 import poms.center.entity.NewsOffice;
 import poms.center.entity.Station;
 import poms.center.entity.TransferCom;
 import poms.center.entity.UserModify;
+import poms.center.service.ICenterDeliverManageService;
 import poms.center.service.ICenterDictionaryMaintainService;
 
 @Controller
@@ -30,9 +32,23 @@ public class CenterDictionaryMaintainController {
 	@Autowired
 	private ICenterDictionaryMaintainService centerDictionaryMaintainService;
 
+	@Autowired
+	private ICenterDeliverManageService centerDeliverManageService;
+
+	@RequestMapping(value = "/deliverPointList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deliverPointList(@RequestParam("stationID") int stationID,
+			@RequestParam(value = "page", defaultValue = "0") int page, ModelMap map) {
+		List<DeliverPoint> deliverPointList = centerDeliverManageService.selectAllDeliverPoint(stationID, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", deliverPointList.size());
+		resultMap.put("data", deliverPointList);
+		return resultMap;
+	}
+
 	@RequestMapping(value = "/stationList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> stationList(@RequestParam("page") int page) {
+	public Map<String, Object> stationList(@RequestParam(value = "page", defaultValue = "0") int page) {
 		List<Station> stationList = centerDictionaryMaintainService.stationList(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", stationList.size());
@@ -69,9 +85,12 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/departmentList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> departmentList(@RequestParam("page") int page,ModelMap map) {
-		int stationID = (Integer) map.get("stationID");
-		List<Department> departmentList = centerDictionaryMaintainService.selectDepartmentList(stationID,page);
+	public Map<String, Object> departmentList(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "stationID", defaultValue = "-1") int stationID,ModelMap map) {
+		if (stationID == -1) {
+			stationID = (Integer) map.get("stationID");
+		}
+		List<Department> departmentList = centerDictionaryMaintainService.selectDepartmentList(stationID, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", departmentList.size());
 		resultMap.put("data", departmentList);
@@ -80,9 +99,11 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/departmentByID", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> departmentByID(@RequestParam("page") int page,@RequestParam("departmentID") int departmentID, ModelMap map) {
+	public Map<String, Object> departmentByID(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("departmentID") int departmentID, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
-		List<Department> departmentList = centerDictionaryMaintainService.selectDepartmentByID(stationID, departmentID,page);
+		List<Department> departmentList = centerDictionaryMaintainService.selectDepartmentByID(stationID, departmentID,
+				page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", departmentList.size());
 		resultMap.put("data", departmentList);
@@ -91,11 +112,11 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/departmentListByName", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> departmentListByName(@RequestParam("page") int page,@RequestParam("departmentName") String departmentName,
-			ModelMap map) {
+	public Map<String, Object> departmentListByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("departmentName") String departmentName, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		List<Department> departmentList = centerDictionaryMaintainService.selectDepartmentListByName(stationID,
-				departmentName,page);
+				departmentName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", departmentList.size());
 		resultMap.put("data", departmentList);
@@ -131,9 +152,9 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/dutyList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> dutyList(@RequestParam("page") int page,ModelMap map) {
+	public Map<String, Object> dutyList(@RequestParam(value = "page", defaultValue = "0") int page, ModelMap map) {
 		int departmentID = (Integer) map.get("departmentID");
-		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyList(departmentID,page);
+		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyList(departmentID, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", dutyList.size());
 		resultMap.put("data", dutyList);
@@ -142,8 +163,9 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/dutyByType", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> dutyByType(@RequestParam("page") int page,@RequestParam("dutyType") int dutyType) {
-		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyByType(dutyType,page);
+	public Map<String, Object> dutyByType(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("dutyType") int dutyType) {
+		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyByType(dutyType, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", dutyList.size());
 		resultMap.put("data", dutyList);
@@ -152,8 +174,9 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/dutyListByName", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> dutyListByName(@RequestParam("page") int page,@RequestParam("dutyName") String dutyName) {
-		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyByName(dutyName,page);
+	public Map<String, Object> dutyListByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("dutyName") String dutyName) {
+		List<Duty> dutyList = centerDictionaryMaintainService.selectDutyByName(dutyName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", dutyList.size());
 		resultMap.put("data", dutyList);
@@ -180,7 +203,7 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/deleteTransferCom", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> deleteTransferCom(@RequestParam("transferComID") int transferComID) {
+	public Map<String, Object> deleteTransferCom(@RequestParam("companyID") int transferComID) {
 		int result = centerDictionaryMaintainService.deleteTransferCom(transferComID);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -189,7 +212,7 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/transferComList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> transferComList(@RequestParam("page") int page) {
+	public Map<String, Object> transferComList(@RequestParam(value = "page", defaultValue = "0") int page) {
 		List<TransferCom> transferComList = centerDictionaryMaintainService.selectTransferComList(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", transferComList.size());
@@ -199,8 +222,10 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/transferComByName", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> transferComByName(@RequestParam("transferComName") String transferComName,@RequestParam("page") int page) {
-		List<TransferCom> transferComList = centerDictionaryMaintainService.selectTransferComByName(transferComName,page);
+	public Map<String, Object> transferComByName(@RequestParam("companyName") String transferComName,
+			@RequestParam("page") int page) {
+		List<TransferCom> transferComList = centerDictionaryMaintainService.selectTransferComByName(transferComName,
+				page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", transferComList.size());
 		resultMap.put("data", transferComList);
@@ -236,7 +261,8 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/deliverAreaList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> deliverAreaList(@RequestParam("page") int page, ModelMap map) {
+	public Map<String, Object> deliverAreaList(@RequestParam(value = "page", defaultValue = "0") int page,
+			ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		List<DeliverArea> deliverAreaList = centerDictionaryMaintainService.selectDeliverAreaList(stationID, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -245,9 +271,19 @@ public class CenterDictionaryMaintainController {
 		return resultMap;
 	}
 
+	@RequestMapping(value = "/deliverAreaAllList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deliverAreaAllList(@RequestParam(value = "page", defaultValue = "0") int page) {
+		List<DeliverArea> deliverAreaList = centerDictionaryMaintainService.selectDeliverAreaAllList(page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", deliverAreaList.size());
+		resultMap.put("data", deliverAreaList);
+		return resultMap;
+	}
+
 	@RequestMapping(value = "/deliverAreaByID", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> deliverAreaByID(@RequestParam("page") int page,
+	public Map<String, Object> deliverAreaByID(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam("deliverAreaID") int deliverAreaID, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		List<DeliverArea> deliverAreaList = centerDictionaryMaintainService.selectDeliverAreaByID(stationID,
@@ -260,11 +296,23 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/deliverAreaListByName", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> deliverAreaListByName(@RequestParam("page") int page,@RequestParam("deliverAreaName") String deliverAreaName,
-			ModelMap map) {
+	public Map<String, Object> deliverAreaListByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("deliverAreaValue") String deliverAreaName, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		List<DeliverArea> deliverAreaList = centerDictionaryMaintainService.selecctDeliverAreaListByName(stationID,
-				deliverAreaName,page);
+				deliverAreaName, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", deliverAreaList.size());
+		resultMap.put("data", deliverAreaList);
+		return resultMap;
+	}
+
+	@RequestMapping(value = "/deliverAreaAllListByName", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> deliverAreaAllListByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("deliverAreaValue") String deliverAreaName) {
+		List<DeliverArea> deliverAreaList = centerDictionaryMaintainService
+				.selecctDeliverAreaAllListByName(deliverAreaName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", deliverAreaList.size());
 		resultMap.put("data", deliverAreaList);
@@ -280,7 +328,7 @@ public class CenterDictionaryMaintainController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/updateUserModify", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateUserModify", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateUserModify(UserModify userModify) {
 		int result = centerDictionaryMaintainService.updateUserModify(userModify);
@@ -300,7 +348,7 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/userModifyList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> userModifyList(@RequestParam("page") int page) {
+	public Map<String, Object> userModifyList(@RequestParam(value = "page", defaultValue = "0") int page) {
 		List<UserModify> userModifyList = centerDictionaryMaintainService.selectUserModifyList(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", userModifyList.size());
@@ -310,8 +358,8 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/userModifyListByType", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> userModifyListByType(@RequestParam("type") int type,@RequestParam("page") int page) {
-		List<UserModify> userModifyList = centerDictionaryMaintainService.selectUserModifyByType(type,page);
+	public Map<String, Object> userModifyListByType(@RequestParam("type") int type, @RequestParam("page") int page) {
+		List<UserModify> userModifyList = centerDictionaryMaintainService.selectUserModifyByType(type, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", userModifyList.size());
 		resultMap.put("data", userModifyList);
@@ -347,7 +395,7 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/newsOfficeList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> newsOfficeList(@RequestParam("page") int page) {
+	public Map<String, Object> newsOfficeList(@RequestParam(value = "page", defaultValue = "0") int page) {
 		List<NewsOffice> newsOfficeList = centerDictionaryMaintainService.selectNewsOfficeList(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newsOfficeList.size());
@@ -357,8 +405,9 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/newsOfficeByID", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> newsOfficeByID(@RequestParam("page") int page,@RequestParam("noID") int noID) {
-		List<NewsOffice> newsOfficeList = centerDictionaryMaintainService.selectNewsOfficeByID(noID,page);
+	public Map<String, Object> newsOfficeByID(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("noID") int noID) {
+		List<NewsOffice> newsOfficeList = centerDictionaryMaintainService.selectNewsOfficeByID(noID, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newsOfficeList.size());
 		resultMap.put("data", newsOfficeList);
@@ -367,8 +416,9 @@ public class CenterDictionaryMaintainController {
 
 	@RequestMapping(value = "/newsOfficeListByName", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> newsOfficeListByName(@RequestParam("page") int page,@RequestParam("noName") String noName) {
-		List<NewsOffice> newsOfficeList = centerDictionaryMaintainService.selectNewsOfficeByName(noName,page);
+	public Map<String, Object> newsOfficeListByName(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam("noName") String noName) {
+		List<NewsOffice> newsOfficeList = centerDictionaryMaintainService.selectNewsOfficeByName(noName, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newsOfficeList.size());
 		resultMap.put("data", newsOfficeList);

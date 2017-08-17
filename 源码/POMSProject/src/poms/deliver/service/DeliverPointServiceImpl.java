@@ -42,4 +42,10 @@ public class DeliverPointServiceImpl implements IDeliverPointService{
 		return centerDeliverManageService.deleteDeliverPointByID(deliverPointID);
 	}
 
+	@Override
+	public List<DeliverPoint> selectDeliverPointByName(String deliverPointName, int stationID, int page) {
+		// TODO Auto-generated method stub
+		return centerDeliverManageService.selectDeliverPointByName(deliverPointName, stationID, page);
+	}
+
 }

@@ -45,4 +45,10 @@ public class PrinterServiceImpl implements IPrinterService {
 		return centerPrinterMangeService.deletePrinterByID(printerID);
 	}
 
+	@Override
+	public List<Printer> selectPrinterByName(String printerName,int stationID, int page) {
+		// TODO Auto-generated method stub
+		return centerPrinterMangeService.selectPrinterByName(printerName, stationID, page);
+	}
+
 }

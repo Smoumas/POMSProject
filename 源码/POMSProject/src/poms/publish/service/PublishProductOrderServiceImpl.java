@@ -29,6 +29,7 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 	}
 
 	@Override
+	
 	public int deleteOrder(int stationID,int orderID) {
 		// TODO Auto-generated method stub
 		return centerOrderService.deleteOrder(stationID,orderID);
@@ -51,6 +52,8 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 	@Override
 	public int postpone(int stationID,int orderID, Date date) {
 		// TODO Auto-generated method stub
+		System.out.println("StationID:"+stationID);
+		System.out.println("orderID:"+orderID);
 		Order order = centerOrderService.selectOrderByID(stationID, orderID).get(0);
 		OrderChange orderChange = new OrderChange();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,11 +67,11 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 	}
 
 	@Override
-	public int renewSubscription(int stationID,Order order) {
+	public int renewSubscription(int stationID,int orderID,int orderKeepTime) {
 		// TODO Auto-generated method stub
-		Order newOrder = centerOrderService.selectOrderByID(stationID, order.getOrderID()).get(0);
-		newOrder.setOrderDate(new Date());
-		return centerOrderService.insertOrder(newOrder);
+		Order newOrder = centerOrderService.selectOrderByID(stationID, orderID).get(0);
+		newOrder.setOrderKeepTime(newOrder.getOrderKeepTime()+orderKeepTime);
+		return centerOrderService.updateOrder(newOrder);
 	}
 
 	@Override
@@ -81,6 +84,12 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 	public List<Coupon> additionalDonationByCoupon() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Order> selectOrderByID(int stationID,int orderID) {
+		// TODO Auto-generated method stub
+		return centerOrderService.selectOrderByID(stationID, orderID);
 	}
 
 }

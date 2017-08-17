@@ -18,16 +18,22 @@ import poms.finance.service.NewsService;
  * Created by sakamichi on 2017/8/8.
  */
 @Controller
-@RequestMapping("/news")
-@SessionAttributes("stationID")
+@RequestMapping("/finance/news")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class NewsController {
     @Autowired
     private NewsService newsService;
 
     @RequestMapping(value="/sumAccount",method= RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> sumAccoutByPeriod(ModelMap map){
-        return newsService.getSumByPeriod((Date)map.get("startDate"),(Date)map.get("endDate"),(int)map.get("stationID"));
+    public Map<String, Object> sumAccoutByPeriod(@RequestParam("startDate")Date startDate,@RequestParam("endDate")Date endDate,@RequestParam("stationID") int stationID,ModelMap map){
+    	Map<String,Object> resultMap = new HashMap<String, Object>();
+    	Map<String,Object> result = newsService.getSumByPeriod(startDate, endDate, stationID);
+    	List<Map<String,Object>> resultList = new ArrayList<Map<String,Object>>();
+    	resultList.add(result);
+    	resultMap.put("size", resultList.size());
+    	resultMap.put("data", resultList);
+    	return resultMap;
     }
 
     @RequestMapping(value="/deliverAccount",method= RequestMethod.GET)
@@ -66,7 +72,7 @@ public class NewsController {
     
     @RequestMapping(value="/customerArea",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> customerArea(@RequestParam("page")int page,ModelMap map){
+    public Map<String,Object> customerArea(@RequestParam(value="page",defaultValue="0")int page,ModelMap map){
     	int stationID = (Integer)map.get("stationID");
     	List<DeliverAreaCustomer> customerAreaList = newsService.getCustomerArea(stationID,page);
     	Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -77,7 +83,7 @@ public class NewsController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }

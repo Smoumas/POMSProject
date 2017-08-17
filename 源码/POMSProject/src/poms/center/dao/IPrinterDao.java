@@ -14,6 +14,8 @@ public interface IPrinterDao {
 	public int updatePrinter(Printer printer);
 
 	public List<Printer> selectPrinterByID(int printerID);
+	
+	public List<Printer> selectPrinterByName(@Param("printerName") String printerName,@Param("stationID") int stationID,@Param("begin") int begin);
 
 	public List<Printer> selectAllPrinter(@Param("stationID") int stationID,@Param("begin") int begin);
 

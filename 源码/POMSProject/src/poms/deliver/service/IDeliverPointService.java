@@ -10,6 +10,8 @@ public interface IDeliverPointService {
 	public int updateDeliverPoint(DeliverPoint deliverPoint);
 
 	public List<DeliverPoint> selectDeliverPointByID(int deliverPointID,int page);
+	
+	public List<DeliverPoint> selectDeliverPointByName(String deliverPointName,int stationID,int page);
 
 	public List<DeliverPoint> queryAllDeliverPoint(int stationID,int page);
 

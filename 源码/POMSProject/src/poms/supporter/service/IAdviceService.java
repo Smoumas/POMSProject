@@ -8,4 +8,5 @@ public interface IAdviceService {
 	public List<Advice> getUnreadedAdvice(int stationID,int departmentID,int page);
 	public int sendAdvice(Advice advice);
 	public List<Advice> getReadedAdvice(int stationID,int departmentID,int page);
+	public List<Advice> adviceList(int stationID,int departmentID,int isReaded,int page);
 }

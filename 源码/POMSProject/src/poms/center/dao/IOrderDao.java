@@ -29,7 +29,7 @@ public interface IOrderDao {
 	
 	public int orderCount(@Param("stationID") int stationID,@Param("orderDate") Date orderDate);
 
-	public List<PromptOrder> selectPromptOrderList(@Param("stationID") int stationID);
+	public List<PromptOrder> selectPromptOrderList(@Param("stationID") int stationID,@Param("begin") int begin);
 	
 	public List<NewspaperCount> selectNewspaperCount();
 	
@@ -37,9 +37,9 @@ public interface IOrderDao {
 	public double getCouponByPeriod(@Param("startDate")Date startDate,@Param("endDate")Date endDate,@Param("stationID")int stationID);
 	public double getCashByPeriod(@Param("startDate")Date startDate, @Param("endDate")Date endDate,@Param("stationID")int stationID);
 
-	public int updateOrderPay(@Param("orderPay")OrderPay orderPay);
+	public int updateOrderPay(OrderPay orderPay);
 	
 	
-	public List<OrderCount> selectOrderCountGroupByStationAndDate(@Param("date")Date date);
+	public List<OrderCount> selectOrderCountGroupByStationAndDate(@Param("date")Date date,@Param("begin") int begin);
 
 }

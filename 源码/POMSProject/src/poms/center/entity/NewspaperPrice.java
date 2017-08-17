@@ -4,7 +4,7 @@ public class NewspaperPrice {
 	//报刊报价表对应属性,维护报刊定价信息
 	private Integer newspaperID;		//报刊ID
 	private float dayPrice;			//报刊日价
-	private float mouthPrice;		//报刊月价
+	private float monthPrice;		//报刊月价
 	private float seasonPrice;		//报刊季价
 	private float halfYearPrice;	//报刊半年价
 	private float yearPrice;		//报刊年价
@@ -24,11 +24,12 @@ public class NewspaperPrice {
 	public void setDayPrice(float dayPrice) {
 		this.dayPrice = dayPrice;
 	}
-	public float getMouthPrice() {
-		return mouthPrice;
+	
+	public float getMonthPrice() {
+		return monthPrice;
 	}
-	public void setMouthPrice(float mouthPrice) {
-		this.mouthPrice = mouthPrice;
+	public void setMonthPrice(float monthPrice) {
+		this.monthPrice = monthPrice;
 	}
 	public float getSeasonPrice() {
 		return seasonPrice;

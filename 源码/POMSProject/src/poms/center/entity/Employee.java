@@ -8,8 +8,16 @@ public class Employee {
 	private Integer age;//年龄
 	private Integer stationID;//所属分站ID
 	private Integer departmentID;//所属部门ID
+	private String dutyName;//所属职务名称
 	private Integer dutyID;//职务ID
 	private String phone;//联系方式
+	
+	public String getDutyName() {
+		return dutyName;
+	}
+	public void setDutyName(String dutyName) {
+		this.dutyName = dutyName;
+	}
 	public Integer getEmployeeID() {
 		return employeeID;
 	}

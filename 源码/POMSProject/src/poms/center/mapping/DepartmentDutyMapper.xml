@@ -9,4 +9,14 @@
 	limit #{begin},15
   </select>
   
+  <select id="departmentDutyListByName" resultType="poms.center.entity.DepartmentDuty">
+    select department.departmentID,department.departmentName,duty.dutyName,duty.wage 
+    from departmentDuty,department,duty
+	where departmentDuty.departmentID = department.departmentID
+	and departmentDuty.dutyType = duty.dutyType
+	and department.departmentName like CONCAT('%',#{departmentName},'%' )
+	limit #{begin},15
+  </select>
+  
+  
 </mapper>

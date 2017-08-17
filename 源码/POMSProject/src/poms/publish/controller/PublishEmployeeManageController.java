@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import poms.center.entity.Duty;
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
 import poms.center.entity.Performance;
@@ -28,7 +29,11 @@ public class PublishEmployeeManageController {
 
 	@RequestMapping(value="/newEmployee",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> newEmployee(Employee employee){
+	public Map<String,Object> newEmployee(Employee employee,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		employee.setStationID(stationID);
+		employee.setDepartmentID(departmentID);
 		int result = publishEmployeeManageService.newEmployee(employee);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -55,7 +60,7 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/employeeList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> employeeList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Employee> employeeList = publishEmployeeManageService.selectEmployeeList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -64,9 +69,9 @@ public class PublishEmployeeManageController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/setEmployeeDuty",method=RequestMethod.GET)
+	@RequestMapping(value="/setEmployeeDuty",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> setEmployeeDuty(@RequestParam("page") int page,@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType,ModelMap map){
+	public Map<String,Object> setEmployeeDuty(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("employeeID") int employeeID,@RequestParam("dutyType") int dutyType,ModelMap map){
 		int result = publishEmployeeManageService.setEmployeeDuty(employeeID, dutyType,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -85,7 +90,7 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/salerPerformanceList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> salerPerformanceList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> salerPerformanceList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Performance> salerPerformanceList = publishEmployeeManageService.selectSalerPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -96,7 +101,7 @@ public class PublishEmployeeManageController {
 	
 	@RequestMapping(value="/deliverPerformanceList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverPerformanceList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> deliverPerformanceList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Performance> deliverPerformanceList = publishEmployeeManageService.selectDeliverPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -104,5 +109,17 @@ public class PublishEmployeeManageController {
 		resultMap.put("data", deliverPerformanceList);
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/dutyList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> dutyList(@RequestParam(value = "page", defaultValue = "0") int page, ModelMap map) {
+		int departmentID = (Integer) map.get("departmentID");
+		List<Duty> dutyList = publishEmployeeManageService.selectDutyList(departmentID, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", dutyList.size());
+		resultMap.put("data", dutyList);
+		return resultMap;
+	}
+	
 	
 }

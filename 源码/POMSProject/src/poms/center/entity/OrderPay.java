@@ -4,49 +4,41 @@ package poms.center.entity;
  * Created by sakamichi on 2017/8/14.
  */
 public class OrderPay {
-    private int orderID;
-    private double cash;
-    private double credit;
-    private int giftCardID;
-    private int couponID;
+    private Integer orderID;
+    private Double cash;
+    private Double credit;
+    private Integer giftCardID;
+    private Integer couponID;
+	public Integer getOrderID() {
+		return orderID;
+	}
+	public void setOrderID(Integer orderID) {
+		this.orderID = orderID;
+	}
+	public Double getCash() {
+		return cash;
+	}
+	public void setCash(Double cash) {
+		this.cash = cash;
+	}
+	public Double getCredit() {
+		return credit;
+	}
+	public void setCredit(Double credit) {
+		this.credit = credit;
+	}
+	public Integer getGiftCardID() {
+		return giftCardID;
+	}
+	public void setGiftCardID(Integer giftCardID) {
+		this.giftCardID = giftCardID;
+	}
+	public Integer getCouponID() {
+		return couponID;
+	}
+	public void setCouponID(Integer couponID) {
+		this.couponID = couponID;
+	}
 
-    public int getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
-
-    public double getCash() {
-        return cash;
-    }
-
-    public void setCash(double cash) {
-        this.cash = cash;
-    }
-
-    public double getCredit() {
-        return credit;
-    }
-
-    public void setCredit(double credit) {
-        this.credit = credit;
-    }
-
-    public int getGiftCardID() {
-        return giftCardID;
-    }
-
-    public void setGiftCardID(int giftCardID) {
-        this.giftCardID = giftCardID;
-    }
-
-    public int getCouponID() {
-        return couponID;
-    }
-
-    public void setCouponID(int couponID) {
-        this.couponID = couponID;
-    }
+    
 }

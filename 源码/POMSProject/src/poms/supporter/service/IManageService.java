@@ -15,4 +15,5 @@ public interface IManageService {
 	public List<Comment> selectAllInvestigation(int stationID,int page);
 	public List<Comment> selectInvestigationByType(int stationID,int commentType);
 	public int changePassword(Operator operator,String newPassword);
+	public int insertReceipt(int stationID, int recordID, String receipt);
 }

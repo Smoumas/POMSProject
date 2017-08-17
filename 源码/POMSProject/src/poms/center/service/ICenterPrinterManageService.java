@@ -26,5 +26,7 @@ public interface ICenterPrinterManageService {
 	public int deletePrinterByID(int printerID);
 	
 	public List<PrinterEverydaySummary> summaryPrintNumber(Date date, int stationID,int page);
+
+	List<Printer> selectPrinterByName(String printerName,int stationID, int page);
 	
 }

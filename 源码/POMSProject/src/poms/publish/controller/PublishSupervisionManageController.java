@@ -46,7 +46,7 @@ public class PublishSupervisionManageController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/insertReceipt",method=RequestMethod.GET)
+	@RequestMapping(value="/insertReceipt",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> insertReceipt(@RequestParam("recordID") int recordID, @RequestParam("receipt") String receipt,ModelMap map){
 		int stationID = (Integer)map.get("stationID");

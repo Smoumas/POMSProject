@@ -21,8 +21,8 @@ import java.util.Map;
  * Created by sakamichi on 2017/8/8.
  */
 @Controller
-@RequestMapping("/bigCustomer")
-@SessionAttributes("stationID")
+@RequestMapping("/finance/bigCustomer")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class BigCustomerController {
     @Autowired
     private BigCustomerService bigCustomerService;
@@ -38,7 +38,7 @@ public class BigCustomerController {
 
     @RequestMapping(value="/queryDebt",method= RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> queryDebt(@RequestParam("page")int page,ModelMap map){
+    public Map<String,Object> queryDebt(@RequestParam(value="page",defaultValue="0")int page,ModelMap map){
         Map<String,Object> resultMap = new HashMap<>();
         int customerID = (int)map.get("customerID");
 

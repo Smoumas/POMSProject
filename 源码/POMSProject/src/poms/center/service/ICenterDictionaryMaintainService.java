@@ -37,8 +37,10 @@ public interface ICenterDictionaryMaintainService {
 	public int updateDeliverArea(DeliverArea deliverArea);
 	public int deleteDeliverArea(int deliverAreaID);
 	public List<DeliverArea> selectDeliverAreaList(int stationID,int page);
+	public List<DeliverArea> selectDeliverAreaAllList(int page);
 	public List<DeliverArea> selectDeliverAreaByID(int stationID,int deliverAreaID,int page);
 	public List<DeliverArea> selecctDeliverAreaListByName(int stationID,String  deliverAreaName,int page);
+	public List<DeliverArea> selecctDeliverAreaAllListByName(String  deliverAreaName,int page);
 	
 	public int insertUserModify(UserModify userModify);
 	public int updateUserModify(UserModify userModify);

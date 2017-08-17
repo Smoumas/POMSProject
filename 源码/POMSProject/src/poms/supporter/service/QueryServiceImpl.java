@@ -3,14 +3,22 @@ package poms.supporter.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.entity.Department;
 import poms.center.entity.Log;
 import poms.center.entity.Order;
+import poms.center.entity.Station;
+import poms.center.service.ICenterDictionaryMaintainService;
 
 @Service("queryService")
 public class QueryServiceImpl implements IQueryService{
 
+	
+	@Autowired
+	private ICenterDictionaryMaintainService centerDictionaryMaintainService;
+	
 	@Override
 	public List<Order> selectExpiredOrder(int stationID) {
 		// TODO Auto-generated method stub
@@ -32,6 +40,18 @@ public class QueryServiceImpl implements IQueryService{
 	public List<Log> selectOperateLog(int stationID, String beginDate, String endDate) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Station> stationList(int page) {
+		// TODO Auto-generated method stub
+		return centerDictionaryMaintainService.stationList(page);
+	}
+
+	@Override
+	public List<Department> selectDepartmentList(int stationID, int page) {
+		// TODO Auto-generated method stub
+		return centerDictionaryMaintainService.selectDepartmentList(stationID, page);
 	}
 
 }

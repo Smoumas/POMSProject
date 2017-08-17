@@ -35,7 +35,7 @@
   
   <delete id="deleteTransferCom">
   	delete from transferCom 
-  	where companyID = #{transferComID}
+  	where companyID = #{companyID}
   </delete>
   
   <update id="updateTransferCom" parameterType="poms.center.entity.TransferCom">
@@ -51,7 +51,7 @@
 			address=#{address},
 		</if>		
   	</set>
-  	where transferComID = #{transferComID}
+  	where companyID = #{companyID}
   </update>
   
   
@@ -64,7 +64,7 @@
   <select id="selectTransferComListByName" resultType="poms.center.entity.TransferCom">
   	select * 
   	from transferCom
-  	where companyName like CONCAT('%',#{transferComName},'%' ) 
+  	where companyName like CONCAT('%',#{companyName},'%' ) 
   	limit #{begin},15
   </select>
   

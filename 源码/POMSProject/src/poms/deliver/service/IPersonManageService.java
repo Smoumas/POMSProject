@@ -2,6 +2,7 @@ package poms.deliver.service;
 
 import java.util.List;
 
+import poms.center.entity.Duty;
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
 
@@ -25,4 +26,8 @@ public interface IPersonManageService {
 	public List<Operator> queryAllOperator(int stationID,int page);
 
 	public int deleteOperatorByID(int operatorID);
+
+	public List<Employee> selectEmployeeByName(int stationID, String employeeName, int page);
+	
+	public List<Duty> selectDutyList(int departmentID,int page);
 }

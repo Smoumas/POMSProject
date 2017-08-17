@@ -6,6 +6,7 @@ import java.util.List;
 import poms.center.entity.Customer;
 import poms.center.entity.Invoice;
 import poms.center.entity.Log;
+import poms.center.entity.Newspaper;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
 import poms.center.entity.PromptOrder;
@@ -32,6 +33,8 @@ public interface IPublishQueryService {
 	
 	public List<Order> getExpiredList(int stationID);						//到期情况查询
 	
-	public List<PromptOrder> getPromptList(int stationID);							//催款情况查询
+	public List<PromptOrder> getPromptList(int stationID,int page);							//催款情况查询
+
+	public List<Newspaper> selectNewspaperList(int page);
 
 }

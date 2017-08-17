@@ -42,7 +42,7 @@ public class CenterAssistController {
 
 	@RequestMapping(value = "/adviceList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> adviceList(@RequestParam("page") int page,@RequestParam("isReaded") int isReaded, ModelMap map) {
+	public Map<String, Object> adviceList(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("isReaded") int isReaded, ModelMap map) {
 		int stationID = (Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
 		List<Advice> adviceList = centerAssistService.selectAdviceList(stationID, departmentID, isReaded,page);
@@ -64,7 +64,7 @@ public class CenterAssistController {
 		return resultMap;
 	}
 
-	@RequestMapping(value = "/correctOrderAddress", method = RequestMethod.GET)
+	@RequestMapping(value = "/correctOrderAddress", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> correctOrderAddress(@RequestParam("orderID") int orderID,
 			@RequestParam("newAddress") String newAddress, ModelMap map) {

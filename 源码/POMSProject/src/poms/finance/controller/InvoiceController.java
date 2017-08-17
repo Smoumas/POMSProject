@@ -20,8 +20,8 @@ import poms.finance.service.InvoiceService;
  * Created by sakamichi on 2017/8/8.
  */
 @Controller
-@RequestMapping("/invoice")
-@SessionAttributes("stationID")
+@RequestMapping("/finance/invoice")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class InvoiceController {
 
 	@Autowired
@@ -56,7 +56,7 @@ public class InvoiceController {
 
 	@RequestMapping(value = "/queryInvoice", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> queryInvoice(@RequestParam("page")int page,ModelMap map) {
+	public Map<String, Object> queryInvoice(@RequestParam(value="page",defaultValue="0")int page,ModelMap map) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Invoice> invoiceList = invoiceService.query(page);
 		resultMap.put("size", invoiceList.size());

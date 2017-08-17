@@ -37,7 +37,7 @@ public class PublishCustomerController {
 	
 	@RequestMapping(value="/customerList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> customerList(@RequestParam("page")int page,ModelMap map){
+	public Map<String,Object> customerList(@RequestParam(value="page",defaultValue="0")int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Customer> customerList = publishCustomerService.selectCustomer(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();

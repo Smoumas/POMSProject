@@ -68,5 +68,13 @@ public class ManageServiceImpl implements IManageService{
 		operator.setPassword(newPassword);
 		return centerPersonManageService.updateOperator(operator);
 	}
+
+	@Override
+	public int insertReceipt(int stationID, int recordID, String receipt) {
+		// TODO Auto-generated method stub
+		Comment comment = centerCustomerService.selectCommentByID(stationID, recordID).get(0);
+		comment.setReceipt(receipt);
+		return centerCustomerService.updateComment(comment);
+	}
 	
 }

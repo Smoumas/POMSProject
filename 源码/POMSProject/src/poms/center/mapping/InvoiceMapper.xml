@@ -8,7 +8,7 @@
   </select>
   
   <insert id="insertInvoice" parameterType="poms.center.entity.Invoice">
-	insert into coupon
+	insert into invoice
 	<trim prefix="(" suffix=")" suffixOverrides="," >
 		<if test="orderID != null">
 			orderID,
@@ -16,9 +16,7 @@
 		<if test="stationID != null">
 			stationID,
 		</if>
-		<if test="state != null">
 			state,
-		</if>
 	</trim>
 	<trim prefix="values(" suffix=")" suffixOverrides=",">
 		<if test="orderID != null">
@@ -27,9 +25,7 @@
 		<if test="stationID != null">
 			#{stationID},
 		</if>
-		<if test="state != null">
-			#{state},
-		</if>
+			0,
 	</trim> 
   </insert>
   
@@ -44,9 +40,7 @@
 		  <if test="orderID != null">
 			orderID=#{orderID},
 		</if>
-		<if test="stationID != null">
 			stationID=#{stationID},
-		</if>
 		<if test="state != null">
 			state=#{state},
 		</if>

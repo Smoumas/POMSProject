@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +60,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> employeeList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Employee> employeeList = centerPersonManageService.selectEmployeeList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -71,7 +72,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeByID(@RequestParam("page") int page,@RequestParam("employeeID") int employeeID,ModelMap map){
+	public Map<String,Object> employeeByID(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("employeeID") int employeeID,ModelMap map){
 		List<Employee> employeeList = centerPersonManageService.selectEmployeeByID(employeeID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size",employeeList.size());
@@ -81,7 +82,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/employeeByName",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> employeeByName(@RequestParam("page") int page,@RequestParam("employeeName")String employeeName,ModelMap map){
+	public Map<String,Object> employeeByName(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("employeeName")String employeeName,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Employee> employeeList = centerPersonManageService.selectEmployeeByName(stationID, employeeName,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -92,7 +93,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/deliverPerformance",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverPerformance(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> deliverPerformance(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Performance> deliverPerformanceList = centerPersonManageService.selectDeliverPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -103,7 +104,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/salerPerformance",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> salerPerformance(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> salerPerformance(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Performance> salerPerformanceList = centerPersonManageService.selectSalerPerformance(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -123,7 +124,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/updateOperator",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> updateOperator(Operator operator,ModelMap map){
+	public Map<String,Object> updateOperator(@ModelAttribute("oper")Operator operator,ModelMap map){
 		Operator sessionOperator = (Operator)map.get("operator");
 		operator.setOperatorID(sessionOperator.getOperatorID());
 		int result = centerPersonManageService.updateOperator(operator);
@@ -143,7 +144,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/operatorList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> operatorList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> operatorList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<Operator> operatorList = centerPersonManageService.selectOperatorList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();

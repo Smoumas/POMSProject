@@ -29,7 +29,7 @@ public interface ICenterOrderService {
 	
 	public int insertOrderChange(OrderChange orderChange);
 	
-	public List<PromptOrder> selectPromptOrderList(int stationID);
+	public List<PromptOrder> selectPromptOrderList(int stationID,int page);
 	
 	public List<NewspaperCount> selectNewspaperCount();
 	
@@ -37,7 +37,7 @@ public interface ICenterOrderService {
 
 	public int updateOrderPay(OrderPay orderPay);
 	
-	public List<OrderCount> selectOrderCountGroupByStationAndDate(Date date);
+	public List<OrderCount> selectOrderCountGroupByStationAndDate(Date date,int page);
 	
 	
 }

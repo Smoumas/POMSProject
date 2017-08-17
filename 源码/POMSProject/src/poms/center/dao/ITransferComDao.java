@@ -10,9 +10,9 @@ public interface ITransferComDao {
 	
 	public int insertTransferCom(TransferCom transferCom);
 	public int updateTransferCom(TransferCom transferCom);
-	public int deleteTransferCom(@Param("transferComID")int trasnferComID);
+	public int deleteTransferCom(@Param("companyID")int companyID);
 	public List<TransferCom> selectTransferComList(@Param("begin") int begin);
-	public List<TransferCom> selectTransferComByID(@Param("transferComID")int transferComID);
-	public List<TransferCom> selectTransferComListByName(@Param("transferComName")String transferComName,@Param("begin") int begin);
+	public List<TransferCom> selectTransferComByID(@Param("companyID")int transferComID);
+	public List<TransferCom> selectTransferComListByName(@Param("companyName")String transferComName,@Param("begin") int begin);
 
 }

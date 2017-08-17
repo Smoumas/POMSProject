@@ -2,6 +2,7 @@ package poms.publish.service;
 
 import java.util.List;
 
+import poms.center.entity.Duty;
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
 import poms.center.entity.Performance;
@@ -19,4 +20,5 @@ public interface IPublishEmployeeManageService {
 	
 	public List<Performance> selectSalerPerformance(int stationID,int page);
 	public List<Performance> selectDeliverPerformance(int stationID,int page);
+	public List<Duty> selectDutyList(int departmentID, int page);
 }

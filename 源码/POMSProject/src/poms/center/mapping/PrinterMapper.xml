@@ -8,6 +8,13 @@
 		from printer
 		where printerID = #{printerID}
 	</select>
+	
+	<select id="selectPrinterByName" resultType="poms.center.entity.Printer">
+		select *
+		from printer
+		where printerName like CONCAT('%',#{printerName},'%' ) and stationID = #{stationID}
+		limit #{begin},15
+	</select>
 
 	<select id="selectAllPrinter" resultType="poms.center.entity.Printer"
 		parameterType="java.lang.Integer">
@@ -18,7 +25,7 @@
 	</select>
 
 	<delete id="deletePrinterByID" parameterType="java.lang.Integer">
-		delete from employee
+		delete from printer
 		where printerID = #{printerID}
 	</delete>
 

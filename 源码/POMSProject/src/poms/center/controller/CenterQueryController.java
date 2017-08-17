@@ -1,4 +1,4 @@
-package poms.center.controller;
+	package poms.center.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,14 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +40,7 @@ public class CenterQueryController {
 	@Autowired
 	private ICenterOrderService centerOrderService;
 
+	
 	@RequestMapping(value = "/customerPeriodOrderList", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> customerPeriodOrderList(@RequestParam("customerID") int customerID,
@@ -82,7 +81,7 @@ public class CenterQueryController {
 
 	@RequestMapping(value = "/orderCountList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> orderCountList(@RequestParam("page") int page) {
+	public Map<String, Object> orderCountList(@RequestParam(value="page",defaultValue="0") int page) {
 		List<OrderCount> orderCountList = centerSummaryService.orderCountListGroupByStation(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderCountList.size());
@@ -102,27 +101,33 @@ public class CenterQueryController {
 
 	@RequestMapping(value = "/departmentDutyInfo", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> departmentDutyInfo(@RequestParam("page") int page) {
+	public Map<String, Object> departmentDutyInfo(@RequestParam(value="page",defaultValue="0") int page) {
 		List<DepartmentDuty> dutyList = centerQueryService.selectDepartmentDutyInfo(page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", dutyList.size());
 		resultMap.put("data", dutyList);
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/departmentDutyInfoByName", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> departmentDutyInfo(@RequestParam("departmentName")String departmentName,@RequestParam(value="page",defaultValue="0") int page) {
+		List<DepartmentDuty> dutyList = centerQueryService.selectDepartmentDutyInfoByName(departmentName,page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", dutyList.size());
+		resultMap.put("data", dutyList);
+		return resultMap;
+	}
+	
 
 	@RequestMapping(value = "/orderCountByDate", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> orderCountByDate(@Param("date") Date date) {
-		List<OrderCount> orderCountList = centerOrderService.selectOrderCountGroupByStationAndDate(date);
+	public Map<String, Object> orderCountByDate(@RequestParam("date") Date date,@RequestParam(value="page",defaultValue="0")int page) {
+		List<OrderCount> orderCountList = centerOrderService.selectOrderCountGroupByStationAndDate(date,page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", orderCountList.size());
 		resultMap.put("data", orderCountList);
 		return resultMap;
-	}
-
-	@RequestMapping(value = "/{url}", method = RequestMethod.GET)
-	public String forward(@PathVariable("url") String url) {
-		return url;
 	}
 
 	@InitBinder

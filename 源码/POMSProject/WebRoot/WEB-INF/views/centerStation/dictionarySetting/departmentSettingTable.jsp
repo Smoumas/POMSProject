@@ -18,7 +18,7 @@
             </div>
             <div class="operation">
                 <div class="search input-group">
-                    <input type="text" class="form-control" placeholder="分站名" name="stationName">
+                    <input type="text" class="form-control" placeholder="部门名" name="departmentName">
                     <span class="input-group-btn"><button class="btn btn-info" type="button">
 							搜索
 						</button></span>

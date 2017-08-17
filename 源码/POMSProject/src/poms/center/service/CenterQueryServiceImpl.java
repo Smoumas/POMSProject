@@ -69,6 +69,12 @@ public class CenterQueryServiceImpl implements ICenterQueryService{
 		return departmentDutyDao.departmentDutyList(page*CommonConstants.PAGE_SIZE);
 	}
 
+	@Override
+	public List<DepartmentDuty> selectDepartmentDutyInfoByName(String departmentName, int page) {
+		// TODO Auto-generated method stub
+		return departmentDutyDao.departmentDutyListByName(departmentName,page*CommonConstants.PAGE_SIZE);
+	}
+
 	
 	
 	

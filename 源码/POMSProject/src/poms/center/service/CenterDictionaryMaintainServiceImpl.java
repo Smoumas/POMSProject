@@ -275,6 +275,18 @@ public class CenterDictionaryMaintainServiceImpl implements ICenterDictionaryMai
 		// TODO Auto-generated method stub
 		return stationDao.stationList(page*CommonConstants.PAGE_SIZE);
 	}
+
+	@Override
+	public List<DeliverArea> selectDeliverAreaAllList(int page) {
+		// TODO Auto-generated method stub
+		return deliverAreaDao.selectDeliverAreaAllList(CommonConstants.PAGE_SIZE*page);
+	}
+
+	@Override
+	public List<DeliverArea> selecctDeliverAreaAllListByName(String deliverAreaName, int page) {
+		// TODO Auto-generated method stub
+		return deliverAreaDao.selectDeliverAreaAllByName(deliverAreaName, page*CommonConstants.PAGE_SIZE);
+	}
 	
 	
 }

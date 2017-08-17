@@ -48,5 +48,11 @@ public class CenterDeliverManageServiceImpl implements ICenterDeliverManageServi
 		return deliverPointDao.deleteDeliverPointByID(deliverPointID);
 	}
 
+	@Override
+	public List<DeliverPoint> selectDeliverPointByName(String deliverPointName, int stationID, int page) {
+		// TODO Auto-generated method stub
+		return deliverPointDao.selectDeliverPointByName(deliverPointName, stationID, page*CommonConstants.PAGE_SIZE);
+	}
+
 	
 }

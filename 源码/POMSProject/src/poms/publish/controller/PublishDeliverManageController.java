@@ -1,6 +1,7 @@
 package poms.publish.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class PublishDeliverManageController {
 	
 	@RequestMapping(value="/getDeliverArea",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getDeliverArea(@RequestParam("page") int page,@RequestParam("orderID") int orderID,ModelMap map){
+	public Map<String,Object> getDeliverArea(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("orderID") int orderID,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		List<DeliverArea> deliverAreaList = publishDeliverManageService.getDeliverArea(stationID,orderID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -58,7 +59,12 @@ public class PublishDeliverManageController {
 		int stationID = (Integer)map.get("stationID");
 		int data = publishDeliverManageService.getOrderCount(date,stationID);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("result", data);
+		resultMap.put("size", 1);
+		Map<String,Integer> map2 = new HashMap<String, Integer>();
+		map2.put("data", data);
+		List<Map<String,Integer>> resultList = new ArrayList<Map<String,Integer>>();
+		resultList.add(map2);
+		resultMap.put("data",resultList);
 		return resultMap;
 	}
 	

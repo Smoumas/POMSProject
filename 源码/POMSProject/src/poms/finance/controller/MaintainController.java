@@ -14,8 +14,8 @@ import java.util.Map;
  * Created by sakamichi on 2017/8/8.
  */
 @Controller
-@RequestMapping("/maintain")
-@SessionAttributes("stationID")
+@RequestMapping("/finance/maintain")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class MaintainController {
 
     @RequestMapping(value="/updateTransportRules",method= RequestMethod.GET)

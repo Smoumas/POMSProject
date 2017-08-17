@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.entity.Duty;
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
 import poms.center.entity.Performance;
+import poms.center.service.ICenterDictionaryMaintainService;
 import poms.center.service.ICenterPersonManageService;
 
 @Service("publishEmployeeManageService")
@@ -15,6 +17,9 @@ public class PublishEmployeeManageServiceImpl implements IPublishEmployeeManageS
 
 	@Autowired
 	private ICenterPersonManageService centerPersonManageService;
+	
+	@Autowired
+	private ICenterDictionaryMaintainService centerDictionaryMaintainService;
 	
 	@Override
 	public int newEmployee(Employee employee) {
@@ -65,6 +70,12 @@ public class PublishEmployeeManageServiceImpl implements IPublishEmployeeManageS
 	public List<Performance> selectDeliverPerformance(int stationID,int page) {
 		// TODO Auto-generated method stub
 		return centerPersonManageService.selectDeliverPerformance(stationID,page);
+	}
+
+	@Override
+	public List<Duty> selectDutyList(int departmentID, int page) {
+		// TODO Auto-generated method stub
+		return centerDictionaryMaintainService.selectDutyList(departmentID, page);
 	}
 	
 }

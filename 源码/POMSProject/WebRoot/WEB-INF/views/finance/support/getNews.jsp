@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>收取通知</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div id="mark-id">
+                    fzyw-sqtz
+                </div>
+                <!--页面标题提示部分-->
+                <div class="title">
+                    <h2>辅助业务>收取通知</h2>
+                </div>
+                <!--添加，删除，等操作部分-->
+                <div class="operation">
+                    <div class="search input-group">
+                        <select name="isReaded" class="form-control">
+                        <option value="0">未阅读通知</option>
+                        <option value="1">已阅读通知</option>
+                    </select>
+                        <span class="input-group-btn"><button class="btn btn-info" type="button">
+							查询
+						</button></span>
+                    </div>
+                </div>
+
+                <!--表格部分-->
+                <div>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>消息ID</th>
+                                <th>发送消息的分站</th>
+                                <th>部门名称</th>
+                                <th>时间</th>
+                                <th>消息内容</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                查看详细通知
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="overflow: hidden">
+                            <div class="row">
+                                <label class="col-sm-3">消息ID：</label>
+                                <div class="col-sm-9 div"></div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-3">来自分站：</label>
+                                <div class="col-sm-9 div"></div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-3">来自部门：</label>
+                                <div class="col-sm-9 div"></div>
+                            </div>
+                            <div class="row">
+                                <label for="" class="col-sm-3">时间：</label>
+                                <div class="col-sm-9 div"></div>
+                            </div>
+                            <div>
+                                <label for="">消息内容：</label>
+                                <div>
+                                    <textarea disabled class="col-sm-12 div" rows="5" style="background:#fff;overflow-y:scroll;"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+    </div>
+
+</body>
+
+</html>

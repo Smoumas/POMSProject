@@ -1,4 +1,5 @@
 package poms.supporter.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,93 +20,106 @@ import poms.supporter.service.IManageService;
 
 @Controller
 @RequestMapping("/support/manage")
-@SessionAttributes({"stationID","departmentID","operator"})
+@SessionAttributes({ "stationID", "departmentID", "operator" })
 public class ManageController {
-	
+
 	@Autowired
 	private IManageService manageService;
 
-	@RequestMapping(value="/updateCustomer")
+	@RequestMapping(value = "/updateCustomer")
 	@ResponseBody
-	public Map<String,Object> updateCustomer(Customer customer){
+	public Map<String, Object> updateCustomer(Customer customer) {
 		int result = manageService.updateCustomer(customer);
-		Map<String,Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/deleteCustomer")
+
+	@RequestMapping(value = "/deleteCustomer")
 	@ResponseBody
-	public Map<String,Object> deleteCustomer(@RequestParam("customerID") int customerID){
+	public Map<String, Object> deleteCustomer(@RequestParam("customerID") int customerID) {
 		int result = manageService.deleteCustomer(customerID);
-//		System.out.println("customerID:"+customerID);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		// System.out.println("customerID:"+customerID);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/insertNewCustomer",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/insertNewCustomer", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> insertNewCustomer(Customer customer,ModelMap map){
-		int stationID = (Integer)map.get("stationID");
+	public Map<String, Object> insertNewCustomer(Customer customer, ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
 		customer.setStationID(stationID);
 		int result = manageService.insertNewCustomer(customer);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/setInvestigation",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/setInvestigation", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> setCustomerInvestigation(Comment comment,ModelMap map){
-		int stationID = (Integer)map.get("stationID");
+	public Map<String, Object> setCustomerInvestigation(Comment comment, ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
 		comment.setStationID(stationID);
 		int result = manageService.setCustomerInvestigation(comment);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/allInvestigation")
+
+	@RequestMapping(value = "/allInvestigation")
 	@ResponseBody
-	public Map<String,Object> selectAllInvestigation(@RequestParam("page") int page,ModelMap map){
-		int stationID = (Integer)map.get("stationID");
-		List<Comment> commentList = manageService.selectAllInvestigation(stationID,page);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+	public Map<String, Object> selectAllInvestigation(@RequestParam(value = "page", defaultValue = "0") int page,
+			ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
+		List<Comment> commentList = manageService.selectAllInvestigation(stationID, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", commentList.size());
 		resultMap.put("data", commentList);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/changePassword")
+
+	@RequestMapping(value = "/changePassword",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> changePassword(@RequestParam("newPassword")String newPassword,ModelMap map){
-		Operator operator = (Operator)map.get("operator");
+	public Map<String, Object> changePassword(@RequestParam("newPassword") String newPassword, ModelMap map) {
+		System.out.println(newPassword);
+		Operator operator = (Operator) map.get("operator");
 		int result = manageService.changePassword(operator, newPassword);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/investigationByType")
+
+	@RequestMapping(value = "/investigationByType")
 	@ResponseBody
-	public Map<String,Object> selectInvestigationByType(@RequestParam("commentType") int commentType,ModelMap map){
-		int stationID = (Integer)map.get("stationID");
+	public Map<String, Object> selectInvestigationByType(@RequestParam("commentType") int commentType, ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
 		List<Comment> commentList = manageService.selectInvestigationByType(stationID, commentType);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", commentList.size());
 		resultMap.put("data", commentList);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="customerList")
+
+	@RequestMapping(value = "/customerList")
 	@ResponseBody
-	public Map<String,Object> customerList(@RequestParam("page") int page,ModelMap map){
-		int stationID = (Integer)map.get("stationID");
-		List<Customer> customerList = manageService.selectCustomerList(stationID,page);
-		Map<String,Object> resultMap = new HashMap<String,Object>();
+	public Map<String, Object> customerList(@RequestParam(value = "page", defaultValue = "0") int page, ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
+		List<Customer> customerList = manageService.selectCustomerList(stationID, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", customerList.size());
 		resultMap.put("data", customerList);
+		return resultMap;
+	}
+
+	@RequestMapping(value="/insertReceipt",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertReceipt(@RequestParam("recordID") int recordID,
+			@RequestParam("receipt") String receipt, ModelMap map) {
+		int stationID = (Integer) map.get("stationID");
+		int result = manageService.insertReceipt(stationID, recordID, receipt);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", result);
 		return resultMap;
 	}
 }

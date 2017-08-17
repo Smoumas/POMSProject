@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poms.center.entity.Duty;
 import poms.center.entity.Employee;
 import poms.center.entity.Operator;
+import poms.center.service.ICenterDictionaryMaintainService;
 import poms.center.service.ICenterPersonManageService;
 
 @Service("personManageService")
@@ -15,6 +17,9 @@ public class PersonManageServiceImpl implements IPersonManageService {
 
 	@Autowired
 	private ICenterPersonManageService centerPersonManageService;
+	
+	@Autowired
+	private ICenterDictionaryMaintainService centerDictionaryMaintainService;
 	
 	
 	@Override
@@ -75,6 +80,18 @@ public class PersonManageServiceImpl implements IPersonManageService {
 	public int deleteOperatorByID(int operatorID) {
 		// TODO Auto-generated method stub
 		return centerPersonManageService.deleteOperator(operatorID);
+	}
+
+	@Override
+	public List<Employee> selectEmployeeByName(int stationID, String employeeName, int page) {
+		// TODO Auto-generated method stub
+		return centerPersonManageService.selectEmployeeByName(stationID, employeeName, page);
+	}
+
+	@Override
+	public List<Duty> selectDutyList(int departmentID, int page) {
+		// TODO Auto-generated method stub
+		return centerDictionaryMaintainService.selectDutyList(departmentID, page);
 	}
 
 }

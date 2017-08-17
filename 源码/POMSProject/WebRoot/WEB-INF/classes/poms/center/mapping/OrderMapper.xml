@@ -12,14 +12,15 @@
     select `order`.orderID,customer.customerName,customer.customerPhone,`order`.paymentState 
     from `order`,customer
     where `order`.customerID = customer.customerID and order.stationID=#{stationID} and `order`.paymentState > 0
+    limit #{begin},15
   </select>
   
   
   <select id="selectNewspaperCount" resultType="poms.center.entity.NewspaperCount">
-   SELECT s.stationName,n.newspaperName,ifnull(sum(orderNum),0)
+   SELECT s.stationName,n.newspaperName,ifnull(sum(orderNum),0) as sum
    FROM `order` o,station s,newspaper n
-   WHERE o.stationID = stationID AND o.newspaperID = n.newspaperID
-   group by stationName,newspaperName
+   WHERE o.stationID = s.stationID AND o.newspaperID = n.newspaperID
+   group by o.stationID,o.newspaperID
   </select>
   
   
@@ -218,6 +219,7 @@
   	from `order`,station
   	where `order`.stationID = station.stationID
   	group by `order`.stationID
+  	
   </select>
   
   <select id="selectOrderCountGroupByStationAndDate" resultType="poms.center.entity.OrderCount">
@@ -230,7 +232,7 @@
   
   
   <select id="selectCustomerPeriodOrder" resultType="poms.center.entity.Order">
-  	select orderID,newspaperID,stationID,orderType,orderAddress,orderNum,orderDate
+  	select orderID,customerID,newspaperID,stationID,orderType,orderAddress,orderNum,orderDate
   	from `order`
   	where orderDate between #{beginDate} and #{endDate} and customerID=#{customerID} and stationID=#{stationID}
   	limit #{begin},15
@@ -259,21 +261,21 @@
   </select>
   
   <select id="getCheckSumByPeriod" resultType="java.lang.Double">
-		SELECT sum(credit)
+		SELECT ifnull(sum(credit),0)
 		FROM orderPay op,`order` o
-		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 2 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+		WHERE o.orderID = op.orderID AND o.stationID = #{stationID} AND (o.paymentType = 2 OR o.paymentType = 1) AND o.orderDate BETWEEN #{startDate} AND #{endDate}
 	</select>
 
 	<select id="getCouponByPeriod" resultType="java.lang.Double">
 		SELECT ifnull(sum(price),0)
 		FROM coupon c,orderPay op,`order` o
-		WHERE o.orderID = op.orderID AND op.couponID = c.couponID AND o.stationID = #(stationID) AND o.paymentType = 4 AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+		WHERE o.orderID = op.orderID AND op.couponID = c.couponID AND o.stationID = #{stationID} AND o.paymentType = 4 AND o.orderDate BETWEEN #{startDate} AND #{endDate}
 	</select>
 
 	<select id="getCashByPeriod" resultType="java.lang.Double">
 		SELECT ifnull(sum(cash),0)
 		FROM orderPay op,`order` o
-		WHERE o.orderID = op.orderID AND o.stationID = #(stationID) AND (o.paymentType = 1 OR o.paymentType = 3) AND o.orderDate BETWEEN #(startDate) AND #(endDate)
+		WHERE o.orderID = op.orderID AND o.stationID = #{stationID} AND (o.paymentType = 2 OR o.paymentType = 3 OR o.paymentType = 4) AND o.orderDate BETWEEN #{startDate} AND #{endDate}
 	</select>
 
 	<update id="updateOrderPay" parameterType="poms.center.entity.OrderPay">
@@ -283,7 +285,7 @@
 				cash=#{cash},
 			</if>
 			<if test="credit != null">
-				cash=#{cash},
+				credit=#{credit},
 			</if>
 			<if test="giftCardID != null">
 				giftCardID=#{giftCardID},

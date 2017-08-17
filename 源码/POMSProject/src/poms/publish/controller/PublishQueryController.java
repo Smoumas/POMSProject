@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import poms.center.entity.Customer;
 import poms.center.entity.Invoice;
 import poms.center.entity.Log;
+import poms.center.entity.Newspaper;
 import poms.center.entity.NewspaperPrice;
 import poms.center.entity.Order;
 import poms.center.entity.PromptOrder;
@@ -76,7 +77,7 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/deliverOrderList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> deliverOrderList(@RequestParam("page") int page,ModelMap map){	//分站投递单情况
+	public Map<String,Object> deliverOrderList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){	//分站投递单情况
 		int stationID = (Integer)map.get("stationID");
 		List<Order> deliverOrderList = publishQueryService.selectDeliverOrder(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -87,7 +88,7 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/getNewspaperPriceByID",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getNewspaperPriceByID(@RequestParam("page") int page,@RequestParam("newspaperID") int newspaperID){
+	public Map<String,Object> getNewspaperPriceByID(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("newspaperID") int newspaperID){
 		List<NewspaperPrice> newspaperPriceList = publishQueryService.getNewspaperPriceByID(newspaperID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", newspaperPriceList.size());
@@ -97,7 +98,7 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/customerList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> customerList(@RequestParam("page")int page,ModelMap map){	//分站客户列表
+	public Map<String,Object> customerList(@RequestParam(value="page",defaultValue="0")int page,ModelMap map){	//分站客户列表
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Customer> customerList = publishQueryService.getStationCustomer(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -119,9 +120,9 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/promptList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> promptList(ModelMap map){
+	public Map<String,Object> promptList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
-		List<PromptOrder> promptList = publishQueryService.getPromptList(stationID);
+		List<PromptOrder> promptList = publishQueryService.getPromptList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", promptList.size());
 		resultMap.put("data", promptList);
@@ -130,7 +131,7 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/paymentList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> paymentList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> paymentList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Order> paymentList = publishQueryService.getPaymentList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -142,7 +143,7 @@ public class PublishQueryController {
 	
 	@RequestMapping(value="/orderList",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> orderList(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> orderList(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = Integer.parseInt(map.get("stationID").toString());
 		List<Order> orderList = publishQueryService.getOrderList(stationID,page);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
@@ -161,6 +162,17 @@ public class PublishQueryController {
 		resultMap.put("data", expiredList);
 		return resultMap;
 	}
+	
+	@RequestMapping(value="/newspaperList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> newspaperList(@RequestParam(value="page",defaultValue="0") int page){
+		List<Newspaper> newspaperList = publishQueryService.selectNewspaperList(page);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", newspaperList.size());
+		resultMap.put("data", newspaperList);
+		return resultMap;
+	}
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){

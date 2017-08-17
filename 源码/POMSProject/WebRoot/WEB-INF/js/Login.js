@@ -1,17 +1,18 @@
-var login_btn = document.getElementById("login-btn");
-login_btn.onclick = function() {
-    return LoginAuth();
-}
+﻿$(function(){
+	var login_btn = document.getElementById("login-btn");
+	login_btn.onclick = LoginAuth;
+
+
+})
 
 function LoginAuth() {
     var inputOfUsername = document.getElementById("username");
-    var usrname = inputOfUsername.value;
+    var username = inputOfUsername.value;
     var inputOfPassWord = document.getElementById("password");
     var pwd = inputOfPassWord.value;
-    if (InputTextValidate(usrname) && InputTextValidate(pwd)) {
-        window.location.href = "centerStation/centerMain";
-
-
+    if (InputTextValidate(username) && InputTextValidate(pwd)) {  	
+    	$("#show-text").text("");
+        loginAjax(username,pwd);
         return false;
     } else {
         $("#show-text").text("用户名/密码不能为空!!!!!");
@@ -30,15 +31,15 @@ var loginAjax = function(username, password) {
             if (!data.result) {
                 $("#show-text").text("账号/密码错误!!!!!!");
             } else if (data.result == 1) {
-                window.location.href = "../code/centerStation/centerMain.html";
+                window.location.href = "centerStation/centerMain";
             } else if (data.result == 2) {
-                window.location.href = "../code/issueStation/main_fa.html";
+                window.location.href = "publish/main_fa";
             } else if (data.result == 3) {
-                window.location.href = "../code/deliveryManage/deliveryMain.html";
+                window.location.href = "deliver/deliveryMain";
             } else if (data.result == 4) {
-                window.location.href = "../code/caiwuguanli/caiwuMain.html";
+                window.location.href = "finance/caiwuMain";
             } else if (data.result == 5) {
-                window.location.href = "../code/consumerManage/consumerMain.html";
+                window.location.href = "support/consumerMain";
             }
         },
         error: function(data) {

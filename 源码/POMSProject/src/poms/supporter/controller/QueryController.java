@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import poms.center.entity.Department;
 import poms.center.entity.Log;
 import poms.center.entity.Order;
+import poms.center.entity.Station;
 import poms.supporter.service.IQueryService;
 
 @Controller
@@ -46,4 +48,30 @@ public class QueryController {
 		resultMap.put("data", logList);
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "/stationList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> stationList(@RequestParam(value = "page", defaultValue = "0") int page) {
+		List<Station> stationList = queryService.stationList(page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", stationList.size());
+		resultMap.put("data", stationList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value = "/departmentList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> departmentList(@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "stationID", defaultValue = "-1") int stationID,ModelMap map) {
+		if (stationID == -1) {
+			stationID = (Integer) map.get("stationID");
+		}
+		List<Department> departmentList = queryService.selectDepartmentList(stationID, page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", departmentList.size());
+		resultMap.put("data", departmentList);
+		return resultMap;
+	}
+	
+	
 }

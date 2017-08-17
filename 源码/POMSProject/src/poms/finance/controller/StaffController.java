@@ -21,8 +21,8 @@ import java.util.Map;
  * Created by sakamichi on 2017/8/8.
  */
 @Controller
-@RequestMapping("/staff")
-@SessionAttributes("stationID")
+@RequestMapping("/finance/staff")
+@SessionAttributes({"stationID","departmentID","operator"})
 public class StaffController {
 
 	@Autowired
@@ -30,7 +30,11 @@ public class StaffController {
 
 	@RequestMapping(value = "/newEmployee", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> newEmployee(Employee employee) {
+	public Map<String, Object> newEmployee(Employee employee,ModelMap map) {
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		employee.setStationID(stationID);
+		employee.setDepartmentID(departmentID);
 		int result = staffService.newEmployee(employee);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -57,7 +61,7 @@ public class StaffController {
 
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> employeeList(@RequestParam("page") int page, ModelMap map) {
+	public Map<String, Object> employeeList(@RequestParam(value="page",defaultValue="0") int page, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		List<Employee> employeeList = staffService.employeeList(stationID, page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -69,7 +73,7 @@ public class StaffController {
 	@RequestMapping(value = "/setEmployeeDuty", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> setEmployeeDuty(@RequestParam("employeeID") int employeeID,
-			@RequestParam("dutyType") int dutyType, @RequestParam("page") int page, ModelMap map) {
+			@RequestParam("dutyType") int dutyType, @RequestParam(value="page",defaultValue="0") int page, ModelMap map) {
 		int result = staffService.setEmployeeDuty(employeeID, dutyType,page);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -78,7 +82,7 @@ public class StaffController {
 
 	@RequestMapping("/queryAllOperator")
 	@ResponseBody
-	public Map<String, Object> OperatorList(@RequestParam("page") int page,ModelMap modelMap) {
+	public Map<String, Object> OperatorList(@RequestParam(value="page",defaultValue="0") int page,ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
 		List<Operator> employeeList = this.staffService.getAllOperator(stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -91,9 +95,9 @@ public class StaffController {
 	@ResponseBody
 	public Map<String, Object> updateLevel(@RequestParam("operatorID") int operatorID,
 			@RequestParam("level") int level) {
-		int state = this.staffService.updateLevel(operatorID, level);
+		int result = this.staffService.updateLevel(operatorID, level);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("state", state);
+		map.put("result", result);
 		return map;
 	}
 }

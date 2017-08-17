@@ -25,13 +25,19 @@ public class AdviceServiceImpl implements IAdviceService{
 	@Override
 	public int sendAdvice(Advice advice) {
 		// TODO Auto-generated method stub
-		return 0;
+		return centerAssistService.insertAdvice(advice);
 	}
 
 	@Override
 	public List<Advice> getReadedAdvice(int stationID,int departmentID,int page) {
 		// TODO Auto-generated method stub
 		return centerAssistService.selectAdviceList(stationID, departmentID, CommonConstants.READED,page);
+	}
+
+	@Override
+	public List<Advice> adviceList(int stationID, int departmentID, int isReaded, int page) {
+		// TODO Auto-generated method stub
+		return centerAssistService.selectAdviceList(stationID, departmentID, isReaded, page);
 	}
 
 }

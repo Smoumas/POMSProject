@@ -27,6 +27,19 @@ public class AdviceController {
 	private IAdviceService adviceService;
 	
 	
+	@RequestMapping(value = "/adviceList", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> adviceList(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("isReaded") int isReaded, ModelMap map) {
+		int stationID = (Integer)map.get("stationID");
+		int departmentID = (Integer)map.get("departmentID");
+		List<Advice> adviceList = adviceService.adviceList(stationID, departmentID, isReaded,page);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size", adviceList.size());
+		resultMap.put("data", adviceList);
+		return resultMap;
+	}
+	
+	
 	//测试登录
 	@RequestMapping(value="/form",method=RequestMethod.GET)
 	public ModelAndView form(ModelMap map){
@@ -36,7 +49,7 @@ public class AdviceController {
 	
 	@RequestMapping(value="/unreadedAdvice",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getUnreadedAdvice(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> getUnreadedAdvice(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
 		List<Advice> unreadedAdviceList = adviceService.getUnreadedAdvice(stationID,departmentID,page); 
@@ -62,7 +75,7 @@ public class AdviceController {
 	
 	@RequestMapping(value="/readedAdvice",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> getReadedAdvice(@RequestParam("page") int page,ModelMap map){
+	public Map<String,Object> getReadedAdvice(@RequestParam(value="page",defaultValue="0") int page,ModelMap map){
 		int stationID=(Integer)map.get("stationID");
 		int departmentID = (Integer)map.get("departmentID");
 		List<Advice> readedAdviceList = adviceService.getReadedAdvice(stationID,departmentID,page); 

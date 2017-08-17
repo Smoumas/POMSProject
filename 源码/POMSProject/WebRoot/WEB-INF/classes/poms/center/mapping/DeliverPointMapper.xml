@@ -9,6 +9,13 @@
 		where deliverPointID = #{deliverPointID}
 		limit #{begin},15
 	</select>
+	
+	<select id="selectDeliverPointByName" resultType="poms.center.entity.DeliverPoint">
+		select *
+		from deliverPoint
+		where deliverPointName like CONCAT('%',#{deliverPointName},'%' ) and stationID = #{stationID}
+		limit #{begin},15 
+	</select>
 
 	<select id="selectAllDeliverPoint" resultType="poms.center.entity.DeliverPoint"
 		parameterType="java.lang.Integer">

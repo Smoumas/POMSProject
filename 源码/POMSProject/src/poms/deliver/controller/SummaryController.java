@@ -30,7 +30,7 @@ public class SummaryController {
 
 	@RequestMapping("/summaryPrintNumber")
 	@ResponseBody
-	public Map<String, Object> summaryPrintNumber(@RequestParam("date") Date date,@RequestParam("page") int page, ModelMap modelMap) {
+	public Map<String, Object> summaryPrintNumber(@RequestParam("date") Date date,@RequestParam(value="page",defaultValue="0") int page, ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
 		List<PrinterEverydaySummary> list = this.summaryService.summaryPrintNumber(date, stationID,page);
 		Map<String, Object> map = new HashMap<String, Object>();

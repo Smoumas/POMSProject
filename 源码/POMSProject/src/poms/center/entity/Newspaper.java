@@ -9,7 +9,7 @@ public class Newspaper {
 	private Integer ableRedirect;//是否允许转址
 	private Integer ableDelay;//是否允许延期
 	private Integer frequency;//刊期
-	private Integer issueRate;//发行费率
+	private Float issueRate;//发行费率
 	public Integer getNewspaperID() {
 		return newspaperID;
 	}
@@ -52,12 +52,13 @@ public class Newspaper {
 	public void setFrequency(Integer frequency) {
 		this.frequency = frequency;
 	}
-	public Integer getIssueRate() {
+	public Float getIssueRate() {
 		return issueRate;
 	}
-	public void setIssueRate(Integer issueRate) {
+	public void setIssueRate(Float issueRate) {
 		this.issueRate = issueRate;
 	}
+
 	
 	//对应的get、set方法
 	

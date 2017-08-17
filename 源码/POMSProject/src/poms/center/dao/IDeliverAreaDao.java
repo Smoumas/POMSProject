@@ -20,4 +20,8 @@ public interface IDeliverAreaDao {
 
 	public List<DeliverArea> selectDeliverAreaByName(@Param("stationID") int stationID,
 			@Param("deliverAreaValue") String deliverAreaValue,@Param("begin") int begin);
+
+	public List<DeliverArea> selectDeliverAreaAllList(@Param("begin")int begin);
+
+	public List<DeliverArea> selectDeliverAreaAllByName(@Param("deliverAreaValue")String deliverAreaName, @Param("begin")int begin);
 }

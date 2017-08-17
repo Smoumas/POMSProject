@@ -33,7 +33,7 @@
   </delete>
   
   <update id="updateNewsOffice" parameterType="poms.center.entity.NewsOffice">
-  	update newsOffce
+  	update newsOffice
   	<set>
 		  <if test="noName != null">
 		  		noName = #{noName},

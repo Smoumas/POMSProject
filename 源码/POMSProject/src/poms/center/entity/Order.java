@@ -8,6 +8,7 @@ public class Order {
 	private Integer orderID;
 	private Integer newspaperID;
 	private Integer customerID;
+	private String customerName;
 	private Integer stationID;
 	private Integer orderType;
 	private String orderAddress;
@@ -27,6 +28,13 @@ public class Order {
 	
 	
 	
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 	@JsonFormat(pattern="yyyy-MM-dd")
 	public Date getOrderDate() {
 		return orderDate;

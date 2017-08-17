@@ -11,8 +11,9 @@
 	
 	<select id="selectEmployeeByName" resultType="poms.center.entity.Employee">
 		select *
-		from employee
-		where employeeName like CONCAT('%',#{employeeName},'%' )  and stationID = #{stationID}
+		from employee,duty
+		where employeeName like CONCAT('%',#{employeeName},'%' )  and stationID = #{stationID} and employee.dutyID=duty.dutyType
+		order by employee.employeeID
 		limit #{begin},15		
 	</select>
 
@@ -34,8 +35,9 @@
 
 	<select id="selectEmployeeList" resultType="poms.center.entity.Employee">
 		select *
-		from employee
-		where stationID = #{stationID}
+		from employee,duty
+		where stationID = #{stationID} and employee.dutyID=duty.dutyType
+		order by employee.employeeID
 		limit #{begin},15
 	</select>
 

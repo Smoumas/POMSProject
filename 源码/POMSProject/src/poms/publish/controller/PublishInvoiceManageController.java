@@ -22,9 +22,9 @@ public class PublishInvoiceManageController {
 	@Autowired
 	private IPublishInvoiceManageService publishInvoiceManageService;
 	
-	@RequestMapping(value="/invoiceManage",method=RequestMethod.GET)
+	@RequestMapping(value="/invoiceManage",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> invoiceManage(@RequestParam("page") int page,@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state,ModelMap map){
+	public Map<String,Object> invoiceManage(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("invoiceID") int invoiceID,@RequestParam("state") int state,ModelMap map){
 		int result = publishInvoiceManageService.invoiceManage(invoiceID, state,page);
 		Map<String,Object> resultMap  = new HashMap<String, Object>();
 		resultMap.put("result", result);

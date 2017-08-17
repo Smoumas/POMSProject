@@ -69,6 +69,11 @@ public class CenterPrinterManageServiceImpl implements ICenterPrinterManageServi
 		// TODO Auto-generated method stub
 		return printerDao.selectPrinterByID(printerID);
 	}
+	
+	@Override
+	public List<Printer> selectPrinterByName(String printerName,int stationID,int page){
+		return printerDao.selectPrinterByName(printerName,stationID,page*CommonConstants.PAGE_SIZE);
+	}
 
 	@Override
 	public List<Printer> queryAllPrinter(int stationID,int page) {

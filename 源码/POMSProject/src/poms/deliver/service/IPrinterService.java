@@ -10,4 +10,5 @@ public interface IPrinterService {
 	public List<Printer> selectPrinterByID(int printerID);
 	public List<Printer> queryAllPrinter(int stationID,int page);
 	public int deletePrinterByID(int printerID);
+	public List<Printer> selectPrinterByName(String printerName,int stationID,int page);
 }

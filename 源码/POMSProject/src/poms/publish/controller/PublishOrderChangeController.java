@@ -23,7 +23,7 @@ public class PublishOrderChangeController {
 	@Autowired
 	private IPublishOrderChangeService publishOrderChangeService;
 
-	@RequestMapping(value="/cancelDeleteOrder",method=RequestMethod.GET)
+	@RequestMapping(value="/cancelDeleteOrder",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> cancelDeleteOrder(@RequestParam("orderID") int orderID,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
@@ -33,7 +33,7 @@ public class PublishOrderChangeController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/cancelChangeAddress",method=RequestMethod.GET)
+	@RequestMapping(value="/cancelChangeAddress",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> cancelChangeAddress(@RequestParam("orderID") int orderID,ModelMap map){
 		int stationID = (Integer)map.get("stationID");
@@ -43,7 +43,7 @@ public class PublishOrderChangeController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/cancelPostpone",method=RequestMethod.GET)
+	@RequestMapping(value="/cancelPostpone",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> cancelPostpone(@RequestParam("orderID") int orderID,ModelMap map) throws ParseException{
 		int stationID = (Integer)map.get("stationID");
