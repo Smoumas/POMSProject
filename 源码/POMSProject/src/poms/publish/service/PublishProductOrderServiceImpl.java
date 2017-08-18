@@ -92,4 +92,10 @@ public class PublishProductOrderServiceImpl implements IPublishProductOrderServi
 		return centerOrderService.selectOrderByID(stationID, orderID);
 	}
 
+	@Override
+	public List<Order> orderList(int stationID,int page) {
+		// TODO Auto-generated method stub
+		return centerOrderService.selectAllOrder(stationID,page);
+	}
+
 }

@@ -73,6 +73,7 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 		Order order = orderDao.selectOrderByID(stationID, orderID).get(0);
 		OrderChange orderChange = orderChangeDao.selectOrderChangeByID(order.getOrderID()).get(0);
 		order.setOrderNum(Integer.parseInt(orderChange.getOldValue()));
+		orderChangeDao.deleteOrderChange(orderID);
 		return orderDao.updateOrder(order);
 	}
 
@@ -83,6 +84,7 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 		Order order = orderDao.selectOrderByID(stationID, orderID).get(0);
 		OrderChange orderChange = orderChangeDao.selectOrderChangeByID(orderID).get(0);
 		order.setOrderAddress(orderChange.getOldValue());
+		orderChangeDao.deleteOrderChange(orderID);
 		return orderDao.updateOrder(order);
 	}
 
@@ -94,6 +96,7 @@ public class CenterOrderServiceImpl implements ICenterOrderService{
 		OrderChange orderChange = orderChangeDao.selectOrderChangeByID(orderID).get(0);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		order.setDeliverDate(simpleDateFormat.parse(orderChange.getOldValue()));
+		orderChangeDao.deleteOrderChange(orderID);
 		return orderDao.updateOrder(order);
 	}
 

@@ -40,6 +40,7 @@ public class CenterAssistController {
 		return resultMap;
 	}
 
+	
 	@RequestMapping(value = "/adviceList", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> adviceList(@RequestParam(value="page",defaultValue="0") int page,@RequestParam("isReaded") int isReaded, ModelMap map) {
@@ -64,6 +65,7 @@ public class CenterAssistController {
 		return resultMap;
 	}
 
+	
 	@RequestMapping(value = "/correctOrderAddress", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> correctOrderAddress(@RequestParam("orderID") int orderID,

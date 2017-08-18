@@ -115,7 +115,7 @@ public class CenterPersonManageController {
 	
 	@RequestMapping(value="/insertOperator",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> insertOperator(Operator operator){
+	public Map<String,Object> insertOperator(@ModelAttribute("oper")Operator operator){
 		int result = centerPersonManageService.insertOperator(operator);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);

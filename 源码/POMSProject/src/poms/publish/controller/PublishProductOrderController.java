@@ -36,6 +36,8 @@ public class PublishProductOrderController {
 	public Map<String, Object> newOrder(Order order, ModelMap map) {
 		int stationID = (Integer) map.get("stationID");
 		order.setStationID(stationID);
+		order.setDeliverDate(new Date());
+		order.setOrderDate(new Date());
 		int result = publishProductOrderService.newOrder(order);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", result);
@@ -92,6 +94,17 @@ public class PublishProductOrderController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("size", giftCardList.size());
 		resultMap.put("data", giftCardList);
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/orderList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> orderList(@RequestParam(value="page",defaultValue="0")int page,ModelMap map){
+		int stationID = (Integer)map.get("stationID");
+		List<Order> orderList = publishProductOrderService.orderList(stationID, page);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("size",orderList.size());
+		resultMap.put("data", orderList);
 		return resultMap;
 	}
 

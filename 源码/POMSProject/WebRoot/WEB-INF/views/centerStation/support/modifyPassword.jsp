@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2">新密码</label>
-                            <input type="password" class="form-control" name="newPassword" id="password-new">
+                            <input type="password" class="form-control" name="password" id="password-new">
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2">确认新密码</label>

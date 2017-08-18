@@ -146,7 +146,7 @@ public class SystemManageController {
 	public Map<String, Object> queryDeliverPointByName(@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam("deliverPointName") String deliverPointName, ModelMap modelMap) {
 		int stationID = (int) modelMap.get("stationID");
-		List<Printer> list = this.printerService.selectPrinterByName(deliverPointName, stationID, page);
+		List<DeliverPoint> list = this.deliverPointService.selectDeliverPointByName(deliverPointName, stationID, page);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("size",list.size());
 		map.put("data",list);

@@ -95,7 +95,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="btn btn-primary mySubmit">提交</button>
+                                    <input type="submit" class="btn btn-primary mySubmit" value="提交">
                                 </div>
                             </div>
                         </form>

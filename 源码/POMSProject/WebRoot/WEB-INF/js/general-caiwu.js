@@ -138,46 +138,57 @@
 
 
 
+var load_URL;
+var query_URL;
+var add_URL;
 var delete_URL;
 var update_URL;
+var flag;
+var place;
+var is_equally;
+var data_names;
 var is_read = 0;
-$(function(){
-    //让隐藏的显示
-    /*左侧导航栏下拉*/
-    $("#main").find(".main-left>.first-list>li:not(:first-child):not(.sub-list)").click(function() {
+var page = 0;
+var type = 0;
+$(function() {
+	//让隐藏的显示
+	/*左侧导航栏下拉*/
+	$("#main").find(".main-left>.first-list>li:not(:first-child):not(.sub-list)").click(function() {
 
-        $(this).next().slideToggle();
-    });
-    // 给左侧导航栏按钮添加点击事件
-    $(".sub-list").find("ul>li>a").click(function() {
+		$(this).next().slideToggle();
+	});
+	// 给左侧导航栏按钮添加点击事件
+	$(".sub-list").find("ul>li>a").click(function() {
 
-        var href = this.getAttribute("href");
-        // 加载子页面
-        $(".main-right").load(href, function() {
-            var type = 0; //判断当前界面是加载 还是查询的 0 加载 1 查询
+		var href = this.getAttribute("href");
+		// 加载子页面
+		$(".main-right").load(href, function() {
+			type = 0; //判断当前界面是加载 还是查询的 0 加载 1 查询
 
-            //有一个标记 记录分页
-            var page = 0; //当前页数
-            //记录查询条件
-            var search_if = {};
+			//有一个标记 记录分页
+			page = 0; //当前页数
+			//记录查询条件
+			var search_if = {};
 
-            // 通过mark_id标记符获得三种URL以及是否有编辑的标志符
-            var mark_id = $.trim($("#mark-id").text());
-            console.log(mark_id);
-            console.log(array[mark_id]);
-            var load_URL = array[mark_id].load_URL;
-            var query_URL = array[mark_id].query_URL;
-            var add_URL = array[mark_id].add_URL;
-            delete_URL = array[mark_id].delete_URL;
-            update_URL = array[mark_id].update_URL;
+			// 通过mark_id标记符获得三种URL以及是否有编辑的标志符
+			var mark_id = $.trim($("#mark-id").text());
+			console.log(mark_id);
+			console.log(array[mark_id]);
+			load_URL = array[mark_id].load_URL;
+			query_URL = array[mark_id].query_URL;
+			add_URL = array[mark_id].add_URL;
+			delete_URL = array[mark_id].delete_URL;
+			update_URL = array[mark_id].update_URL;
 
-            var flag = array[mark_id].flag; //代表是否有编辑按钮的标志符
-            var place = array[mark_id].place; //代表需要编辑的列号
-            var is_equally = array[mark_id].is_equally; //代表字段名是否匹配
-            var data_names = array[mark_id].data_names; //数组 代表字段名
-            // 发送加载的ajax,包括标识符和需要编辑的列号
-            console.log("send load-ajax");
-
+			flag = array[mark_id].flag; //代表是否有编辑按钮的标志符
+			place = array[mark_id].place; //代表需要编辑的列号
+			is_equally = array[mark_id].is_equally; //代表字段名是否匹配
+			data_names = array[mark_id].data_names; //数组 代表字段名
+			// 发送加载的ajax,包括标识符和需要编辑的列号
+			console.log("send load-ajax");
+			console.log(is_equally);
+			
+			
             load(load_URL, flag, place, is_equally, data_names, page);
             // 绑定查询按钮的事件
             var search_btn = $(".search .input-group-btn");
@@ -349,8 +360,7 @@ var getKeyAndValue = function(div, type, search) {
         if(search_key == "issueRate"){
         	
         	search_value = parseFloat($(search_type[i]).val());
-        	alert(typeof search_value);
-        	alert(search_value);
+        	x
         }else{
         	search_value = $(search_type[i]).val();        	
         }
@@ -754,7 +764,7 @@ var add = function(add_URL, json, flag, place,is_equally, data_names, load_URL) 
             console.log("success");
             // 0失败 1成功
             if (data.result) {
-                alert("添加成功");
+                alert("操作成功");
                 $(".modal").modal("hide");
                 //清空表格
                 var tbody = document.getElementsByTagName("tbody")[0];
@@ -763,7 +773,7 @@ var add = function(add_URL, json, flag, place,is_equally, data_names, load_URL) 
                 load(load_URL, flag, place, is_equally, data_names, 0);
             } else {
                 console.log("add fail");	
-                alert("添加失败！！！！！！");
+                alert("操作失败");
             }
         },
         error: function(data) {

@@ -74,6 +74,7 @@ public class CenterDictionaryMaintainController {
 		return resultMap;
 	}
 
+	
 	@RequestMapping(value = "/deleteDepartment", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> deleteDepartment(@RequestParam("departmentID") int departmentID) {
@@ -97,6 +98,7 @@ public class CenterDictionaryMaintainController {
 		return resultMap;
 	}
 
+	
 	@RequestMapping(value = "/departmentByID", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> departmentByID(@RequestParam(value = "page", defaultValue = "0") int page,

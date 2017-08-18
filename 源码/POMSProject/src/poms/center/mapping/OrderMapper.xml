@@ -3,8 +3,8 @@
 <mapper namespace="poms.center.dao.IOrderDao" >
   <select id="selectOrderList" resultType="poms.center.entity.Order">
     select * 
-    from `order`
-    where stationID=#{stationID}
+    from `order`,customer
+    where `order`.customerID = customer.customerID and `order`.stationID=#{stationID}
     limit #{begin},15
   </select>
   

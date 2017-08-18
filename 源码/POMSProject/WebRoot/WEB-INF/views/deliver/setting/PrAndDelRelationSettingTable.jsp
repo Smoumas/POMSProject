@@ -97,7 +97,79 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal -->
   </div>
-
+	
 </div>
+
+<script>
+    $(function() {
+            var stationList = {};
+            var pointList = {};
+            $(".container").on("click", function() {
+                //判断是否已经获得 已经获得就退出                 
+                if (!$.isEmptyObject(stationList)&&!$.isEmptyObject(pointList)) {
+                    return;
+                } else {
+                    //获得分站list 
+                    $.ajax({
+                        url: "/POMSProject/deliver/systemManage/queryAllPrinter",
+                        type: "get",
+                        data: "",
+                        dataType: "json",
+                        success: function(data) {
+                            console.log("success");
+                            stationList = data.data;
+                            //把select替换
+                            var select = $("select")[0];
+                           	$(select).html("");
+                            for (var i = 0; i < data.size; i++) {
+                                var one_station = stationList[i];
+                                console.log(one_station);
+                                var option = document.createElement("option");
+                                option.setAttribute("value", one_station.stationID);
+                                var text = document.createTextNode(one_station.stationName);
+                                option.appendChild(text);
+                                select.appendChild(option);
+                            }
+                           
+                        },
+                        error: function(data) {
+                            console.log("error");
+                            alert("啊哦，连接数据库出现了一点问题");
+                        }
+                    });
+                    $.ajax({
+                   url: "/POMSProject/deliver/systemManage/queryAllDeliverPoint",
+                   type: "get",
+                   data: "",	
+                   dataType: "json",
+                   success: function(data) {
+                       console.log("success");
+                       pointList = data.data;
+                       //把select替换
+                       var select = $("select")[1];
+                       $(select).html("");
+                       for (var i = 0; i < data.size; i++) {
+                           var one_pointList = pointList[i];
+                            console.log(one_pointList);
+                           var option = document.createElement("option");
+                           option.setAttribute("value", one_pointList.departmentID);
+                           var text = document.createTextNode(one_pointList.departmentName);
+                           option.appendChild(text);
+                           select.appendChild(option);
+                       }
+                   },
+                   error: function(data) {
+                       console.log("error");
+                       alert("啊哦，连接数据库出现了一点问题");
+                   }
+               });
+                    
+                    
+                }
+
+            });
+            });
+            
+    </script>
 </body>
 </html>

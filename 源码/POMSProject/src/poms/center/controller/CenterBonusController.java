@@ -28,7 +28,7 @@ public class CenterBonusController {
 	
 	@Autowired
 	private ICenterBonusService centerBonusService;
-
+	
 	@RequestMapping(value="/insertGiftCard",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> insertGiftCard(GiftCard giftCard){
@@ -46,6 +46,7 @@ public class CenterBonusController {
 		resultMap.put("result", result);
 		return resultMap;
 	}
+	
 	
 	@RequestMapping(value="/deleteGiftCard",method=RequestMethod.GET)
 	@ResponseBody
@@ -113,6 +114,7 @@ public class CenterBonusController {
 		return resultMap;
 	}
 	
+	
 	@RequestMapping(value="/couponByID",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> couponByID(@RequestParam("couponID") int couponID){
@@ -122,6 +124,11 @@ public class CenterBonusController {
 		resultMap.put("data", couponList);
 		return resultMap;
 	}
+	
+	/**
+	 * 绑定日期处理函数，自动处理前台传递的date类型数据
+	 * @param binder
+	 */
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

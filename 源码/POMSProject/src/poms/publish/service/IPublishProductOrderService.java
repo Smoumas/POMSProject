@@ -15,5 +15,6 @@ public interface IPublishProductOrderService {
 	public int renewSubscription(int stationID,int orderID,int orderKeepTime);		//续订
 	public List<GiftCard> additionalDonationByGiftCard(int newspaperID);
 	public List<Coupon> additionalDonationByCoupon();
+	public List<Order> orderList(int stationID,int page);
 	public List<Order> selectOrderByID(int stationID,int orderID);
 }

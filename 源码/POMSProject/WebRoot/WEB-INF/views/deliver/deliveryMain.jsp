@@ -21,7 +21,7 @@
                     <div class="navbar-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">收件箱</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="/POMSProject/logout">退出</a></li>
                         </ul>
                     </div>
                 </div>

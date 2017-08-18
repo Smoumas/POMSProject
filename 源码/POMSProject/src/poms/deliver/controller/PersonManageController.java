@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,7 +93,7 @@ public class PersonManageController {
 	
 	@RequestMapping("/addOperator")
 	@ResponseBody
-	public Map<String,Object> addOperator(Operator operator){
+	public Map<String,Object> addOperator(@ModelAttribute("oper")Operator operator){
 		int state = this.personManageService.insertOperator(operator);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("result", state);
@@ -116,7 +117,7 @@ public class PersonManageController {
 	
 	@RequestMapping("/updateOperator")
 	@ResponseBody
-	public Map<String,Object> updateOperator(Operator operator){
+	public Map<String,Object> updateOperator(@ModelAttribute("oper")Operator operator){
 		int state = this.personManageService.updateOperator(operator);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("result", state);

@@ -21,7 +21,7 @@
                     <div class="navbar-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#">收件箱</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="/POMSProject/logout">退出</a></li>
                         </ul>
                     </div>
                 </div>
@@ -45,6 +45,7 @@
                     <li><a>商品订购<span>></span></a></li>
                     <li class="sub-list">
                         <ul class="nav nav-pills nav-stacked">
+                            <li><a href="shang_show">查看订单</a></li>
                             <li><a href="shang_xd">新订</a></li>
                             <li><a href="shang_td">退订</a></li>
                             <li><a href="shang_zz">转址</a></li>

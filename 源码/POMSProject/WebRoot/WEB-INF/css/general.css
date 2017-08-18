@@ -287,3 +287,11 @@ a:hover {
     font-size: 1.5rem;
     color: gray;
 }
+
+.edit_input{
+	width:50%;
+}
+
+textarea{
+	resize:none;
+}

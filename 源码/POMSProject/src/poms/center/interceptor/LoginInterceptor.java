@@ -41,7 +41,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		Operator operator = (Operator) httpSession.getAttribute("operator");
 		if (operator != null) {
 			int level = operator.getLevel();
-			System.out.println(operator.getLevel());
 			if (level == 1) {
 				if (system.equals("center") || system.equals("centerStation")) {
 					return true;
